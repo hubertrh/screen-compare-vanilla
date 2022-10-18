@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+
+    <title>Screen Compare</title>
+
+    <link href="main.css" rel="stylesheet" />
+    <script defer src="app.js"></script>
+
+    <link
+      href="./assets/icons/favicon/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-16x16.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">
+        <img alt="logo" class="logo__img" src="./assets/icons/logo.png" />
+      </a>
+      <a class="title" href="/">ScreenCompare</a>
+      <div class="buttons">
+        <img alt="Light mode switch" class="switch-mode" src="assets/icons/Icons/light-mode.svg" />
+        <button class="ko-fi">
+          <img alt="Ko-fi" class="ko-fi__img" src="assets/icons/Icons/kofi.png" />
+          <span class="ko-fi__text">Tip me</span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="wrapper-main">
+        <section class="screen-forms screen-forms--double">
+          <div class="screen-card">
+            <div class="screen">
+              <div class="screen-name">
+                <label for="name-1" hidden>Display 1 name: </label>
+                <input
+                  class="name"
+                  id="name-1"
+                  name="name-1"
+                  placeholder="Display 1"
+                  readonly
+                  size="1"
+                  type="text"
+                />
+                <button class="name-edit">
+                  <img
+                    alt="Edit screen name"
+                    id="edit-button-1"
+                    src="assets/icons/Icons/edit-field.svg"
+                  />
+                </button>
+              </div>
+              <form action="" class="screen-form" id="screen-form-1">
+                <fieldset class="screen-size">
+                  <label for="size-1">Size *</label>
+                  <div class="wrapper-fields">
+                    <input
+                      class="size-input"
+                      id="size-1"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="32"
+                      required
+                      type="number"
+                    />
+                    <div class="toggle-switch">
+                      <label class="units-box" for="units-1"></label>
+                      <input class="units-switch" id="units-1" type="checkbox" />
+                      <div class="units-slider"></div>
+                    </div>
+                    <label class="units-label" for="units-1">in</label>
+                  </div>
+                </fieldset>
+                <fieldset class="aspect-ratio">
+                  <p class="form-label">Aspect ratio *</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="ratio-w-1">Aspect ratio width</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-w-1"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="16"
+                      required
+                      type="number"
+                    />
+                    <p class="divider divider--ratio">:</p>
+                    <label class="hidden" for="ratio-h-1">Aspect ratio height</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-h-1"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="9"
+                      required
+                      type="number"
+                    />
+                  </div>
+                </fieldset>
+                <fieldset class="resolution">
+                  <p class="form-label">Resolution (optional)</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="res-w-1">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-w-1"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1920"
+                      type="number"
+                    />
+                    <p class="divider divider--res">x</p>
+                    <label class="hidden" for="res-h-1">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-h-1"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1080"
+                      type="number"
+                    />
+                    <p class="res-unit">px</p>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <div class="screen-card">
+            <div class="screen">
+              <div class="screen-name">
+                <label for="name-2" hidden>Display 2 name: </label>
+                <input
+                  class="name"
+                  id="name-2"
+                  name="name-2"
+                  placeholder="Display 2"
+                  readonly
+                  size="1"
+                  type="text"
+                />
+                <button class="name-edit">
+                  <img
+                    alt="Edit screen name"
+                    id="edit-button-2"
+                    src="assets/icons/Icons/edit-field.svg"
+                  />
+                </button>
+              </div>
+              <form action="" class="screen-form" id="screen-form-2">
+                <fieldset class="screen-size">
+                  <label for="size-2">Size *</label>
+                  <div class="wrapper-fields">
+                    <input
+                      class="size-input"
+                      id="size-2"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="32"
+                      required
+                      type="number"
+                    />
+                    <div class="toggle-switch">
+                      <label class="units-box" for="units-2"></label>
+                      <input class="units-switch" id="units-2" type="checkbox" />
+                      <div class="units-slider"></div>
+                    </div>
+                    <label class="units-label" for="units-2">in</label>
+                  </div>
+                </fieldset>
+                <fieldset class="aspect-ratio">
+                  <p class="form-label">Aspect ratio *</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="ratio-w-2">Aspect ratio width</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-w-2"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="16"
+                      required
+                      type="number"
+                    />
+                    <p class="divider divider--ratio">:</p>
+                    <label class="hidden" for="ratio-h-2">Aspect ratio height</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-h-2"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="9"
+                      required
+                      type="number"
+                    />
+                  </div>
+                </fieldset>
+                <fieldset class="resolution">
+                  <p class="form-label">Resolution (optional)</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="res-w-2">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-w-2"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1920"
+                      type="number"
+                    />
+                    <p class="divider divider--res">x</p>
+                    <label class="hidden" for="res-h-2">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-h-2"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1080"
+                      type="number"
+                    />
+                    <p class="res-unit">px</p>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <div class="screen-card">
+            <button class="btn-add">
+              <img
+                alt="Add third screen"
+                class="btn-add__img"
+                src="./assets/icons/Icons/plus.svg"
+              />
+            </button>
+            <div class="screen screen--last screen--inactive">
+              <button class="btn-remove">
+                <img
+                  alt="Remove third screen"
+                  class="btn-remove__img"
+                  src="./assets/icons/Icons/cross.svg"
+                />
+              </button>
+              <div class="screen-name">
+                <label for="name-3" hidden>Display 3 name: </label>
+                <input
+                  class="name"
+                  id="name-3"
+                  name="name-3"
+                  placeholder="Display 3"
+                  readonly
+                  size="1"
+                  type="text"
+                />
+                <button class="name-edit">
+                  <img
+                    alt="Edit screen name"
+                    id="edit-button-3"
+                    src="assets/icons/Icons/edit-field.svg"
+                  />
+                </button>
+              </div>
+              <form action="" class="screen-form" id="screen-form-3">
+                <fieldset class="screen-size">
+                  <label for="size-3">Size *</label>
+                  <div class="wrapper-fields">
+                    <input
+                      class="size-input"
+                      id="size-3"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="32"
+                      type="number"
+                    />
+                    <div class="toggle-switch">
+                      <label class="units-box" for="units-3"></label>
+                      <input class="units-switch" id="units-3" type="checkbox" />
+                      <div class="units-slider"></div>
+                    </div>
+                    <label class="units-label" for="units-3">in</label>
+                  </div>
+                </fieldset>
+                <fieldset class="aspect-ratio">
+                  <p class="form-label">Aspect ratio *</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="ratio-w-3">Aspect ratio width</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-w-3"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="16"
+                      type="number"
+                    />
+                    <p class="divider divider--ratio">:</p>
+                    <label class="hidden" for="ratio-h-3">Aspect ratio height</label>
+                    <input
+                      class="ratio-input"
+                      id="ratio-h-3"
+                      maxlength="6"
+                      pattern="^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$"
+                      placeholder="9"
+                      type="number"
+                    />
+                  </div>
+                </fieldset>
+                <fieldset class="resolution">
+                  <p class="form-label">Resolution (optional)</p>
+                  <div class="wrapper-fields">
+                    <label class="hidden" for="res-w-3">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-w-3"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1920"
+                      type="number"
+                    />
+                    <p class="divider divider--res">x</p>
+                    <label class="hidden" for="res-h-3">Resolution width</label>
+                    <input
+                      class="res-input"
+                      id="res-h-3"
+                      maxlength="6"
+                      pattern="^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$"
+                      placeholder="1080"
+                      type="number"
+                    />
+                    <p class="res-unit">px</p>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+        <button class="btn-compare">Compare!</button>
+        <section class="screen-results invisible">
+          <div class="screen-results__details"></div>
+          <div class="screen-results__visualizations">
+            <div class="visualization-box">
+              <div class="visualization visualization--1">
+                <p class="diagonal diagonal--1"></p>
+              </div>
+              <div class="visualization visualization--2">
+                <p class="diagonal diagonal--2"></p>
+              </div>
+              <div class="visualization visualization--3">
+                <p class="diagonal diagonal--3"></p>
+              </div>
+              <div class="guides-wrapper guides-wrapper--left"></div>
+              <div class="guides-wrapper guides-wrapper--bottom"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__credits">
+        <p class="copyright">ScreenCompare &copy 2022</p>
+        <p class="author">Hubert Rogala-Haracz</p>
+      </div>
+      <div class="footer__divider"></div>
+      <div class="footer__links">
+        <a href="#!">Cookie Policy</a>
+        <p class="footer__dot">&bull;</p>
+        <a href="#!">Leave Feedback</a>
+      </div>
+    </footer>
+  </body>
+</html>
