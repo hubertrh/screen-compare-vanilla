@@ -1,0 +1,35 @@
+$font-stack: "Kumbh Sans", "Helvetica", sans-serif;
+
+$transparent: rgba(0, 0, 0, 0);
+$dark-900: hsl(210, 12%, 97%);
+$dark-800: hsl(222, 10%, 80%);
+$dark-700: hsl(221, 17%, 60%);
+$dark-600: hsl(230, 18%, 20%);
+$dark-600-muted: hsl(225, 12%, 20%);
+$dark-600-muted-bg: hsla(225, 12%, 20%, 0.6);
+$dark-500: hsl(220, 25%, 12%);
+$dark-500-muted: hsl(231, 17%, 15%);
+$dark-accent-red: hsl(0, 68%, 60%);
+$dark-accent-red-hover: hsl(0, 45%, 50%);
+$dark-accent-aqua: hsl(172, 65%, 70%);
+$dark-accent-aqua-hover: hsl(172, 50%, 58%);
+$dark-screen-1: hsl(220, 75%, 65%);
+$dark-screen-1-bg: hsla(220, 65%, 50%, 0.40);
+$dark-screen-1-transparent: hsla(220, 75%, 65%, 0.10);
+$dark-screen-2: hsl(320, 85%, 62%);
+$dark-screen-2-bg: hsla(320, 75%, 47%, 0.40);
+$dark-screen-2-transparent: hsla(320, 85%, 62%, 0.10);
+$dark-screen-3: hsl(25, 85%, 63%);
+$dark-screen-3-bg: hsla(25, 75%, 48%, 0.40);
+$dark-screen-3-transparent: hsla(25, 85%, 63%, 0.10);
+
+$shadow-elevation: 0px 5px 36px rgba(0, 0, 0, 0.25);
+$shadow-screen-1: 0px 5px 16px 1px hsla(244, 41%, 52%, 0.4);
+$shadow-screen-2: 0px 5px 16px 1px hsla(307, 100%, 42%, 0.4);
+$shadow-screen-3: 0px 5px 16px 1px hsla(23, 92%, 70%, 0.4);
+$shadow-red: 0px 0px 12px 2px hsla(0, 70%, 60%, 0.4);
+
+$blur-light: blur(4px);
+$blur-medium: blur(8px);
+
+$transition-forms: 0.25s ease-out;

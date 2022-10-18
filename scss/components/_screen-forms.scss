@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+.screen-forms {
+  @include flex-row;
+  justify-content: space-between;
+  width: 100%;
+
+  transition: all $transition-forms;
+}
+
+.wrapper-main:has(.screen-results.invisible) {
+  .screen-forms--double {
+    translate: calc(27.5vw * 0.5 + (100% - (3 * 27.5vw)) / 4);
+  }
+}

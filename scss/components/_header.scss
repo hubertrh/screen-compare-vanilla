@@ -1,0 +1,113 @@
+@use "../abstracts" as *;
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $dark-600;
+  @include flex-column;
+  height: 9vh;
+  width: 100vw;
+  box-shadow: $shadow-elevation;
+
+  .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 3vh;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    width: 5em;
+
+    &__img {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      translate: 0 -50%;
+      height: 40%;
+    }
+  }
+
+  .title {
+    display: grid;
+    place-items: center;
+    font-family: "Josefin Slab", $font-stack;
+    font-weight: 500;
+    font-size: 2.2rem;
+    text-align: center;
+    height: 100%;
+    width: 40vw;
+    border-bottom: solid 1.5px $dark-accent-aqua;
+    cursor: pointer;
+
+    &:hover {
+      width: 43vw;
+    }
+
+    transition: all 0.15s ease-out;
+  }
+
+  .buttons {
+    margin-right: 3em;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .switch-mode {
+      width: 2em;
+      height: 2em;
+      cursor: pointer;
+
+      transition: all 0.1s ease-out;
+
+      &:hover {
+        rotate: 22deg;
+      }
+    }
+
+    .ko-fi {
+      background-color: $dark-accent-aqua;
+      padding: 0.4em 1.2em 0.4em 1em;
+      border-radius: 2em;
+      border: none;
+      cursor: pointer;
+      @include flex-row;
+
+      transition: background-color 0.15s ease-out;
+
+      &:hover {
+        background-color: $dark-accent-aqua-hover;
+      }
+
+      &__img {
+        width: 2em;
+        margin-right: 0.5em;
+
+        animation: wobble-const 3s ease-in-out infinite normal forwards;
+
+        @keyframes wobble-const {
+          0%, 100% {
+            translate: -3px -1px;
+            rotate: 8deg;
+          }
+          50% {
+            translate: 1px -1px;
+            rotate: -8deg;
+          }
+        }
+      }
+
+      &__text {
+        color: $dark-500-muted;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+    }
+  }
+}

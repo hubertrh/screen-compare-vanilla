@@ -1,0 +1,347 @@
+@use "../abstracts" as *;
+
+.screen-card {
+  position: relative;
+
+  &:nth-child(1) {
+    .screen {
+      border-color: $dark-screen-1;
+    }
+  }
+
+  &:nth-child(2) {
+    .screen {
+      border-color: $dark-screen-2;
+    }
+  }
+
+  &:nth-child(3) {
+    .screen {
+      border-color: $dark-screen-3;
+    }
+  }
+
+  .screen {
+    position: relative;
+    background-color: $dark-600;
+    margin: 1.5em 0 1.5em;
+    padding: 0.9em 5% 0.7em;
+    border-top: solid 3px transparent;
+    border-radius: 1em;
+    width: 27.5vw;
+    box-shadow: $shadow-elevation;
+    filter: blur(0);
+    font-size: 0.9rem;
+    border-top: 3px solid transparent;
+
+    transition: all 2s ease, filter $transition-forms;
+
+    &--last::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 110%;
+      height: 115%;
+      translate: -5% 7.5%;
+      pointer-events: none;
+      background: linear-gradient(to right, $transparent 0%, $dark-500 45%);
+      z-index: 98;
+      opacity: 0;
+
+      transition: opacity $transition-forms 0.1s;
+    }
+
+    &--inactive {
+      filter: $blur-light;
+      pointer-events: none;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  // TODO - normalize outline and border
+
+  .name {
+    display: inline-block;
+    background-color: transparent;
+    outline: solid 2px $dark-600-muted;
+    border: none;
+    padding: 0 0.5em;
+    border-radius: 0.5em;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    color: $dark-900;
+    max-width: 80%;
+    min-width: 8rem;
+
+    transition: all 0.1s ease-out;
+
+    &:read-only {
+      outline: none;
+      min-width: 6rem;
+      padding: 0;
+
+      transition: all 0.1s ease-out;
+    }
+
+    &::placeholder {
+      color: $dark-800;
+    }
+
+    &:focus {
+      outline: solid 1px $dark-accent-aqua;
+    }
+  }
+
+  .name-edit {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    scale: 0.9;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+
+    @include flex-column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .screen-form {
+    margin: 0.5em 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1em;
+    grid-template-areas:
+    "screen-size aspect-ratio"
+    "resolution resolution";
+
+
+    .screen-size {
+      grid-area: screen-size;
+    }
+
+    .aspect-ratio {
+      grid-area: aspect-ratio;
+    }
+
+    .resolution {
+      grid-area: resolution;
+    }
+
+    .size-input, .ratio-input {
+      width: 45%;
+      min-width: 3em;
+    }
+
+    .res-input {
+      width: calc(10% + 2 * 3vw);
+    }
+
+    .wrapper-fields {
+      margin-top: 0.3em;
+      @include flex-row;
+      justify-content: left;
+
+      &:has(.ratio-input) {
+        justify-content: space-between;
+      }
+
+      // TODO - add switch focus (on tab)
+
+      .toggle-switch {
+        position: relative;
+        width: 2.5em;
+        height: 100%;
+        margin-right: 0.2em;
+        margin-left: 0.8em;
+
+        .units-box {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          translate: -50% -50%;
+          width: 2.2em;
+          height: 1.1em;
+          cursor: pointer;
+          opacity: 0%;
+          border-radius: 1em;
+          z-index: 1;
+        }
+
+        .units-switch {
+          width: 0;
+          height: 0;
+          opacity: 0;
+
+          &:checked + .units-slider::before {
+            translate: 1.2em -51%;
+          }
+        }
+
+        .units-slider {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          translate: -50% -50%;
+          width: 2.2em;
+          height: 1.1em;
+          cursor: pointer;
+          background-color: $dark-accent-aqua;
+          border-radius: 1em;
+
+          &:focus {
+            outline: 1px solid $dark-accent-aqua;
+            outline-offset: 2px;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            translate: 0.1em -51%;
+            height: 0.9em;
+            width: 0.9em;
+            background-color: $dark-600-muted;
+            border-radius: 50%;
+
+            transition: all 0.1s ease-in-out;
+          }
+        }
+      }
+
+      .units-label {
+        cursor: pointer;
+      }
+
+
+      .divider {
+        font-size: 1.4rem;
+
+        &--ratio {
+          margin: 0 0.3em;
+        }
+
+        &--res {
+          margin: 0 3%;
+        }
+      }
+
+      .res-unit {
+        margin-left: 0.5em;
+      }
+    }
+
+    input {
+      text-align: center;
+      color: $dark-900;
+      border: 1px solid $dark-700;
+      background-color: $dark-600;
+      border-radius: 1.1em;
+      height: 2.2em;
+      transition: all 0.1s ease-out;
+
+      &.invalid {
+        border: 1px solid red;
+
+        &:hover {
+          border: 1px solid red;
+        }
+
+        &:focus {
+          outline: 1px solid red;
+          border: 1px solid red;
+        }
+      }
+
+      &::placeholder {
+        color: $dark-700;
+      }
+
+      &:hover {
+        border: 1px solid $dark-accent-aqua;
+
+        &::placeholder {
+          color: $dark-800;
+        }
+      }
+
+      &:focus {
+        outline: 1px solid $dark-accent-aqua;
+        border: 1px solid $dark-accent-aqua;
+      }
+    }
+  }
+
+  .btn-add {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: -50% -50%;
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    background-color: $dark-accent-aqua;
+    border: none;
+    cursor: pointer;
+    box-shadow: $shadow-elevation;
+    opacity: 1;
+
+    transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s;
+
+    &:hover {
+      background-color: $dark-accent-aqua-hover;
+    }
+
+    &__img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 2em;
+    }
+  }
+
+  .btn-remove {
+    position: absolute;
+    top: -3px;
+    right: 0;
+    translate: -50% +50%;
+    width: 2em;
+    height: 2em;
+    display: grid;
+    place-items: center;
+    border-radius: 0 1em;
+    background-color: $dark-accent-red;
+    color: $dark-900;
+    border: none;
+    cursor: pointer;
+    box-shadow: $shadow-red;
+
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background-color: $dark-accent-red-hover;
+    }
+
+    &__img {
+      position: absolute;
+      rotate: 45deg;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 1.3em;
+    }
+  }
+}
