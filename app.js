@@ -384,25 +384,19 @@ const handleResultsLayout = () => {
 };
 
 const compare = () => {
-  const requiredFields = document.querySelectorAll("input[required]");
-  let isValid = false;
+  const validate = () => {
+    const requiredInputs = document.querySelectorAll("input[required]");
 
-  requiredFields.forEach((field) => {
-    // TODO - detailed form validation
-    isValid = false;
+    requiredInputs.forEach((input) => {
+      if (input.value === "") {
+        input.value = input.placeholder;
+      }
+    });
+  };
 
-    if (field.validity.valid) {
-      field.classList.remove("invalid");
-      isValid = true;
-    } else {
-      field.classList.add("invalid");
-    }
-  });
-
-  if (isValid) {
-    handleComparison();
-    handleResultsLayout();
-  }
+  validate();
+  handleComparison();
+  handleResultsLayout();
 };
 
 const compareButton = document.querySelector(".btn-compare");
