@@ -206,7 +206,8 @@ input::-webkit-inner-spin-button {
 .screen-card .screen-form .resolution {
   grid-area: resolution;
 }
-.screen-card .screen-form .size-input, .screen-card .screen-form .ratio-input {
+.screen-card .screen-form .size-input,
+.screen-card .screen-form .ratio-input {
   width: 45%;
   min-width: 3em;
 }
@@ -227,9 +228,14 @@ input::-webkit-inner-spin-button {
 .screen-card .screen-form .wrapper-fields .toggle-switch {
   position: relative;
   width: 2.5em;
-  height: 100%;
+  height: fit-content;
   margin-right: 0.2em;
   margin-left: 0.8em;
+  border-radius: 0.6em;
+}
+.screen-card .screen-form .wrapper-fields .toggle-switch:focus-within {
+  outline: 1px solid hsl(172deg, 65%, 70%);
+  outline-offset: 1px;
 }
 .screen-card .screen-form .wrapper-fields .toggle-switch .units-box {
   position: absolute;
@@ -261,10 +267,6 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   background-color: hsl(172deg, 65%, 70%);
   border-radius: 1em;
-}
-.screen-card .screen-form .wrapper-fields .toggle-switch .units-slider:focus {
-  outline: 1px solid hsl(172deg, 65%, 70%);
-  outline-offset: 2px;
 }
 .screen-card .screen-form .wrapper-fields .toggle-switch .units-slider::before {
   content: "";
@@ -631,17 +633,6 @@ header .buttons .ko-fi__text {
 }
 .screen-results .visualization-box .visualization .diagonal.dotted {
   background-size: 8px 100%;
-}
-.screen-results .visualization-box .visualization .diagonal::after {
-  position: absolute;
-  width: var(--after-width);
-  height: 1.1em;
-  top: 0.2em;
-  left: 50%;
-  translate: -50%;
-  border-radius: 0.5em;
-  z-index: -1;
-  background-color: hsla(225deg, 12%, 20%, 0.6);
 }
 .screen-results .visualization-box .visualization .diagonal--1 {
   background-image: linear-gradient(to right, hsl(220deg, 75%, 65%) 50%, rgba(255, 255, 255, 0) 0%);
