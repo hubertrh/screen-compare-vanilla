@@ -36,6 +36,11 @@ body {
   line-height: 1.5;
 }
 
+::selection {
+  background-color: $dark-accent-aqua;
+  color: $dark-500;
+}
+
 a {
   text-decoration-skip-ink: auto;
   text-decoration: none;

@@ -34,6 +34,11 @@ body {
   line-height: 1.5;
 }
 
+::selection {
+  background-color: hsl(172deg, 65%, 70%);
+  color: hsl(220deg, 25%, 12%);
+}
+
 a {
   text-decoration-skip-ink: auto;
   text-decoration: none;
