@@ -34,7 +34,7 @@
     font-size: 0.9rem;
     border-top: 3px solid transparent;
 
-    transition: all 2s ease, filter $transition-forms;
+    transition: filter 2s ease, filter $transition-forms;
 
     &--last::before {
       content: "";
