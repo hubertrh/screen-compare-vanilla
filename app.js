@@ -2,13 +2,37 @@
 
 // Year change in copyright text on window load
 window.addEventListener("load", () => {
+  updateYear();
+});
+
+// Third screen tab index change
+window.addEventListener("keypress", (e) => {
+  if (e.key === "Tab") {
+    handleTabIndexChange();
+  }
+});
+
+const updateYear = () => {
   const copyright = document.querySelector(".copyright");
   const year = new Date().getFullYear();
 
-  if (copyright) {
-    copyright.textContent.replace("2022", year.toString());
+  copyright.textContent.replace("2022", year.toString());
+};
+
+const handleTabIndexChange = () => {
+  const thirdScreen = document.querySelector(".screen--last");
+  const thirdScreenFormElements = thirdScreen.getElementsByTagName("*");
+
+  if (thirdScreen.classList.contains("screen--inactive")) {
+    [...thirdScreenFormElements].forEach((el) => {
+      el.tabIndex = -1;
+    });
+  } else {
+    [...thirdScreenFormElements].forEach((el) => {
+      el.tabIndex = -1;
+    });
   }
-});
+};
 
 // Screen edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
@@ -44,6 +68,7 @@ const handleInputBlur = (e) => {
   }
 };
 
+// TODO - fix
 const handleInputFocusOut = (e) => {
   const target = e.path[0];
 
@@ -112,8 +137,8 @@ const handleRemoveForm = () => {
   toggleRequiredAttributes();
 };
 
-addButton.addEventListener("click", (e) => handleAddForm());
-removeButton.addEventListener("click", (e) => handleRemoveForm());
+addButton.addEventListener("click", () => handleAddForm());
+removeButton.addEventListener("click", () => handleRemoveForm());
 
 ////////////////////////////////////////////////
 
@@ -286,15 +311,12 @@ const handleComparison = () => {
 
         newGuide.textContent = textContent.toString();
 
-        // TODO - refactor
         if (guideSide === "bottom") {
           guidesWrapperBottom.appendChild(newGuide);
         }
         if (guideSide === "left") {
           guidesWrapperLeft.appendChild(newGuide);
         }
-
-        guideSide[0].toUpperCase();
       });
 
       const diagonalGuidesSorted = [...diagonalGuides].sort((a, b) => {
@@ -359,17 +381,14 @@ const handleComparison = () => {
     handleGuides();
   };
 
-  const thirdScreenElements = document.querySelectorAll('[class*="--3"]');
+  const thirdScreenElement = document.querySelector(".visualization--3");
 
   if (diagonals.length === 2) {
-    thirdScreenElements.forEach((el) => {
-      el.classList.add("hidden");
-    });
+    thirdScreenElement.classList.add("hidden");
   } else {
-    thirdScreenElements.forEach((el) => {
-      el.classList.remove("hidden");
-    });
+    thirdScreenElement.classList.remove("hidden");
   }
+
   calculate();
 };
 

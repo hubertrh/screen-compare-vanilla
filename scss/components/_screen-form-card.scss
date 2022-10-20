@@ -120,9 +120,8 @@
     grid-template-rows: repeat(2, 1fr);
     gap: 1em;
     grid-template-areas:
-    "screen-size aspect-ratio"
-    "resolution resolution";
-
+      "screen-size aspect-ratio"
+      "resolution resolution";
 
     .screen-size {
       grid-area: screen-size;
@@ -136,7 +135,8 @@
       grid-area: resolution;
     }
 
-    .size-input, .ratio-input {
+    .size-input,
+    .ratio-input {
       width: 45%;
       min-width: 3em;
     }
@@ -154,14 +154,18 @@
         justify-content: space-between;
       }
 
-      // TODO - add switch focus (on tab)
-
       .toggle-switch {
         position: relative;
         width: 2.5em;
-        height: 100%;
+        height: fit-content;
         margin-right: 0.2em;
         margin-left: 0.8em;
+        border-radius: 0.6em;
+
+        &:focus-within {
+          outline: 1px solid $dark-accent-aqua;
+          outline-offset: 1px;
+        }
 
         .units-box {
           position: absolute;
@@ -197,11 +201,6 @@
           background-color: $dark-accent-aqua;
           border-radius: 1em;
 
-          &:focus {
-            outline: 1px solid $dark-accent-aqua;
-            outline-offset: 2px;
-          }
-
           &::before {
             content: "";
             position: absolute;
@@ -221,7 +220,6 @@
       .units-label {
         cursor: pointer;
       }
-
 
       .divider {
         font-size: 1.4rem;
