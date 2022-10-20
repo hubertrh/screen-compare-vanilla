@@ -151,6 +151,7 @@ input::-webkit-inner-spin-button {
   display: inline-block;
   background-color: transparent;
   outline: solid 2px hsl(225deg, 12%, 20%);
+  outline-offset: 0.2em;
   border: none;
   padding: 0 0.5em;
   border-radius: 0.5em;

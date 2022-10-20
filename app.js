@@ -68,18 +68,10 @@ const handleInputBlur = (e) => {
   }
 };
 
-// TODO - fix
 const handleInputFocusOut = (e) => {
-  const target = e.path[0];
-
-  if (
-    (e.relatedTarget &&
-      e.target.id.substring(e.target.id.length - 1) ===
-        e.relatedTarget.firstChild.id.substring(e.relatedTarget.firstChild.id.length - 1)) ||
-    !(e.relatedTarget && e.relatedTarget.id === "edit-name-button")
-  ) {
-    target.setAttribute("readonly", true);
-    target.blur();
+  if (!(e.relatedTarget && e.relatedTarget.id === "edit-name-button")) {
+    e.target.setAttribute("readonly", true);
+    e.target.blur();
   }
 };
 
