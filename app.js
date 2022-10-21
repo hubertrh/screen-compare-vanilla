@@ -1,23 +1,16 @@
 "use strict";
 
+const updateYear = () => {
+  const copyright = document.querySelector(".copyright");
+  const year = new Date().getFullYear().toString();
+
+  copyright.textContent = `ScreenCompare \u00A9 ${year}`;
+};
+
 // Year change in copyright text on window load
 window.addEventListener("load", () => {
   updateYear();
 });
-
-// Third screen tab index change
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Tab") {
-    handleTabIndexChange();
-  }
-});
-
-const updateYear = () => {
-  const copyright = document.querySelector(".copyright");
-  const year = new Date().getFullYear();
-
-  copyright.textContent.replace("2022", year.toString());
-};
 
 const handleTabIndexChange = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
@@ -33,6 +26,13 @@ const handleTabIndexChange = () => {
     });
   }
 };
+
+// Third screen tab index change
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    handleTabIndexChange();
+  }
+});
 
 // Screen edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
