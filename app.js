@@ -476,5 +476,6 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
+// TODO - fix focusout in header
 // TODO - add reset button
 // TODO - add form hints
