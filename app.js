@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
 });
 
 // Third screen tab index change
-window.addEventListener("keypress", (e) => {
+window.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
     handleTabIndexChange();
   }
@@ -20,7 +20,7 @@ const updateYear = () => {
 };
 
 const handleTabIndexChange = () => {
-  const thirdScreen = document.querySelector(".screen--last");
+  const thirdScreen = document.querySelectorAll(".screen")[2];
   const thirdScreenFormElements = thirdScreen.getElementsByTagName("*");
 
   if (thirdScreen.classList.contains("screen--inactive")) {
@@ -29,7 +29,7 @@ const handleTabIndexChange = () => {
     });
   } else {
     [...thirdScreenFormElements].forEach((el) => {
-      el.tabIndex = -1;
+      el.removeAttribute("tabindex");
     });
   }
 };
@@ -62,9 +62,19 @@ const handleInputResize = (e) => {
 };
 
 const handleInputBlur = (e) => {
-  if (e.key === "Enter") {
-    e.target.setAttribute("readonly", true);
-    e.target.blur();
+  if (
+    e.target.hasAttribute("readonly") &&
+    (e.key === "Enter" ||
+      (e.keyCode > 47 && e.keyCode < 58) ||
+      (e.keyCode > 64 && e.keyCode < 91) ||
+      (e.keyCode > 96 && e.keyCode < 123))
+  ) {
+    e.target.removeAttribute("readonly");
+  } else {
+    if (e.key === "Enter") {
+      e.target.setAttribute("readonly", true);
+      e.target.blur();
+    }
   }
 };
 
@@ -412,6 +422,7 @@ const compare = () => {
 
 const compareButton = document.querySelector(".btn-compare");
 const formInputs = document.querySelectorAll(".screen-forms input:not([type='checkbox'])");
+const formCheckboxes = document.querySelectorAll(".screen-forms input[type='checkbox']");
 
 compareButton.addEventListener("click", () => {
   compare();
@@ -419,10 +430,15 @@ compareButton.addEventListener("click", () => {
 
 formInputs.forEach((input) => {
   input.addEventListener("keypress", (e) => {
-    if (e.which === 13) {
-      // Enter key
-      e.preventDefault();
+    if (e.key === "Enter") {
+      e.target.blur();
       compare();
+    }
+  });
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.target.blur();
     }
   });
 
@@ -430,3 +446,35 @@ formInputs.forEach((input) => {
     e.target.select();
   });
 });
+
+formCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", (e) => {
+    e.target.parentNode.childNodes.forEach((node) => {
+      if (e.clientX !== 0 && node.nodeName === "INPUT") {
+        node.blur();
+      }
+    });
+  });
+
+  checkbox.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.target.parentNode.childNodes.forEach((node) => {
+        if (node.nodeName === "INPUT") {
+          node.blur();
+        }
+      });
+    }
+
+    if (e.key === "Enter") {
+      [...e.target.parentNode.children].forEach((node) => {
+        if (node.hasAttribute("type") && node.getAttribute("type") === "checkbox") {
+          node.checked = !node.checked;
+          handleUnitSwitch(e);
+        }
+      });
+    }
+  });
+});
+
+// TODO - add reset button
+// TODO - add form hints
