@@ -10,22 +10,24 @@ header {
   width: 100vw;
   box-shadow: $shadow-elevation;
 
+  & *:focus {
+    outline: solid 1.5px $dark-accent-aqua;
+  }
+
   .logo {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
+    translate: 0 -50%;
     margin-left: 3vh;
-    height: 100%;
+    height: 2.2em;
     display: grid;
     place-items: center;
-    width: 5em;
+    cursor: pointer;
+    outline-offset: 0.5em;
 
     &__img {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      translate: 0 -50%;
-      height: 40%;
+        height: 2.2em;
     }
   }
 
@@ -40,6 +42,7 @@ header {
     width: 40vw;
     border-bottom: solid 1.5px $dark-accent-aqua;
     cursor: pointer;
+    outline-offset: -0.3em;
 
     &:hover {
       width: 43vw;
@@ -63,6 +66,8 @@ header {
       width: 2em;
       height: 2em;
       cursor: pointer;
+      outline-offset: 0.4em;
+      border-radius: 50%;
 
       transition: all 0.1s ease-out;
 
@@ -78,6 +83,7 @@ header {
       border: none;
       cursor: pointer;
       @include flex-row;
+      outline-offset: 0.2em;
 
       transition: background-color 0.15s ease-out;
 

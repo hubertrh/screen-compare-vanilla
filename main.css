@@ -159,7 +159,7 @@ input::-webkit-inner-spin-button {
   outline-offset: 0.2em;
   border: none;
   padding: 0 0.5em;
-  border-radius: 0.5em;
+  border-radius: 0.2em;
   margin-bottom: 0;
   font-size: 1.3rem;
   color: hsl(210deg, 12%, 97%);
@@ -184,6 +184,11 @@ input::-webkit-inner-spin-button {
   background-color: transparent;
   cursor: pointer;
   scale: 0.9;
+  border-radius: 5em;
+  outline-offset: 0.2em;
+}
+.screen-card .name-edit:focus {
+  outline: solid 1px hsl(172deg, 65%, 70%);
 }
 .screen-card fieldset {
   border: none;
@@ -403,22 +408,23 @@ header {
   width: 100vw;
   box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
 }
-header .logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 3vh;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  width: 5em;
+header *:focus {
+  outline: solid 1.5px hsl(172deg, 65%, 70%);
 }
-header .logo__img {
+header .logo {
   position: absolute;
   top: 50%;
   left: 0;
   translate: 0 -50%;
-  height: 40%;
+  margin-left: 3vh;
+  height: 2.2em;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  outline-offset: 0.5em;
+}
+header .logo__img {
+  height: 2.2em;
 }
 header .title {
   display: grid;
@@ -431,6 +437,7 @@ header .title {
   width: 40vw;
   border-bottom: solid 1.5px hsl(172deg, 65%, 70%);
   cursor: pointer;
+  outline-offset: -0.3em;
   transition: all 0.15s ease-out;
 }
 header .title:hover {
@@ -451,6 +458,8 @@ header .buttons .switch-mode {
   width: 2em;
   height: 2em;
   cursor: pointer;
+  outline-offset: 0.4em;
+  border-radius: 50%;
   transition: all 0.1s ease-out;
 }
 header .buttons .switch-mode:hover {
@@ -466,6 +475,7 @@ header .buttons .ko-fi {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  outline-offset: 0.2em;
   transition: background-color 0.15s ease-out;
 }
 header .buttons .ko-fi:hover {
