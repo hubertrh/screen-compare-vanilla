@@ -52,14 +52,13 @@ window.addEventListener("keydown", (e) => {
 const editNameButtons = document.querySelectorAll(".name-edit");
 
 const handleEditButton = (e) => {
-  // TODO - fix path
-  const target = e.path[2].querySelector(".name");
+  const target = e.target.closest(".screen-name").querySelector(".name");
 
   if (target.hasAttribute("readonly")) {
     target.removeAttribute("readonly");
     target.select();
   } else {
-    target.setAttribute("readonly", true);
+    target.setAttribute("readonly", "");
   }
 };
 
@@ -87,7 +86,7 @@ const handleInputBlur = (e) => {
     e.target.removeAttribute("readonly");
   } else {
     if (e.key === "Enter") {
-      e.target.setAttribute("readonly", true);
+      e.target.setAttribute("readonly", "");
       e.target.blur();
     }
   }
@@ -95,7 +94,7 @@ const handleInputBlur = (e) => {
 
 const handleInputFocusOut = (e) => {
   if (!(e.relatedTarget && e.relatedTarget.id === "edit-name-button")) {
-    e.target.setAttribute("readonly", true);
+    e.target.setAttribute("readonly", "");
     e.target.blur();
   }
 };
@@ -166,9 +165,9 @@ numberInputs.forEach((input) => {
     let regexTest;
     if (e.target.classList.contains("res-input")) {
       // TODO - fix regex?
-      regexTest = /^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$/g.test(e.target.value);
+      regexTest = /^\d{1,5}\.\d{0,2}$|^\d{1,5}$/g.test(e.target.value);
     } else {
-      regexTest = /^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$/g.test(e.target.value);
+      regexTest = /^\d{1,3}\.\d{0,2}$|^\d{1,3}$/g.test(e.target.value);
     }
     if (!regexTest) {
       e.target.value = e.target.value.slice(0, -1);
@@ -488,5 +487,6 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
+// TODO - fix transition on load & refresh
 // TODO - add reset button
 // TODO - add form hints
