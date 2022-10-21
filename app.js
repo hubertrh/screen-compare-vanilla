@@ -12,6 +12,20 @@ window.addEventListener("load", () => {
   updateYear();
 });
 
+const handleEscapeFocusOut = (element) => {
+    element.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.target.blur();
+      }
+    })
+}
+
+const headerElements = document.querySelectorAll("header *");
+
+headerElements.forEach((el) => {
+  handleEscapeFocusOut(el);
+})
+
 const handleTabIndexChange = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
   const thirdScreenFormElements = thirdScreen.getElementsByTagName("*");
@@ -38,6 +52,7 @@ window.addEventListener("keydown", (e) => {
 const editNameButtons = document.querySelectorAll(".name-edit");
 
 const handleEditButton = (e) => {
+  // TODO - fix path
   const target = e.path[2].querySelector(".name");
 
   if (target.hasAttribute("readonly")) {
@@ -150,6 +165,7 @@ numberInputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     let regexTest;
     if (e.target.classList.contains("res-input")) {
+      // TODO - fix regex?
       regexTest = /^\d{0,5}$|(?=^.{0,8}$)^\d+\.\d{0,2}$/g.test(e.target.value);
     } else {
       regexTest = /^\d{0,3}$|(?=^.{0,6}$)^\d+\.\d{0,2}$/g.test(e.target.value);
@@ -436,11 +452,7 @@ formInputs.forEach((input) => {
     }
   });
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      e.target.blur();
-    }
-  });
+  handleEscapeFocusOut(input);
 
   input.addEventListener("focus", (e) => {
     e.target.select();
@@ -476,6 +488,5 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
-// TODO - fix focusout in header
 // TODO - add reset button
 // TODO - add form hints
