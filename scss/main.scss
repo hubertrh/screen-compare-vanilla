@@ -1,6 +1,6 @@
-@use 'base' as *;
-@use 'abstracts' as *;
-@use 'components' as *;
+@use "base" as *;
+@use "abstracts" as *;
+@use "components" as *;
 
 body {
   @include flex-column;
@@ -52,4 +52,3 @@ body {
     }
   }
 }
-
