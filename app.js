@@ -7,9 +7,13 @@ const updateYear = () => {
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
 
-// Year change in copyright text on window load
+const enableTransitions = () => {
+  document.body.classList.remove("no-transitions");
+}
+
 window.addEventListener("load", () => {
   updateYear();
+  enableTransitions();
 });
 
 const handleEscapeFocusOut = (element) => {
@@ -487,6 +491,6 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
-// TODO - fix transition on load & refresh
+// TODO - fix diagonals
 // TODO - add reset button
 // TODO - add form hints

@@ -34,6 +34,10 @@ body {
   line-height: 1.5;
 }
 
+.no-transitions * {
+  transition: none !important;
+}
+
 ::selection {
   background-color: hsl(172deg, 65%, 70%);
   color: hsl(220deg, 25%, 12%);

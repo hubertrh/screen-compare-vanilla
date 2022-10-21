@@ -36,6 +36,10 @@ body {
   line-height: 1.5;
 }
 
+.no-transitions * {
+  transition: none !important;
+}
+
 ::selection {
   background-color: $dark-accent-aqua;
   color: $dark-500;
