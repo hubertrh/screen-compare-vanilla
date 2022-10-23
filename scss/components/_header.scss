@@ -9,6 +9,7 @@ header {
   height: 9vh;
   width: 100vw;
   box-shadow: $shadow-elevation;
+  z-index: 1000;
 
   & *:focus {
     outline: solid 1.5px $dark-accent-aqua;
@@ -27,7 +28,7 @@ header {
     outline-offset: 0.5em;
 
     &__img {
-        height: 2.2em;
+      height: 2.2em;
     }
   }
 
@@ -98,7 +99,8 @@ header {
         animation: wobble-const 3s ease-in-out infinite normal forwards;
 
         @keyframes wobble-const {
-          0%, 100% {
+          0%,
+          100% {
             translate: -3px -1px;
             rotate: 8deg;
           }
@@ -115,5 +117,38 @@ header {
         font-weight: 500;
       }
     }
+  }
+
+  .kofi-wrapper {
+    position: absolute;
+    top: 9vh;
+    right: 0;
+    width: 21em;
+    height: 100vh - 9vh - 10vh;
+    box-shadow: -10px 15px 50px 5px rgba(0, 0, 0, 0.7);
+    border-radius: 1em 0 0 1em;
+    z-index: 999;
+    translate: 120% 0;
+
+    transition: translate 0.2s ease-out;
+
+    iframe {
+      border-radius: 1em 0 0 1em;
+      height: 100%;
+      translate: 0;
+    }
+  }
+
+  .kofi-backdrop {
+    position: absolute;
+    top: 9vh;
+    right: 0;
+    width: 100vw;
+    height: 100vh - 9vh - 10vh;
+    background-color: $dark-600-muted-bg;
+    z-index: 998;
+    opacity: 0;
+
+    transition: opacity 0.2s ease-out;
   }
 }

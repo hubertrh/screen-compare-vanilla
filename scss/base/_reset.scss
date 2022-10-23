@@ -40,6 +40,18 @@ body {
   transition: none !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
 ::selection {
   background-color: $dark-accent-aqua;
   color: $dark-500;
