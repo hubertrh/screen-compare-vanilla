@@ -24,7 +24,7 @@
   .screen {
     position: relative;
     background-color: $dark-600;
-    margin: 1.5em 0 1.5em;
+    margin: 1em 0;
     padding: 0.9em 5% 0.7em;
     border-top: solid 3px transparent;
     border-radius: 1em;
@@ -62,12 +62,9 @@
     }
   }
 
-  // TODO - normalize outline and border (?)
-
   .name {
     display: inline-block;
     background-color: transparent;
-    outline: solid 2px $dark-600-muted;
     outline-offset: 0.2em;
     border: none;
     padding: 0 0.5em;
@@ -182,7 +179,7 @@
           width: 2.2em;
           height: 1.1em;
           cursor: pointer;
-          opacity: 0%;
+          opacity: 0;
           border-radius: 1em;
           z-index: 1;
         }
@@ -303,7 +300,8 @@
     box-shadow: $shadow-elevation;
     opacity: 1;
 
-    transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s;
+    transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s,
+      background-color 0.15s ease-out;
 
     &:hover {
       background-color: $dark-accent-aqua-hover;

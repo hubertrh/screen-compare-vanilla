@@ -39,7 +39,7 @@ window.addEventListener("keydown", (e) => {
 // Screen edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
 
-const handleEditButton = (e) => {
+const clickEditButton = (e) => {
   const target = e.target.closest(".screen-name").querySelector(".name");
 
   if (target.hasAttribute("readonly")) {
@@ -51,8 +51,9 @@ const handleEditButton = (e) => {
 };
 
 editNameButtons.forEach((button) => {
-  button.addEventListener("click", (e) => handleEditButton(e));
+  button.addEventListener("click", (e) => clickEditButton(e));
 });
+// END Screen edit button
 
 // Screen name input (resize, blur, focusout)
 const nameInputs = document.querySelectorAll(".name");
@@ -152,7 +153,6 @@ numberInputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     let regexTest;
     if (e.target.classList.contains("res-input")) {
-      // TODO - fix regex?
       regexTest = /^\d{1,5}\.\d{0,2}$|^\d{1,5}$/g.test(e.target.value);
     } else {
       regexTest = /^\d{1,3}\.\d{0,2}$|^\d{1,3}$/g.test(e.target.value);
@@ -433,7 +433,7 @@ compareButton.addEventListener("click", () => {
 
 formInputs.forEach((input) => {
   input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
+    if (!input.classList.contains("name") && e.key === "Enter") {
       e.target.blur();
       compare();
     }
@@ -535,3 +535,4 @@ window.addEventListener("load", () => {
 // TODO - fix diagonals
 // TODO - add reset button
 // TODO - add form hints
+// TODO - add blurOnMouseclickItems

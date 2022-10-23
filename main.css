@@ -136,7 +136,7 @@ input::-webkit-inner-spin-button {
 .screen-card .screen {
   position: relative;
   background-color: hsl(230deg, 18%, 20%);
-  margin: 1.5em 0 1.5em;
+  margin: 1em 0;
   padding: 0.9em 5% 0.7em;
   border-top: solid 3px transparent;
   border-radius: 1em;
@@ -171,7 +171,6 @@ input::-webkit-inner-spin-button {
 .screen-card .name {
   display: inline-block;
   background-color: transparent;
-  outline: solid 2px hsl(225deg, 12%, 20%);
   outline-offset: 0.2em;
   border: none;
   padding: 0 0.5em;
@@ -272,7 +271,7 @@ input::-webkit-inner-spin-button {
   width: 2.2em;
   height: 1.1em;
   cursor: pointer;
-  opacity: 0%;
+  opacity: 0;
   border-radius: 1em;
   z-index: 1;
 }
@@ -370,7 +369,7 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
   opacity: 1;
-  transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s;
+  transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s, background-color 0.15s ease-out;
 }
 .screen-card .btn-add:hover {
   background-color: hsl(172deg, 50%, 58%);
@@ -609,7 +608,7 @@ header .kofi-backdrop {
   border: none;
   border-radius: 2em;
   padding: 0.5em 1.5em;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.15s ease-out;
 }
