@@ -452,7 +452,7 @@ formCheckboxes.forEach((checkbox) => {
       if (e.clientX !== 0 && node.nodeName === "INPUT") {
         node.blur();
       }
-    //  TODO - do the same for header buttons
+      //  TODO - fix with focus-visible?
     });
   });
 
@@ -502,12 +502,15 @@ const appendKofi = () => {
 
   kofi.setAttribute("height", "712");
   kofi.setAttribute("id", "kofiframe");
-  kofi.setAttribute("src", "https://ko-fi.com/rogalaharacz/?hidefeed=true&widget=true&embed=true&preview=true");
+  kofi.setAttribute(
+    "src",
+    "https://ko-fi.com/rogalaharacz/?hidefeed=true&widget=true&embed=true&preview=true"
+  );
   kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
   kofi.setAttribute("title", "rogalaharacz Ko-fi");
 
   kofiWrapper.appendChild(kofi);
-}
+};
 // END Ko-fi
 
 // On Window Load

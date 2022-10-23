@@ -11,7 +11,7 @@ header {
   box-shadow: $shadow-elevation;
   z-index: 1000;
 
-  & *:focus {
+  & *:focus-visible {
     outline: solid 1.5px $dark-accent-aqua;
   }
 
