@@ -1,5 +1,6 @@
 $font-stack: "Kumbh Sans", "Helvetica", sans-serif;
 
+// TODO - remove 'dark' prefix from all variables
 $transparent: rgba(0, 0, 0, 0);
 $dark-900: hsl(210, 12%, 97%);
 $dark-800: hsl(222, 10%, 80%);
@@ -14,14 +15,14 @@ $dark-accent-red-hover: hsl(0, 45%, 50%);
 $dark-accent-aqua: hsl(172, 65%, 70%);
 $dark-accent-aqua-hover: hsl(172, 50%, 58%);
 $dark-screen-1: hsl(220, 75%, 65%);
-$dark-screen-1-bg: hsla(220, 65%, 50%, 0.40);
-$dark-screen-1-transparent: hsla(220, 75%, 65%, 0.10);
+$dark-screen-1-bg: hsla(220, 65%, 50%, 0.4);
+$dark-screen-1-transparent: hsla(220, 75%, 65%, 0.1);
 $dark-screen-2: hsl(320, 85%, 62%);
-$dark-screen-2-bg: hsla(320, 75%, 47%, 0.40);
-$dark-screen-2-transparent: hsla(320, 85%, 62%, 0.10);
+$dark-screen-2-bg: hsla(320, 75%, 47%, 0.4);
+$dark-screen-2-transparent: hsla(320, 85%, 62%, 0.1);
 $dark-screen-3: hsl(25, 85%, 63%);
-$dark-screen-3-bg: hsla(25, 75%, 48%, 0.40);
-$dark-screen-3-transparent: hsla(25, 85%, 63%, 0.10);
+$dark-screen-3-bg: hsla(25, 75%, 48%, 0.4);
+$dark-screen-3-transparent: hsla(25, 85%, 63%, 0.1);
 
 $shadow-elevation: 0px 5px 36px rgba(0, 0, 0, 0.25);
 $shadow-screen-1: 0px 5px 16px 1px hsla(244, 41%, 52%, 0.4);

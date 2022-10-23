@@ -1,34 +1,18 @@
 "use strict";
 
-const updateYear = () => {
-  const copyright = document.querySelector(".copyright");
-  const year = new Date().getFullYear().toString();
-
-  copyright.textContent = `ScreenCompare \u00A9 ${year}`;
-};
-
-const enableTransitions = () => {
-  document.body.classList.remove("no-transitions");
-}
-
-window.addEventListener("load", () => {
-  updateYear();
-  enableTransitions();
-});
-
 const handleEscapeFocusOut = (element) => {
-    element.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        e.target.blur();
-      }
-    })
-}
+  element.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.target.blur();
+    }
+  });
+};
 
 const headerElements = document.querySelectorAll("header *");
 
 headerElements.forEach((el) => {
   handleEscapeFocusOut(el);
-})
+});
 
 const handleTabIndexChange = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
@@ -468,6 +452,7 @@ formCheckboxes.forEach((checkbox) => {
       if (e.clientX !== 0 && node.nodeName === "INPUT") {
         node.blur();
       }
+    //  TODO - do the same for header buttons
     });
   });
 
@@ -490,6 +475,59 @@ formCheckboxes.forEach((checkbox) => {
     }
   });
 });
+
+// Ko-fi
+const kofiButton = document.querySelector(".ko-fi");
+const kofiBackdrop = document.querySelector(".kofi-backdrop");
+const kofiWrapper = document.querySelector(".kofi-wrapper");
+
+kofiButton.addEventListener("click", () => {
+  if (getComputedStyle(kofiBackdrop).opacity === "0") {
+    kofiBackdrop.classList.remove("invisible");
+    kofiBackdrop.style.opacity = "1";
+    kofiWrapper.style.translate = "0";
+  }
+  if (getComputedStyle(kofiBackdrop).opacity === "1") {
+    kofiWrapper.style.translate = "120% 0";
+    kofiBackdrop.style.opacity = "0";
+
+    setTimeout(() => {
+      kofiBackdrop.classList.add("invisible");
+    }, 200);
+  }
+});
+
+const appendKofi = () => {
+  const kofi = document.createElement("iframe");
+
+  kofi.setAttribute("height", "712");
+  kofi.setAttribute("id", "kofiframe");
+  kofi.setAttribute("src", "https://ko-fi.com/rogalaharacz/?hidefeed=true&widget=true&embed=true&preview=true");
+  kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
+  kofi.setAttribute("title", "rogalaharacz Ko-fi");
+
+  kofiWrapper.appendChild(kofi);
+}
+// END Ko-fi
+
+// On Window Load
+const updateYear = () => {
+  const copyright = document.querySelector(".copyright");
+  const year = new Date().getFullYear().toString();
+
+  copyright.textContent = `ScreenCompare \u00A9 ${year}`;
+};
+
+const enableTransitions = () => {
+  document.body.classList.remove("no-transitions");
+};
+
+window.addEventListener("load", () => {
+  updateYear();
+  enableTransitions();
+  appendKofi();
+});
+// END On Window Load
 
 // TODO - fix diagonals
 // TODO - add reset button
