@@ -401,7 +401,7 @@ const handleComparison = () => {
 const handleResultsLayout = () => {
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
   document.querySelector(".screen-results").classList.remove("invisible");
-  compareButton.style.translate = "0";
+  document.querySelector(".btn-wrapper").style.translate = "0";
 
   const addBtn = document.querySelector(".btn-add");
   addBtn.style.translate = "calc((27.5vw / 2) - 50%) -50%";
@@ -535,7 +535,6 @@ window.addEventListener("load", () => {
   }, 100);
   appendKofi();
   kofi.addEventListener("load", () => {
-    console.log("--- END OF KO-FI ERRORS");
     // TODO - fix
     // TODO - fix shifting interface by loading iframe as opacity: 0, then translate and opacity 1
     handleRemoveForm();
@@ -544,5 +543,5 @@ window.addEventListener("load", () => {
 // END ON WINDOW LOAD
 
 // TODO - fix diagonals
-// TODO - add reset button
+// TODO - add btn-reset logic
 // TODO - add form hints
