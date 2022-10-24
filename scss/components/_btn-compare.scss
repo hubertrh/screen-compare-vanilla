@@ -9,8 +9,9 @@
   padding: 0.5em 1.5em;
   font-size: 1.1rem;
   cursor: pointer;
+  translate: 0 2em;
 
-  transition: background-color 0.15s ease-out;
+  transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 
   &:hover {
     background-color: $dark-accent-aqua-hover;

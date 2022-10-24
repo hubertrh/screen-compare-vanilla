@@ -401,6 +401,7 @@ const handleComparison = () => {
 const handleResultsLayout = () => {
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
   document.querySelector(".screen-results").classList.remove("invisible");
+  compareButton.style.translate = "0";
 
   const addBtn = document.querySelector(".btn-add");
   addBtn.style.translate = "calc((27.5vw / 2) - 50%) -50%";
