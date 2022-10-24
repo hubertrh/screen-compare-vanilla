@@ -89,7 +89,7 @@
       color: $dark-800;
     }
 
-    &:focus {
+    &:focus-visible {
       outline: solid 1px $dark-accent-aqua;
     }
   }
@@ -102,7 +102,7 @@
     border-radius: 5em;
     outline-offset: 0.2em;
 
-    &:focus {
+    &:focus-visible {
       outline: solid 1px $dark-accent-aqua;
     }
   }
@@ -258,7 +258,7 @@
           border: 1px solid red;
         }
 
-        &:focus {
+        &:focus-visible {
           outline: 1px solid red;
           border: 1px solid red;
         }
@@ -276,7 +276,7 @@
         }
       }
 
-      &:focus {
+      &:focus-visible {
         outline: 1px solid $dark-accent-aqua;
         border: 1px solid $dark-accent-aqua;
       }
@@ -305,6 +305,11 @@
 
     &:hover {
       background-color: $dark-accent-aqua-hover;
+    }
+
+    &:focus-visible {
+      outline: solid 1.5px $dark-accent-aqua;
+      outline-offset: 0.2em;
     }
 
     &__img {

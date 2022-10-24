@@ -34,10 +34,16 @@
 
     & > * {
       margin: 1em;
+      border-radius: 1em;
     }
 
     & > a:hover {
-        color: $dark-accent-aqua;
+      color: $dark-accent-aqua;
+    }
+
+    & > a:focus-visible {
+      outline: solid 1px $dark-accent-aqua;
+      outline-offset: 0.4em;
     }
   }
 
@@ -46,4 +52,3 @@
     margin: 1rem;
   }
 }
-

@@ -16,4 +16,9 @@
   &:hover {
     background-color: $dark-accent-aqua-hover;
   }
+
+  &:focus-visible {
+    outline: solid 1.5px $dark-accent-aqua;
+    outline-offset: 0.2em;
+  }
 }
