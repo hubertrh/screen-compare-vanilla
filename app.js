@@ -426,11 +426,23 @@ const compare = () => {
 };
 
 const compareButton = document.querySelector(".btn-compare");
+const resetButton = document.querySelector(".btn-reset");
+const forms = document.querySelectorAll(".screen-form");
 const formInputs = document.querySelectorAll(".screen-forms input:not([type='checkbox'])");
 const formCheckboxes = document.querySelectorAll(".screen-forms input[type='checkbox']");
 
+const handleReset = () => {
+  forms.forEach((form) => {
+    form.reset();
+  });
+}
+
 compareButton.addEventListener("click", () => {
   compare();
+});
+
+resetButton.addEventListener("click", () => {
+  handleReset();
 });
 
 formInputs.forEach((input) => {
