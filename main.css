@@ -191,7 +191,7 @@ input::-webkit-inner-spin-button {
 .screen-card .name::placeholder {
   color: hsl(222deg, 10%, 80%);
 }
-.screen-card .name:focus {
+.screen-card .name:focus-visible {
   outline: solid 1px hsl(172deg, 65%, 70%);
 }
 .screen-card .name-edit {
@@ -202,7 +202,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5em;
   outline-offset: 0.2em;
 }
-.screen-card .name-edit:focus {
+.screen-card .name-edit:focus-visible {
   outline: solid 1px hsl(172deg, 65%, 70%);
 }
 .screen-card fieldset {
@@ -336,7 +336,7 @@ input::-webkit-inner-spin-button {
 .screen-card .screen-form input.invalid:hover {
   border: 1px solid red;
 }
-.screen-card .screen-form input.invalid:focus {
+.screen-card .screen-form input.invalid:focus-visible {
   outline: 1px solid red;
   border: 1px solid red;
 }
@@ -349,7 +349,7 @@ input::-webkit-inner-spin-button {
 .screen-card .screen-form input:hover::placeholder {
   color: hsl(222deg, 10%, 80%);
 }
-.screen-card .screen-form input:focus {
+.screen-card .screen-form input:focus-visible {
   outline: 1px solid hsl(172deg, 65%, 70%);
   border: 1px solid hsl(172deg, 65%, 70%);
 }
@@ -373,6 +373,10 @@ input::-webkit-inner-spin-button {
 }
 .screen-card .btn-add:hover {
   background-color: hsl(172deg, 50%, 58%);
+}
+.screen-card .btn-add:focus-visible {
+  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline-offset: 0.2em;
 }
 .screen-card .btn-add__img {
   position: absolute;
@@ -592,9 +596,14 @@ header .kofi-backdrop {
 }
 .footer__links > * {
   margin: 1em;
+  border-radius: 1em;
 }
 .footer__links > a:hover {
   color: hsl(172deg, 65%, 70%);
+}
+.footer__links > a:focus-visible {
+  outline: solid 1px hsl(172deg, 65%, 70%);
+  outline-offset: 0.4em;
 }
 .footer__dot {
   font-size: 2.5em;
@@ -615,6 +624,10 @@ header .kofi-backdrop {
 }
 .btn-compare:hover {
   background-color: hsl(172deg, 50%, 58%);
+}
+.btn-compare:focus-visible {
+  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline-offset: 0.2em;
 }
 
 .screen-results {

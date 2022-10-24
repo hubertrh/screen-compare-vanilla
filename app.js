@@ -454,7 +454,6 @@ formCheckboxes.forEach((checkbox) => {
       if (e.clientX !== 0 && node.nodeName === "INPUT") {
         node.blur();
       }
-      //  TODO - fix with focus-visible?
     });
   });
 
@@ -484,6 +483,7 @@ formCheckboxes.forEach((checkbox) => {
 const kofiButton = document.querySelector(".ko-fi");
 const kofiBackdrop = document.querySelector(".kofi-backdrop");
 const kofiWrapper = document.querySelector(".kofi-wrapper");
+const kofi = document.createElement("iframe");
 
 kofiButton.addEventListener("click", () => {
   if (getComputedStyle(kofiBackdrop).opacity === "0") {
@@ -502,8 +502,6 @@ kofiButton.addEventListener("click", () => {
 });
 
 const appendKofi = () => {
-  const kofi = document.createElement("iframe");
-
   kofi.setAttribute("height", "712");
   kofi.setAttribute("id", "kofiframe");
   kofi.setAttribute(
@@ -511,8 +509,9 @@ const appendKofi = () => {
     "https://ko-fi.com/rogalaharacz/?hidefeed=true&widget=true&embed=true&preview=true"
   );
   kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
-  kofi.setAttribute("title", "rogalaharacz Ko-fi");
+  kofi.setAttribute("title", "Hubert Ko-fi");
 
+  console.log("--- KO-FI ERRORS");
   kofiWrapper.appendChild(kofi);
 };
 // END Ko-fi
@@ -524,21 +523,26 @@ const updateYear = () => {
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
 
-const showBodyWithoutTransition = () => {
+const showBody = () => {
   const wrapperMain = document.querySelector(".wrapper-main");
-
-  handleRemoveForm();
   wrapperMain.classList.remove("hidden");
 };
 
 window.addEventListener("load", () => {
-  showBodyWithoutTransition();
   updateYear();
+  setTimeout(() => {
+    showBody();
+  }, 100);
   appendKofi();
+  kofi.addEventListener("load", () => {
+    console.log("--- END OF KO-FI ERRORS");
+    // TODO - fix
+    // TODO - fix shifting interface by loading iframe as opacity: 0, then translate and opacity 1
+    handleRemoveForm();
+  });
 });
 // END ON WINDOW LOAD
 
 // TODO - fix diagonals
 // TODO - add reset button
 // TODO - add form hints
-// TODO - add blurOnMouseclickItems
