@@ -372,7 +372,7 @@ input::-webkit-inner-spin-button {
   transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s, background-color 0.15s ease-out;
 }
 .screen-card .btn-add:hover {
-  background-color: hsl(172deg, 50%, 58%);
+  background-color: hsl(172deg, 50%, 55%);
 }
 .screen-card .btn-add:focus-visible {
   outline: solid 1.5px hsl(172deg, 65%, 70%);
@@ -499,7 +499,7 @@ header .buttons .ko-fi {
   transition: background-color 0.15s ease-out;
 }
 header .buttons .ko-fi:hover {
-  background-color: hsl(172deg, 50%, 58%);
+  background-color: hsl(172deg, 50%, 55%);
 }
 header .buttons .ko-fi__img {
   width: 2em;
@@ -610,7 +610,64 @@ header .kofi-backdrop {
   margin: 1rem;
 }
 
-.btn-compare {
+.btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  translate: 0 2em;
+}
+.btn-wrapper > * {
+  border: none;
+  cursor: pointer;
+}
+.btn-wrapper .btn-reset {
+  position: relative;
+  color: hsl(172deg, 65%, 70%);
+  text-align: center;
+  background-color: hsl(230deg, 18%, 20%);
+  border-radius: 50%;
+  padding: 0.8em;
+  font-size: 1rem;
+  outline: 1px solid hsl(230deg, 18%, 20%);
+  outline-offset: -1px;
+  transition: outline-color 0.15s ease-out, translate 0.1s ease-out;
+}
+.btn-wrapper .btn-reset img {
+  width: 1.2em;
+  height: 100%;
+}
+.btn-wrapper .btn-reset:hover, .btn-wrapper .btn-reset:focus-visible {
+  outline: 1px solid hsl(221deg, 17%, 60%);
+  outline-offset: -1px;
+}
+.btn-wrapper .btn-reset:hover::before, .btn-wrapper .btn-reset:focus-visible::before {
+  width: 250%;
+  font-size: 1rem;
+}
+.btn-wrapper .btn-reset::before {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 1em;
+  content: "Clear";
+  color: hsl(222deg, 10%, 80%);
+  text-align: left;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(230deg, 18%, 20%);
+  border-radius: 5em;
+  opacity: 1;
+  z-index: -1;
+  font-size: 0.8rem;
+  transition: width 0.05s ease-out, font-size 0.05s ease-out;
+}
+.btn-wrapper .btn-compare {
   color: hsl(220deg, 25%, 12%);
   text-align: center;
   background-color: hsl(172deg, 65%, 70%);
@@ -619,13 +676,13 @@ header .kofi-backdrop {
   padding: 0.5em 1.5em;
   font-size: 1.1rem;
   cursor: pointer;
-  translate: 0 2em;
+  margin-left: 1em;
   transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 }
-.btn-compare:hover {
-  background-color: hsl(172deg, 50%, 58%);
+.btn-wrapper .btn-compare:hover {
+  background-color: hsl(172deg, 50%, 55%);
 }
-.btn-compare:focus-visible {
+.btn-wrapper .btn-compare:focus-visible {
   outline: solid 1.5px hsl(172deg, 65%, 70%);
   outline-offset: 0.2em;
 }
