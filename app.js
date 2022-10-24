@@ -14,6 +14,7 @@ headerElements.forEach((el) => {
   handleEscapeFocusOut(el);
 });
 
+// Third screen tab index change
 const handleTabIndexChange = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
   const thirdScreenFormElements = thirdScreen.getElementsByTagName("*");
@@ -29,12 +30,12 @@ const handleTabIndexChange = () => {
   }
 };
 
-// Third screen tab index change
 window.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
     handleTabIndexChange();
   }
 });
+// END Third screen tab index change
 
 // Screen edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
@@ -93,6 +94,7 @@ nameInputs.forEach((input) => {
   input.addEventListener("keydown", (e) => handleInputBlur(e));
   input.addEventListener("focusout", (e) => handleInputFocusOut(e));
 });
+// END Screen name input (resize, blur, focusout)
 
 // Unit switch label
 const unitSwitches = document.querySelectorAll(".units-switch");
@@ -107,24 +109,21 @@ const handleUnitSwitch = (e) => {
 unitSwitches.forEach((unitSwitch) => {
   unitSwitch.addEventListener("change", (e) => handleUnitSwitch(e));
 });
+// END Unit switch label
 
 // 3rd form add/remove
 const addButton = document.querySelector(".btn-add");
 const removeButton = document.querySelector(".btn-remove");
-
-const toggleRequiredAttributes = () => {
-  document.getElementById("size-3").toggleAttribute("required");
-  document.getElementById("units-3").toggleAttribute("required");
-  document.getElementById("ratio-w-3").toggleAttribute("required");
-  document.getElementById("ratio-h-3").toggleAttribute("required");
-};
 
 const handleAddForm = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--inactive");
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
   document.querySelector(".btn-add").classList.add("transparent");
 
-  toggleRequiredAttributes();
+  document.getElementById("size-3").setAttribute("required", "");
+  document.getElementById("units-3").setAttribute("required", "");
+  document.getElementById("ratio-w-3").setAttribute("required", "");
+  document.getElementById("ratio-h-3").setAttribute("required", "");
 
   setTimeout(() => {
     document.querySelector(".btn-add").classList.add("invisible");
@@ -139,13 +138,15 @@ const handleRemoveForm = () => {
 
   document.getElementById("screen-form-3").reset();
 
-  toggleRequiredAttributes();
+  document.getElementById("size-3").removeAttribute("required");
+  document.getElementById("units-3").removeAttribute("required");
+  document.getElementById("ratio-w-3").removeAttribute("required");
+  document.getElementById("ratio-h-3").removeAttribute("required");
 };
 
 addButton.addEventListener("click", () => handleAddForm());
 removeButton.addEventListener("click", () => handleRemoveForm());
-
-////////////////////////////////////////////////
+// END 3rd form add/remove
 
 // Handling form data
 const numberInputs = document.querySelectorAll("input[type=number]");
@@ -476,6 +477,8 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
+// ON WINDOW LOAD
+
 // Ko-fi
 const kofiButton = document.querySelector(".ko-fi");
 const kofiBackdrop = document.querySelector(".kofi-backdrop");
@@ -513,7 +516,6 @@ const appendKofi = () => {
 };
 // END Ko-fi
 
-// On Window Load
 const updateYear = () => {
   const copyright = document.querySelector(".copyright");
   const year = new Date().getFullYear().toString();
@@ -521,16 +523,19 @@ const updateYear = () => {
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
 
-const enableTransitions = () => {
-  document.body.classList.remove("no-transitions");
+const showBodyWithoutTransition = () => {
+  const wrapperMain = document.querySelector(".wrapper-main");
+
+  handleRemoveForm();
+  wrapperMain.classList.remove("hidden");
 };
 
 window.addEventListener("load", () => {
+  showBodyWithoutTransition();
   updateYear();
-  enableTransitions();
   appendKofi();
 });
-// END On Window Load
+// END ON WINDOW LOAD
 
 // TODO - fix diagonals
 // TODO - add reset button
