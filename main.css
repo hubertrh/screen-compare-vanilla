@@ -610,7 +610,8 @@ header .kofi-backdrop {
   padding: 0.5em 1.5em;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.15s ease-out;
+  translate: 0 2em;
+  transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 }
 .btn-compare:hover {
   background-color: hsl(172deg, 50%, 58%);
