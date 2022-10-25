@@ -885,6 +885,36 @@ header .kofi-backdrop {
   background-color: hsl(25deg, 85%, 63%);
 }
 
+.not-found {
+  width: 50vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+  text-align: left;
+}
+.not-found a {
+  color: hsl(220deg, 25%, 12%);
+  text-align: center;
+  background-color: hsl(172deg, 65%, 70%);
+  border: none;
+  border-radius: 2em;
+  padding: 0.5em 1.5em;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 1em;
+  transition: background-color 0.15s ease-out, translate 0.1s ease-out;
+}
+.not-found a:hover {
+  background-color: hsl(172deg, 50%, 55%);
+}
+.not-found a:focus-visible {
+  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline-offset: 0.2em;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -917,6 +947,7 @@ body main .wrapper-main {
   justify-content: center;
   height: 100%;
   width: 90vw;
+  content-visibility: auto;
 }
 body main .wrapper-main .screen-results {
   opacity: 1;

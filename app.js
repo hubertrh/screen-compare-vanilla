@@ -435,7 +435,7 @@ const handleReset = () => {
   forms.forEach((form) => {
     form.reset();
   });
-}
+};
 
 compareButton.addEventListener("click", () => {
   compare();
@@ -490,7 +490,6 @@ formCheckboxes.forEach((checkbox) => {
 });
 
 // ON WINDOW LOAD
-
 // Ko-fi
 const kofiButton = document.querySelector(".ko-fi");
 const kofiBackdrop = document.querySelector(".kofi-backdrop");
@@ -535,25 +534,11 @@ const updateYear = () => {
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
 
-const showBody = () => {
-  const wrapperMain = document.querySelector(".wrapper-main");
-  wrapperMain.classList.remove("hidden");
-};
-
 window.addEventListener("load", () => {
   updateYear();
-  setTimeout(() => {
-    showBody();
-  }, 100);
   appendKofi();
-  kofi.addEventListener("load", () => {
-    // TODO - fix
-    // TODO - fix shifting interface by loading iframe as opacity: 0, then translate and opacity 1
-    handleRemoveForm();
-  });
 });
 // END ON WINDOW LOAD
 
 // TODO - fix diagonals
-// TODO - add btn-reset logic
 // TODO - add form hints
