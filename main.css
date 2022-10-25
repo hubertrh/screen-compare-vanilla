@@ -892,10 +892,13 @@ header .kofi-backdrop {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3em;
+  gap: 4em;
   text-align: left;
 }
-.not-found a {
+.not-found .wrapper-404 {
+  text-align: center;
+}
+.not-found .wrapper-404 a {
   color: hsl(220deg, 25%, 12%);
   text-align: center;
   background-color: hsl(172deg, 65%, 70%);
@@ -904,15 +907,18 @@ header .kofi-backdrop {
   padding: 0.5em 1.5em;
   font-size: 1.1rem;
   cursor: pointer;
-  margin-left: 1em;
   transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 }
-.not-found a:hover {
+.not-found .wrapper-404 a:hover {
   background-color: hsl(172deg, 50%, 55%);
 }
-.not-found a:focus-visible {
+.not-found .wrapper-404 a:focus-visible {
   outline: solid 1.5px hsl(172deg, 65%, 70%);
   outline-offset: 0.2em;
+}
+.not-found .wrapper-404 p {
+  margin-top: 1.5em;
+  font-size: 0.8rem;
 }
 
 body {
