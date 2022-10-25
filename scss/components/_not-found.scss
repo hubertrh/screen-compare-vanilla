@@ -12,9 +12,9 @@
     text-align: center;
 
     a {
-      color: $dark-500;
+      color: $color-500;
       text-align: center;
-      background-color: $dark-accent-aqua;
+      background-color: $color-accent-aqua;
       border: none;
       border-radius: 2em;
       padding: 0.5em 1.5em;
@@ -24,11 +24,11 @@
       transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 
       &:hover {
-        background-color: $dark-accent-aqua-hover;
+        background-color: $color-accent-aqua-hover;
       }
 
       &:focus-visible {
-        outline: solid 1.5px $dark-accent-aqua;
+        outline: solid 1.5px $color-accent-aqua;
         outline-offset: 0.2em;
       }
     }

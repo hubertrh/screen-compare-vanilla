@@ -9,7 +9,7 @@
   justify-content: space-between;
 
   &__details {
-    background-color: $dark-600;
+    background-color: $color-600;
     box-shadow: $shadow-elevation;
     height: 100%;
     flex: 5;
@@ -17,7 +17,7 @@
   }
 
   &__visualizations {
-    background-color: $dark-600-muted;
+    background-color: $color-600-muted;
     box-shadow: $shadow-elevation;
     height: 100%;
     flex: 7;
@@ -42,22 +42,22 @@
       overflow: hidden;
 
       &--1 {
-        border-color: $dark-screen-1;
-        background-color: $dark-screen-1-transparent;
+        border-color: $color-screen-1;
+        background-color: $color-screen-1-transparent;
         width: 100%;
         height: 80%;
       }
 
       &--2 {
-        border-color: $dark-screen-2;
-        background-color: $dark-screen-2-transparent;
+        border-color: $color-screen-2;
+        background-color: $color-screen-2-transparent;
         width: 75%;
         height: 100%;
       }
 
       &--3 {
-        border-color: $dark-screen-3;
-        background-color: $dark-screen-3-transparent;
+        border-color: $color-screen-3;
+        background-color: $color-screen-3-transparent;
         width: 60%;
         height: 60%;
       }
@@ -85,30 +85,30 @@
         &--1 {
           background-image: linear-gradient(
             to right,
-            $dark-screen-1 50%,
+            $color-screen-1 50%,
             rgba(255, 255, 255, 0) 0%
           );
-          color: $dark-screen-1;
+          color: $color-screen-1;
           transform: rotate(-21.027deg) translate(3em);
         }
 
         &--2 {
           background-image: linear-gradient(
             to right,
-            $dark-screen-2 50%,
+            $color-screen-2 50%,
             rgba(255, 255, 255, 0) 0%
           );
-          color: $dark-screen-2;
+          color: $color-screen-2;
           transform: rotate(-32.647deg) translate(0);
         }
 
         &--3 {
           background-image: linear-gradient(
             to right,
-            $dark-screen-3 50%,
+            $color-screen-3 50%,
             rgba(255, 255, 255, 0) 0%
           );
-          color: $dark-screen-3;
+          color: $color-screen-3;
           transform: rotate(-25.665deg) translate(-3em);
         }
       }
@@ -160,29 +160,29 @@
           }
 
           &--1 {
-            color: $dark-screen-1;
-            border-color: $dark-screen-1;
+            color: $color-screen-1;
+            border-color: $color-screen-1;
 
             &::after {
-              background-color: $dark-screen-1;
+              background-color: $color-screen-1;
             }
           }
 
           &--2 {
-            color: $dark-screen-2;
-            border-color: $dark-screen-2;
+            color: $color-screen-2;
+            border-color: $color-screen-2;
 
             &::after {
-              background-color: $dark-screen-2;
+              background-color: $color-screen-2;
             }
           }
 
           &--3 {
-            color: $dark-screen-3;
-            border-color: $dark-screen-3;
+            color: $color-screen-3;
+            border-color: $color-screen-3;
 
             &::after {
-              background-color: $dark-screen-3;
+              background-color: $color-screen-3;
             }
           }
         }
@@ -203,29 +203,29 @@
           }
 
           &--1 {
-            color: $dark-screen-1;
-            box-shadow: 0px -0.15em 0px 0px $dark-600-muted, 1.5px -0.1em 0px 0px $dark-screen-1;
+            color: $color-screen-1;
+            box-shadow: 0px -0.15em 0px 0px $color-600-muted, 1.5px -0.1em 0px 0px $color-screen-1;
 
             &::after {
-              background-color: $dark-screen-1;
+              background-color: $color-screen-1;
             }
           }
 
           &--2 {
-            color: $dark-screen-2;
-            box-shadow: 0px -0.15em 0px 0px $dark-600-muted, 1.5px -0.1em 0px 0px $dark-screen-2;
+            color: $color-screen-2;
+            box-shadow: 0px -0.15em 0px 0px $color-600-muted, 1.5px -0.1em 0px 0px $color-screen-2;
 
             &::after {
-              background-color: $dark-screen-2;
+              background-color: $color-screen-2;
             }
           }
 
           &--3 {
-            color: $dark-screen-3;
-            box-shadow: 0px -0.15em 0px 0px $dark-600-muted, 1.5px -0.1em 0px 0px $dark-screen-3;
+            color: $color-screen-3;
+            box-shadow: 0px -0.15em 0px 0px $color-600-muted, 1.5px -0.1em 0px 0px $color-screen-3;
 
             &::after {
-              background-color: $dark-screen-3;
+              background-color: $color-screen-3;
             }
           }
         }

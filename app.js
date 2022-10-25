@@ -118,7 +118,7 @@ const removeButton = document.querySelector(".btn-remove");
 const handleAddForm = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--inactive");
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
-  document.querySelector(".btn-add").classList.add("transparent");
+  document.querySelector(".btn-add").classList.add("color-transparent");
 
   document.getElementById("size-3").setAttribute("required", "");
   document.getElementById("units-3").setAttribute("required", "");
@@ -134,7 +134,7 @@ const handleRemoveForm = () => {
   document.querySelectorAll(".screen").item(2).classList.add("screen--inactive");
   document.querySelector(".screen-forms").classList.add("screen-forms--double");
   document.querySelector(".btn-add").classList.remove("invisible");
-  document.querySelector(".btn-add").classList.remove("transparent");
+  document.querySelector(".btn-add").classList.remove("color-transparent");
 
   document.getElementById("screen-form-3").reset();
 
