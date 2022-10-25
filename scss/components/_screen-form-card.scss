@@ -5,25 +5,25 @@
 
   &:nth-child(1) {
     .screen {
-      border-color: $dark-screen-1;
+      border-color: $color-screen-1;
     }
   }
 
   &:nth-child(2) {
     .screen {
-      border-color: $dark-screen-2;
+      border-color: $color-screen-2;
     }
   }
 
   &:nth-child(3) {
     .screen {
-      border-color: $dark-screen-3;
+      border-color: $color-screen-3;
     }
   }
 
   .screen {
     position: relative;
-    background-color: $dark-600;
+    background-color: $color-600;
     margin: 1em 0;
     padding: 0.9em 5% 0.7em;
     border-top: solid 3px transparent;
@@ -45,7 +45,7 @@
       height: 115%;
       translate: -5% 7.5%;
       pointer-events: none;
-      background: linear-gradient(to right, $transparent 0%, $dark-500 45%);
+      background: linear-gradient(to right, $color-transparent 0%, $color-500 45%);
       z-index: 98;
       opacity: 0;
 
@@ -71,7 +71,7 @@
     border-radius: 0.2em;
     margin-bottom: 0;
     font-size: 1.3rem;
-    color: $dark-900;
+    color: $color-900;
     max-width: 80%;
     min-width: 8rem;
 
@@ -86,11 +86,11 @@
     }
 
     &::placeholder {
-      color: $dark-800;
+      color: $color-800;
     }
 
     &:focus-visible {
-      outline: solid 1px $dark-accent-aqua;
+      outline: solid 1px $color-accent-aqua;
     }
   }
 
@@ -103,7 +103,7 @@
     outline-offset: 0.2em;
 
     &:focus-visible {
-      outline: solid 1px $dark-accent-aqua;
+      outline: solid 1px $color-accent-aqua;
     }
   }
 
@@ -167,7 +167,7 @@
         border-radius: 0.6em;
 
         &:focus-within {
-          outline: 1px solid $dark-accent-aqua;
+          outline: 1px solid $color-accent-aqua;
           outline-offset: 1px;
         }
 
@@ -202,7 +202,7 @@
           width: 2.2em;
           height: 1.1em;
           cursor: pointer;
-          background-color: $dark-accent-aqua;
+          background-color: $color-accent-aqua;
           border-radius: 1em;
 
           &::before {
@@ -213,7 +213,7 @@
             translate: 0.1em -51%;
             height: 0.9em;
             width: 0.9em;
-            background-color: $dark-600-muted;
+            background-color: $color-600-muted;
             border-radius: 50%;
 
             transition: all 0.1s ease-in-out;
@@ -244,9 +244,9 @@
 
     input {
       text-align: center;
-      color: $dark-900;
-      border: 1px solid $dark-700;
-      background-color: $dark-600;
+      color: $color-900;
+      border: 1px solid $color-700;
+      background-color: $color-600;
       border-radius: 1.1em;
       height: 2.2em;
       transition: all 0.1s ease-out;
@@ -265,20 +265,20 @@
       }
 
       &::placeholder {
-        color: $dark-700;
+        color: $color-700;
       }
 
       &:hover {
-        border: 1px solid $dark-accent-aqua;
+        border: 1px solid $color-accent-aqua;
 
         &::placeholder {
-          color: $dark-800;
+          color: $color-800;
         }
       }
 
       &:focus-visible {
-        outline: 1px solid $dark-accent-aqua;
-        border: 1px solid $dark-accent-aqua;
+        outline: 1px solid $color-accent-aqua;
+        border: 1px solid $color-accent-aqua;
       }
     }
   }
@@ -294,7 +294,7 @@
     display: grid;
     place-items: center;
     z-index: 1;
-    background-color: $dark-accent-aqua;
+    background-color: $color-accent-aqua;
     border: none;
     cursor: pointer;
     box-shadow: $shadow-elevation;
@@ -304,11 +304,11 @@
       background-color 0.15s ease-out;
 
     &:hover {
-      background-color: $dark-accent-aqua-hover;
+      background-color: $color-accent-aqua-hover;
     }
 
     &:focus-visible {
-      outline: solid 1.5px $dark-accent-aqua;
+      outline: solid 1.5px $color-accent-aqua;
       outline-offset: 0.2em;
     }
 
@@ -331,8 +331,8 @@
     display: grid;
     place-items: center;
     border-radius: 0 1em;
-    background-color: $dark-accent-red;
-    color: $dark-900;
+    background-color: $color-accent-red;
+    color: $color-900;
     border: none;
     cursor: pointer;
     box-shadow: $shadow-red;
@@ -340,7 +340,7 @@
     transition: all 0.15s ease-in-out;
 
     &:hover {
-      background-color: $dark-accent-red-hover;
+      background-color: $color-accent-red-hover;
     }
 
     &__img {

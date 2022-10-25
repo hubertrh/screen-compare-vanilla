@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $dark-600;
+  background-color: $color-600;
   @include flex-column;
   height: 9vh;
   width: 100vw;
@@ -12,7 +12,7 @@ header {
   z-index: 1000;
 
   & *:focus-visible {
-    outline: solid 1.5px $dark-accent-aqua;
+    outline: solid 1.5px $color-accent-aqua;
   }
 
   .logo {
@@ -41,7 +41,7 @@ header {
     text-align: center;
     height: 100%;
     width: 40vw;
-    border-bottom: solid 1.5px $dark-accent-aqua;
+    border-bottom: solid 1.5px $color-accent-aqua;
     cursor: pointer;
     outline-offset: -0.3em;
 
@@ -78,7 +78,7 @@ header {
     }
 
     .ko-fi {
-      background-color: $dark-accent-aqua;
+      background-color: $color-accent-aqua;
       padding: 0.4em 1.2em 0.4em 1em;
       border-radius: 2em;
       border: none;
@@ -89,7 +89,7 @@ header {
       transition: background-color 0.15s ease-out;
 
       &:hover {
-        background-color: $dark-accent-aqua-hover;
+        background-color: $color-accent-aqua-hover;
       }
 
       &__img {
@@ -112,7 +112,7 @@ header {
       }
 
       &__text {
-        color: $dark-500-muted;
+        color: $color-500-muted;
         font-size: 0.95rem;
         font-weight: 500;
       }
@@ -145,7 +145,7 @@ header {
     right: 0;
     width: 100vw;
     height: 100vh - 9vh - 10vh;
-    background-color: $dark-600-muted-bg;
+    background-color: $color-600-muted-bg;
     z-index: 998;
     opacity: 0;
 
