@@ -1,42 +1,64 @@
-<!-- TODO - make it nicer -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    name="viewport"
-  />
-  <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
 
-  <title>404 - Page Not Found</title>
+    <title>404 - Page Not Found</title>
 
-  <link
-    href="./assets/icons/favicon/apple-touch-icon.png"
-    rel="apple-touch-icon"
-    sizes="180x180"
-  />
-  <link
-    href="./assets/icons/favicon/favicon-32x32.png"
-    rel="icon"
-    sizes="32x32"
-    type="image/png"
-  />
-  <link
-    href="./assets/icons/favicon/favicon-16x16.png"
-    rel="icon"
-    sizes="16x16"
-    type="image/png"
-  />
-  <link href="/site.webmanifest" rel="manifest" />
-  <link href="main.min.css" rel="stylesheet" />
-</head>
-<body>
-<div class="not-found">
-  <h1>Oopsie! - 404</h1>
-  <h2>Something&nbsp;went&nbsp;wrong.<br>The&nbsp;page&nbsp;you&nbsp;are&nbsp;looking&nbsp;for
-    cannot&nbsp;be&nbsp;found</h2>
-  <a href="./index.html">Take me home</a>
-</div>
-</body>
+    <link
+      href="./assets/icons/favicon/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-16x16.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="main.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="not-found">
+      <h1>Oopsie! - 404</h1>
+      <h2>
+        Something&nbsp;went&nbsp;wrong.<br />The&nbsp;page&nbsp;you&nbsp;are&nbsp;looking&nbsp;for
+        cannot&nbsp;be&nbsp;found
+      </h2>
+      <div class="wrapper-404">
+        <a href="./index.html">Take me home</a>
+        <p id="redirect-msg">Redirect in <span id="countdown">5</span></p>
+      </div>
+    </div>
+    <script>
+      const redirectMsg = document.getElementById("redirect-msg");
+      const countdown = document.getElementById("countdown");
+      console.log(countdown);
+      let i = 5;
+      setInterval(() => {
+        if (i > 0) {
+          countdown.textContent = (Number(countdown.textContent) - 1).toString();
+          i--;
+        }
+      }, 1000);
+      setTimeout(() => {
+        // if (i === 0) {
+        redirectMsg.textContent = "Redirecting now...";
+        window.location.replace("./");
+        // }
+      }, 5000);
+    </script>
+  </body>
 </html>
