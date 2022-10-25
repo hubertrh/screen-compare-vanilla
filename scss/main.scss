@@ -31,6 +31,7 @@ body {
       @include flex-column;
       height: 100%;
       width: 90vw;
+      content-visibility: auto;
 
       .screen-results {
         opacity: 1;
