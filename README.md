@@ -1,2 +1,2 @@
 # ScreenCompare (Vanilla JS)
-## v0.1.1-alpha
+## v0.1.26-alpha
