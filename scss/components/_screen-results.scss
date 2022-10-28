@@ -40,6 +40,7 @@
       left: 0;
       @include flex-column;
       overflow: hidden;
+      transition: all 0.2s ease;
 
       &--1 {
         border-color: var(--color-screen-1);
@@ -116,6 +117,11 @@
       position: absolute;
       min-width: fit-content;
       min-height: fit-content;
+
+      // TODO - fix appearing guides and check below
+      & .guides {
+        transition: all 0.2s ease;
+      }
 
       &--left {
         @include flex-column;
