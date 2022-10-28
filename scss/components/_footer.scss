@@ -10,7 +10,7 @@
   justify-content: space-evenly;
   width: 100vw;
   height: 10vh;
-  background-color: $color-500-muted;
+  background-color: var(--color-500-muted);
   font-size: 0.9rem;
   z-index: 1000;
 
@@ -22,7 +22,7 @@
   &__divider {
     height: 55%;
     width: 1.5px;
-    background-color: $color-900;
+    background-color: var(--color-900);
   }
 
   &__links {
@@ -38,11 +38,11 @@
     }
 
     & > a:hover {
-      color: $color-accent-aqua;
+      color: var(--color-accent-aqua);
     }
 
     & > a:focus-visible {
-      outline: solid 1px $color-accent-aqua;
+      outline: solid 1px var(--color-accent-aqua);
       outline-offset: 0.4em;
     }
   }

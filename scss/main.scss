@@ -4,8 +4,8 @@
 
 body {
   @include flex-column;
-  background-color: $color-500;
-  color: $color-900;
+  background-color: var(--color-500);
+  color: var(--color-900);
   font-family: $font-stack;
   min-height: 97vh;
   width: 100vw;
