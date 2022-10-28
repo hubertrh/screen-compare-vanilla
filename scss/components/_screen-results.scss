@@ -17,7 +17,7 @@
   }
 
   &__visualizations {
-    background-color: var(--color-600-mudet);
+    background-color: var(--color-600-muted);
     box-shadow: var(--shadow-elevation);
     height: 100%;
     flex: 7;
@@ -69,17 +69,15 @@
         height: 2px;
         width: 1000%;
         text-align: center;
-        text-shadow: 3px 3px 10px #000000, -3px 3px 10px #000000, 3px -3px 10px #000000,
-          -3px -3px 10px #000000;
 
         background-size: 200% 100%;
 
         &.dashed {
-          background-size: 16px 100%;
+          background-size: 16px 100%; // FIXME
         }
 
         &.dotted {
-          background-size: 8px 100%;
+          background-size: 8px 100%; // FIXME
         }
 
         &--1 {

@@ -69,11 +69,12 @@ header {
       cursor: pointer;
       outline-offset: 0.4em;
       border-radius: 50%;
+      color: var(--color-900);
 
       transition: all 0.1s ease-out;
 
       &:hover {
-        rotate: 22deg;
+        rotate: 30deg;
       }
     }
 
@@ -125,7 +126,7 @@ header {
     right: 0;
     width: 21em;
     height: 100vh - 9vh - 10vh;
-    box-shadow: -10px 15px 50px 5px rgba(0, 0, 0, 0.7);
+    box-shadow: var(--shadow-kofi);
     border-radius: 1em 0 0 1em;
     z-index: 999;
     translate: 120% 0;
