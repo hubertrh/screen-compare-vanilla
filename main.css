@@ -772,6 +772,7 @@ header .kofi-backdrop {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  transition: all 0.2s ease;
 }
 .screen-results .visualization-box .visualization--1 {
   border-color: var(--color-screen-1);
@@ -824,6 +825,9 @@ header .kofi-backdrop {
   position: absolute;
   min-width: fit-content;
   min-height: fit-content;
+}
+.screen-results .visualization-box .guides-wrapper .guides {
+  transition: all 0.2s ease;
 }
 .screen-results .visualization-box .guides-wrapper--left {
   display: flex;
