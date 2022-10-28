@@ -53,14 +53,14 @@ body {
 }
 
 ::selection {
-  background-color: $color-accent-aqua;
-  color: $color-500;
+  background-color: var(--color-accent-aqua);
+  color: var(--color-500);
 }
 
 a {
   text-decoration-skip-ink: auto;
   text-decoration: none;
-  color: $color-900;
+  color: var(--color-900);
 }
 
 img,

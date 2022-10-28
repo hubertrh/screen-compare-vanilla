@@ -1,3 +1,33 @@
+:root {
+  --color-transparent: rgba(0, 0, 0, 0);
+  --color-900: hsl(210, 12%, 97%);
+  --color-800: hsl(222, 10%, 80%);
+  --color-700: hsl(221, 17%, 60%);
+  --color-600: hsl(230, 18%, 20%);
+  --color-600-muted: hsl(225, 12%, 20%);
+  --color-600-muted-bg: hsla(225, 12%, 20%, 0.6);
+  --color-500: hsl(220, 25%, 12%);
+  --color-500-muted: hsl(231, 17%, 15%);
+  --color-accent-red: hsl(0, 68%, 60%);
+  --color-accent-red-hover: hsl(0, 45%, 50%);
+  --color-accent-aqua: hsl(172, 65%, 70%);
+  --color-accent-aqua-hover: hsl(172, 50%, 55%);
+  --color-screen-1: hsl(220, 75%, 65%);
+  --color-screen-1-bg: hsla(220, 65%, 50%, 0.4);
+  --color-screen-1-transparent: hsla(220, 75%, 65%, 0.1);
+  --color-screen-2: hsl(320, 85%, 62%);
+  --color-screen-2-bg: hsla(320, 75%, 47%, 0.4);
+  --color-screen-2-transparent: hsla(320, 85%, 62%, 0.1);
+  --color-screen-3: hsl(25, 85%, 63%);
+  --color-screen-3-bg: hsla(25, 75%, 48%, 0.4);
+  --color-screen-3-transparent: hsla(25, 85%, 63%, 0.1);
+  --shadow-elevation: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  --shadow-screen-1: 0px 5px 16px 1px hsla(244, 41%, 52%, 0.4);
+  --shadow-screen-2: 0px 5px 16px 1px hsla(307, 100%, 42%, 0.4);
+  --shadow-screen-3: 0px 5px 16px 1px hsla(23, 92%, 70%, 0.4);
+  --shadow-red: 0px 0px 12px 2px hsla(0, 70%, 60%, 0.4);
+}
+
 *,
 *::before,
 *::after {
@@ -51,14 +81,14 @@ body {
 }
 
 ::selection {
-  background-color: hsl(172deg, 65%, 70%);
-  color: hsl(220deg, 25%, 12%);
+  background-color: var(--color-accent-aqua);
+  color: var(--color-500);
 }
 
 a {
   text-decoration-skip-ink: auto;
   text-decoration: none;
-  color: hsl(210deg, 12%, 97%);
+  color: var(--color-900);
 }
 
 img,
@@ -125,23 +155,23 @@ input::-webkit-inner-spin-button {
   position: relative;
 }
 .screen-card:nth-child(1) .screen {
-  border-color: hsl(220deg, 75%, 65%);
+  border-color: var(--color-screen-1);
 }
 .screen-card:nth-child(2) .screen {
-  border-color: hsl(320deg, 85%, 62%);
+  border-color: var(--color-screen-2);
 }
 .screen-card:nth-child(3) .screen {
-  border-color: hsl(25deg, 85%, 63%);
+  border-color: var(--color-screen-3);
 }
 .screen-card .screen {
   position: relative;
-  background-color: hsl(230deg, 18%, 20%);
+  background-color: var(--color-600);
   margin: 1em 0;
   padding: 0.9em 5% 0.7em;
   border-top: solid 3px transparent;
   border-radius: 1em;
   width: 27.5vw;
-  box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-elevation);
   filter: blur(0);
   font-size: 0.9rem;
   border-top: 3px solid transparent;
@@ -156,7 +186,7 @@ input::-webkit-inner-spin-button {
   height: 115%;
   translate: -5% 7.5%;
   pointer-events: none;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, hsl(220deg, 25%, 12%) 45%);
+  background: linear-gradient(to right, var(--color-transparent) 0%, var(--color-500) 45%);
   z-index: 98;
   opacity: 0;
   transition: opacity 0.25s ease-out 0.1s;
@@ -177,7 +207,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0.2em;
   margin-bottom: 0;
   font-size: 1.3rem;
-  color: hsl(210deg, 12%, 97%);
+  color: var(--color-900);
   max-width: 80%;
   min-width: 8rem;
   transition: all 0.1s ease-out;
@@ -189,10 +219,10 @@ input::-webkit-inner-spin-button {
   transition: all 0.1s ease-out;
 }
 .screen-card .name::placeholder {
-  color: hsl(222deg, 10%, 80%);
+  color: var(--color-800);
 }
 .screen-card .name:focus-visible {
-  outline: solid 1px hsl(172deg, 65%, 70%);
+  outline: solid 1px var(--color-accent-aqua);
 }
 .screen-card .name-edit {
   border: none;
@@ -203,7 +233,7 @@ input::-webkit-inner-spin-button {
   outline-offset: 0.2em;
 }
 .screen-card .name-edit:focus-visible {
-  outline: solid 1px hsl(172deg, 65%, 70%);
+  outline: solid 1px var(--color-accent-aqua);
 }
 .screen-card fieldset {
   border: none;
@@ -260,7 +290,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0.6em;
 }
 .screen-card .screen-form .wrapper-fields .toggle-switch:focus-within {
-  outline: 1px solid hsl(172deg, 65%, 70%);
+  outline: 1px solid var(--color-accent-aqua);
   outline-offset: 1px;
 }
 .screen-card .screen-form .wrapper-fields .toggle-switch .units-box {
@@ -291,7 +321,7 @@ input::-webkit-inner-spin-button {
   width: 2.2em;
   height: 1.1em;
   cursor: pointer;
-  background-color: hsl(172deg, 65%, 70%);
+  background-color: var(--color-accent-aqua);
   border-radius: 1em;
 }
 .screen-card .screen-form .wrapper-fields .toggle-switch .units-slider::before {
@@ -302,7 +332,7 @@ input::-webkit-inner-spin-button {
   translate: 0.1em -51%;
   height: 0.9em;
   width: 0.9em;
-  background-color: hsl(225deg, 12%, 20%);
+  background-color: var(--color-600-muted);
   border-radius: 50%;
   transition: all 0.1s ease-in-out;
 }
@@ -323,9 +353,9 @@ input::-webkit-inner-spin-button {
 }
 .screen-card .screen-form input {
   text-align: center;
-  color: hsl(210deg, 12%, 97%);
-  border: 1px solid hsl(221deg, 17%, 60%);
-  background-color: hsl(230deg, 18%, 20%);
+  color: var(--color-900);
+  border: 1px solid var(--color-700);
+  background-color: var(--color-600);
   border-radius: 1.1em;
   height: 2.2em;
   transition: all 0.1s ease-out;
@@ -341,17 +371,17 @@ input::-webkit-inner-spin-button {
   border: 1px solid red;
 }
 .screen-card .screen-form input::placeholder {
-  color: hsl(221deg, 17%, 60%);
+  color: var(--color-700);
 }
 .screen-card .screen-form input:hover {
-  border: 1px solid hsl(172deg, 65%, 70%);
+  border: 1px solid var(--color-accent-aqua);
 }
 .screen-card .screen-form input:hover::placeholder {
-  color: hsl(222deg, 10%, 80%);
+  color: var(--color-800);
 }
 .screen-card .screen-form input:focus-visible {
-  outline: 1px solid hsl(172deg, 65%, 70%);
-  border: 1px solid hsl(172deg, 65%, 70%);
+  outline: 1px solid var(--color-accent-aqua);
+  border: 1px solid var(--color-accent-aqua);
 }
 .screen-card .btn-add {
   position: absolute;
@@ -364,18 +394,18 @@ input::-webkit-inner-spin-button {
   display: grid;
   place-items: center;
   z-index: 1;
-  background-color: hsl(172deg, 65%, 70%);
+  background-color: var(--color-accent-aqua);
   border: none;
   cursor: pointer;
-  box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-elevation);
   opacity: 1;
   transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s, background-color 0.15s ease-out;
 }
 .screen-card .btn-add:hover {
-  background-color: hsl(172deg, 50%, 55%);
+  background-color: var(--color-accent-aqua-hover);
 }
 .screen-card .btn-add:focus-visible {
-  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline: solid 1.5px var(--color-accent-aqua);
   outline-offset: 0.2em;
 }
 .screen-card .btn-add__img {
@@ -395,15 +425,15 @@ input::-webkit-inner-spin-button {
   display: grid;
   place-items: center;
   border-radius: 0 1em;
-  background-color: hsl(0deg, 68%, 60%);
-  color: hsl(210deg, 12%, 97%);
+  background-color: var(--color-accent-red);
+  color: var(--color-900);
   border: none;
   cursor: pointer;
-  box-shadow: 0px 0px 12px 2px hsla(0deg, 70%, 60%, 0.4);
+  box-shadow: var(--shadow-red);
   transition: all 0.15s ease-in-out;
 }
 .screen-card .btn-remove:hover {
-  background-color: hsl(0deg, 45%, 50%);
+  background-color: var(--color-accent-red-hover);
 }
 .screen-card .btn-remove__img {
   position: absolute;
@@ -418,18 +448,18 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: hsl(230deg, 18%, 20%);
+  background-color: var(--color-600);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 9vh;
   width: 100vw;
-  box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-elevation);
   z-index: 1000;
 }
 header *:focus-visible {
-  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline: solid 1.5px var(--color-accent-aqua);
 }
 header .logo {
   position: absolute;
@@ -455,7 +485,7 @@ header .title {
   text-align: center;
   height: 100%;
   width: 40vw;
-  border-bottom: solid 1.5px hsl(172deg, 65%, 70%);
+  border-bottom: solid 1.5px var(--color-accent-aqua);
   cursor: pointer;
   outline-offset: -0.3em;
   transition: all 0.15s ease-out;
@@ -486,7 +516,7 @@ header .buttons .switch-mode:hover {
   rotate: 22deg;
 }
 header .buttons .ko-fi {
-  background-color: hsl(172deg, 65%, 70%);
+  background-color: var(--color-accent-aqua);
   padding: 0.4em 1.2em 0.4em 1em;
   border-radius: 2em;
   border: none;
@@ -499,7 +529,7 @@ header .buttons .ko-fi {
   transition: background-color 0.15s ease-out;
 }
 header .buttons .ko-fi:hover {
-  background-color: hsl(172deg, 50%, 55%);
+  background-color: var(--color-accent-aqua-hover);
 }
 header .buttons .ko-fi__img {
   width: 2em;
@@ -517,7 +547,7 @@ header .buttons .ko-fi__img {
   }
 }
 header .buttons .ko-fi__text {
-  color: hsl(231deg, 17%, 15%);
+  color: var(--color-500-muted);
   font-size: 0.95rem;
   font-weight: 500;
 }
@@ -544,7 +574,7 @@ header .kofi-backdrop {
   right: 0;
   width: 100vw;
   height: 81vh;
-  background-color: hsla(225deg, 12%, 20%, 0.6);
+  background-color: var(--color-600-muted-bg);
   z-index: 998;
   opacity: 0;
   transition: opacity 0.2s ease-out;
@@ -574,7 +604,7 @@ header .kofi-backdrop {
   justify-content: space-evenly;
   width: 100vw;
   height: 10vh;
-  background-color: hsl(231deg, 17%, 15%);
+  background-color: var(--color-500-muted);
   font-size: 0.9rem;
   z-index: 1000;
 }
@@ -585,7 +615,7 @@ header .kofi-backdrop {
 .footer__divider {
   height: 55%;
   width: 1.5px;
-  background-color: hsl(210deg, 12%, 97%);
+  background-color: var(--color-900);
 }
 .footer__links {
   text-align: center;
@@ -599,10 +629,10 @@ header .kofi-backdrop {
   border-radius: 1em;
 }
 .footer__links > a:hover {
-  color: hsl(172deg, 65%, 70%);
+  color: var(--color-accent-aqua);
 }
 .footer__links > a:focus-visible {
-  outline: solid 1px hsl(172deg, 65%, 70%);
+  outline: solid 1px var(--color-accent-aqua);
   outline-offset: 0.4em;
 }
 .footer__dot {
@@ -623,13 +653,13 @@ header .kofi-backdrop {
 }
 .btn-wrapper .btn-reset {
   position: relative;
-  color: hsl(172deg, 65%, 70%);
+  color: var(--color-accent-aqua);
   text-align: center;
-  background-color: hsl(230deg, 18%, 20%);
+  background-color: var(--color-600);
   border-radius: 50%;
   padding: 0.8em;
   font-size: 1rem;
-  outline: 1px solid hsl(230deg, 18%, 20%);
+  outline: 1px solid var(--color-600);
   outline-offset: -1px;
   transition: outline-color 0.15s ease-out, translate 0.1s ease-out;
 }
@@ -638,7 +668,7 @@ header .kofi-backdrop {
   height: 100%;
 }
 .btn-wrapper .btn-reset:hover, .btn-wrapper .btn-reset:focus-visible {
-  outline: 1px solid hsl(221deg, 17%, 60%);
+  outline: 1px solid var(--color-700);
   outline-offset: -1px;
 }
 .btn-wrapper .btn-reset:hover::before, .btn-wrapper .btn-reset:focus-visible::before {
@@ -653,14 +683,14 @@ header .kofi-backdrop {
   align-items: flex-start;
   padding-left: 1em;
   content: "Clear";
-  color: hsl(222deg, 10%, 80%);
+  color: var(--color-800);
   text-align: left;
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: hsl(230deg, 18%, 20%);
+  background-color: var(--color-600);
   border-radius: 5em;
   opacity: 1;
   z-index: -1;
@@ -668,9 +698,9 @@ header .kofi-backdrop {
   transition: width 0.05s ease-out, font-size 0.05s ease-out;
 }
 .btn-wrapper .btn-compare {
-  color: hsl(220deg, 25%, 12%);
+  color: var(--color-500);
   text-align: center;
-  background-color: hsl(172deg, 65%, 70%);
+  background-color: var(--color-accent-aqua);
   border: none;
   border-radius: 2em;
   padding: 0.5em 1.5em;
@@ -680,10 +710,10 @@ header .kofi-backdrop {
   transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 }
 .btn-wrapper .btn-compare:hover {
-  background-color: hsl(172deg, 50%, 55%);
+  background-color: var(--color-accent-aqua-hover);
 }
 .btn-wrapper .btn-compare:focus-visible {
-  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline: solid 1.5px var(--color-accent-aqua);
   outline-offset: 0.2em;
 }
 
@@ -699,15 +729,15 @@ header .kofi-backdrop {
   justify-content: space-between;
 }
 .screen-results__details {
-  background-color: hsl(230deg, 18%, 20%);
-  box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-600);
+  box-shadow: var(--shadow-elevation);
   height: 100%;
   flex: 5;
   border-radius: 1em;
 }
 .screen-results__visualizations {
-  background-color: hsl(225deg, 12%, 20%);
-  box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-600-mudet);
+  box-shadow: var(--shadow-elevation);
   height: 100%;
   flex: 7;
   border-radius: 1em;
@@ -733,20 +763,20 @@ header .kofi-backdrop {
   overflow: hidden;
 }
 .screen-results .visualization-box .visualization--1 {
-  border-color: hsl(220deg, 75%, 65%);
-  background-color: hsla(220deg, 75%, 65%, 0.1);
+  border-color: var(--color-screen-1);
+  background-color: var(--color-screen-1-transparent);
   width: 100%;
   height: 80%;
 }
 .screen-results .visualization-box .visualization--2 {
-  border-color: hsl(320deg, 85%, 62%);
-  background-color: hsla(320deg, 85%, 62%, 0.1);
+  border-color: var(--color-screen-2);
+  background-color: var(--color-screen-2-transparent);
   width: 75%;
   height: 100%;
 }
 .screen-results .visualization-box .visualization--3 {
-  border-color: hsl(25deg, 85%, 63%);
-  background-color: hsla(25deg, 85%, 63%, 0.1);
+  border-color: var(--color-screen-3);
+  background-color: var(--color-screen-3-transparent);
   width: 60%;
   height: 60%;
 }
@@ -766,18 +796,18 @@ header .kofi-backdrop {
   background-size: 8px 100%;
 }
 .screen-results .visualization-box .visualization .diagonal--1 {
-  background-image: linear-gradient(to right, hsl(220deg, 75%, 65%) 50%, rgba(255, 255, 255, 0) 0%);
-  color: hsl(220deg, 75%, 65%);
+  background-image: linear-gradient(to right, var(--color-screen-1) 50%, rgba(255, 255, 255, 0) 0%);
+  color: var(--color-screen-1);
   transform: rotate(-21.027deg) translate(3em);
 }
 .screen-results .visualization-box .visualization .diagonal--2 {
-  background-image: linear-gradient(to right, hsl(320deg, 85%, 62%) 50%, rgba(255, 255, 255, 0) 0%);
-  color: hsl(320deg, 85%, 62%);
+  background-image: linear-gradient(to right, var(--color-screen-2) 50%, rgba(255, 255, 255, 0) 0%);
+  color: var(--color-screen-2);
   transform: rotate(-32.647deg) translate(0);
 }
 .screen-results .visualization-box .visualization .diagonal--3 {
-  background-image: linear-gradient(to right, hsl(25deg, 85%, 63%) 50%, rgba(255, 255, 255, 0) 0%);
-  color: hsl(25deg, 85%, 63%);
+  background-image: linear-gradient(to right, var(--color-screen-3) 50%, rgba(255, 255, 255, 0) 0%);
+  color: var(--color-screen-3);
   transform: rotate(-25.665deg) translate(-3em);
 }
 .screen-results .visualization-box .guides-wrapper {
@@ -829,25 +859,25 @@ header .kofi-backdrop {
   top: 50%;
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--1 {
-  color: hsl(220deg, 75%, 65%);
-  border-color: hsl(220deg, 75%, 65%);
+  color: var(--color-screen-1);
+  border-color: var(--color-screen-1);
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--1::after {
-  background-color: hsl(220deg, 75%, 65%);
+  background-color: var(--color-screen-1);
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--2 {
-  color: hsl(320deg, 85%, 62%);
-  border-color: hsl(320deg, 85%, 62%);
+  color: var(--color-screen-2);
+  border-color: var(--color-screen-2);
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--2::after {
-  background-color: hsl(320deg, 85%, 62%);
+  background-color: var(--color-screen-2);
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--3 {
-  color: hsl(25deg, 85%, 63%);
-  border-color: hsl(25deg, 85%, 63%);
+  color: var(--color-screen-3);
+  border-color: var(--color-screen-3);
 }
 .screen-results .visualization-box .guides-wrapper .guides--left--3::after {
-  background-color: hsl(25deg, 85%, 63%);
+  background-color: var(--color-screen-3);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom {
   padding: 0.5em 0.5em 0 0;
@@ -864,25 +894,25 @@ header .kofi-backdrop {
   top: 0;
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--1 {
-  color: hsl(220deg, 75%, 65%);
-  box-shadow: 0px -0.15em 0px 0px hsl(225deg, 12%, 20%), 1.5px -0.1em 0px 0px hsl(220deg, 75%, 65%);
+  color: var(--color-screen-1);
+  box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-1);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--1::after {
-  background-color: hsl(220deg, 75%, 65%);
+  background-color: var(--color-screen-1);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--2 {
-  color: hsl(320deg, 85%, 62%);
-  box-shadow: 0px -0.15em 0px 0px hsl(225deg, 12%, 20%), 1.5px -0.1em 0px 0px hsl(320deg, 85%, 62%);
+  color: var(--color-screen-2);
+  box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-2);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--2::after {
-  background-color: hsl(320deg, 85%, 62%);
+  background-color: var(--color-screen-2);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--3 {
-  color: hsl(25deg, 85%, 63%);
-  box-shadow: 0px -0.15em 0px 0px hsl(225deg, 12%, 20%), 1.5px -0.1em 0px 0px hsl(25deg, 85%, 63%);
+  color: var(--color-screen-3);
+  box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-3);
 }
 .screen-results .visualization-box .guides-wrapper .guides--bottom--3::after {
-  background-color: hsl(25deg, 85%, 63%);
+  background-color: var(--color-screen-3);
 }
 
 .not-found {
@@ -899,9 +929,9 @@ header .kofi-backdrop {
   text-align: center;
 }
 .not-found .wrapper-404 a {
-  color: hsl(220deg, 25%, 12%);
+  color: var(--color-500);
   text-align: center;
-  background-color: hsl(172deg, 65%, 70%);
+  background-color: var(--color-accent-aqua);
   border: none;
   border-radius: 2em;
   padding: 0.5em 1.5em;
@@ -910,10 +940,10 @@ header .kofi-backdrop {
   transition: background-color 0.15s ease-out, translate 0.1s ease-out;
 }
 .not-found .wrapper-404 a:hover {
-  background-color: hsl(172deg, 50%, 55%);
+  background-color: var(--color-accent-aqua-hover);
 }
 .not-found .wrapper-404 a:focus-visible {
-  outline: solid 1.5px hsl(172deg, 65%, 70%);
+  outline: solid 1.5px var(--color-accent-aqua);
   outline-offset: 0.2em;
 }
 .not-found .wrapper-404 p {
@@ -926,8 +956,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: hsl(220deg, 25%, 12%);
-  color: hsl(210deg, 12%, 97%);
+  background-color: var(--color-500);
+  color: var(--color-900);
   font-family: "Kumbh Sans", "Helvetica", sans-serif;
   min-height: 97vh;
   width: 100vw;

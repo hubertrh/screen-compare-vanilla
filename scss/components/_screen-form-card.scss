@@ -5,31 +5,31 @@
 
   &:nth-child(1) {
     .screen {
-      border-color: $color-screen-1;
+      border-color: var(--color-screen-1);
     }
   }
 
   &:nth-child(2) {
     .screen {
-      border-color: $color-screen-2;
+      border-color: var(--color-screen-2);
     }
   }
 
   &:nth-child(3) {
     .screen {
-      border-color: $color-screen-3;
+      border-color: var(--color-screen-3);
     }
   }
 
   .screen {
     position: relative;
-    background-color: $color-600;
+    background-color: var(--color-600);
     margin: 1em 0;
     padding: 0.9em 5% 0.7em;
     border-top: solid 3px transparent;
     border-radius: 1em;
     width: 27.5vw;
-    box-shadow: $shadow-elevation;
+    box-shadow: var(--shadow-elevation);
     filter: blur(0);
     font-size: 0.9rem;
     border-top: 3px solid transparent;
@@ -45,7 +45,7 @@
       height: 115%;
       translate: -5% 7.5%;
       pointer-events: none;
-      background: linear-gradient(to right, $color-transparent 0%, $color-500 45%);
+      background: linear-gradient(to right, var(--color-transparent) 0%, var(--color-500) 45%);
       z-index: 98;
       opacity: 0;
 
@@ -71,7 +71,7 @@
     border-radius: 0.2em;
     margin-bottom: 0;
     font-size: 1.3rem;
-    color: $color-900;
+    color: var(--color-900);
     max-width: 80%;
     min-width: 8rem;
 
@@ -86,11 +86,11 @@
     }
 
     &::placeholder {
-      color: $color-800;
+      color: var(--color-800);
     }
 
     &:focus-visible {
-      outline: solid 1px $color-accent-aqua;
+      outline: solid 1px var(--color-accent-aqua);
     }
   }
 
@@ -103,7 +103,7 @@
     outline-offset: 0.2em;
 
     &:focus-visible {
-      outline: solid 1px $color-accent-aqua;
+      outline: solid 1px var(--color-accent-aqua);
     }
   }
 
@@ -167,7 +167,7 @@
         border-radius: 0.6em;
 
         &:focus-within {
-          outline: 1px solid $color-accent-aqua;
+          outline: 1px solid var(--color-accent-aqua);
           outline-offset: 1px;
         }
 
@@ -202,7 +202,7 @@
           width: 2.2em;
           height: 1.1em;
           cursor: pointer;
-          background-color: $color-accent-aqua;
+          background-color: var(--color-accent-aqua);
           border-radius: 1em;
 
           &::before {
@@ -213,7 +213,7 @@
             translate: 0.1em -51%;
             height: 0.9em;
             width: 0.9em;
-            background-color: $color-600-muted;
+            background-color: var(--color-600-muted);
             border-radius: 50%;
 
             transition: all 0.1s ease-in-out;
@@ -244,9 +244,9 @@
 
     input {
       text-align: center;
-      color: $color-900;
-      border: 1px solid $color-700;
-      background-color: $color-600;
+      color: var(--color-900);
+      border: 1px solid var(--color-700);
+      background-color: var(--color-600);
       border-radius: 1.1em;
       height: 2.2em;
       transition: all 0.1s ease-out;
@@ -265,20 +265,20 @@
       }
 
       &::placeholder {
-        color: $color-700;
+        color: var(--color-700);
       }
 
       &:hover {
-        border: 1px solid $color-accent-aqua;
+        border: 1px solid var(--color-accent-aqua);
 
         &::placeholder {
-          color: $color-800;
+          color: var(--color-800);
         }
       }
 
       &:focus-visible {
-        outline: 1px solid $color-accent-aqua;
-        border: 1px solid $color-accent-aqua;
+        outline: 1px solid var(--color-accent-aqua);
+        border: 1px solid var(--color-accent-aqua);
       }
     }
   }
@@ -294,21 +294,21 @@
     display: grid;
     place-items: center;
     z-index: 1;
-    background-color: $color-accent-aqua;
+    background-color: var(--color-accent-aqua);
     border: none;
     cursor: pointer;
-    box-shadow: $shadow-elevation;
+    box-shadow: var(--shadow-elevation);
     opacity: 1;
 
     transition: opacity 0.15s ease-out, translate 0.15s ease-in-out 0.1s,
       background-color 0.15s ease-out;
 
     &:hover {
-      background-color: $color-accent-aqua-hover;
+      background-color: var(--color-accent-aqua-hover);
     }
 
     &:focus-visible {
-      outline: solid 1.5px $color-accent-aqua;
+      outline: solid 1.5px var(--color-accent-aqua);
       outline-offset: 0.2em;
     }
 
@@ -331,16 +331,16 @@
     display: grid;
     place-items: center;
     border-radius: 0 1em;
-    background-color: $color-accent-red;
-    color: $color-900;
+    background-color: var(--color-accent-red);
+    color: var(--color-900);
     border: none;
     cursor: pointer;
-    box-shadow: $shadow-red;
+    box-shadow: var(--shadow-red);
 
     transition: all 0.15s ease-in-out;
 
     &:hover {
-      background-color: $color-accent-red-hover;
+      background-color: var(--color-accent-red-hover);
     }
 
     &__img {
