@@ -1,15 +1,17 @@
 $font-stack: "Kumbh Sans", "Helvetica", sans-serif;
 
-// TODO - change to:
-//  :root {
-//    css custom properties
-//  }
+$blur-light: blur(4px);
+$blur-medium: blur(8px);
 
+$transition-forms: 0.25s ease-out;
+
+// Color variables
 :root {
   --color-transparent: rgba(0, 0, 0, 0);
   --color-900: hsl(210, 12%, 97%);
   --color-800: hsl(222, 10%, 80%);
-  --color-700: hsl(221, 17%, 60%);
+  --color-700: hsl(221, 17%, 55%);
+  --color-700-muted: hsl(221, 17%, 65%);
   --color-600: hsl(230, 18%, 20%);
   --color-600-muted: hsl(225, 12%, 20%);
   --color-600-muted-bg: hsla(225, 12%, 20%, 0.6);
@@ -20,29 +22,39 @@ $font-stack: "Kumbh Sans", "Helvetica", sans-serif;
   --color-accent-aqua: hsl(172, 65%, 70%);
   --color-accent-aqua-hover: hsl(172, 50%, 55%);
   --color-screen-1: hsl(220, 75%, 65%);
-  --color-screen-1-bg: hsla(220, 65%, 50%, 0.4);
   --color-screen-1-transparent: hsla(220, 75%, 65%, 0.1);
   --color-screen-2: hsl(320, 85%, 62%);
-  --color-screen-2-bg: hsla(320, 75%, 47%, 0.4);
   --color-screen-2-transparent: hsla(320, 85%, 62%, 0.1);
   --color-screen-3: hsl(25, 85%, 63%);
-  --color-screen-3-bg: hsla(25, 75%, 48%, 0.4);
   --color-screen-3-transparent: hsla(25, 85%, 63%, 0.1);
 
   --shadow-elevation: 0px 5px 36px rgba(0, 0, 0, 0.25);
-  --shadow-screen-1: 0px 5px 16px 1px hsla(244, 41%, 52%, 0.4);
-  --shadow-screen-2: 0px 5px 16px 1px hsla(307, 100%, 42%, 0.4);
-  --shadow-screen-3: 0px 5px 16px 1px hsla(23, 92%, 70%, 0.4);
   --shadow-red: 0px 0px 12px 2px hsla(0, 70%, 60%, 0.4);
-}
+  --shadow-kofi: -10px 15px 50px 5px rgba(0, 0, 0, 0.7);
 
-:root {
   .light-mode {
-    // TODO - define light css custom properties
+    --color-900: hsl(230, 18%, 20%);
+    --color-800: hsl(225, 12%, 20%);
+    --color-700: hsl(221, 24%, 69%);
+    --color-700-muted: hsl(221, 24%, 60%);
+    --color-600: white; // light/white
+    --color-600-muted: white; // light/white
+    --color-600-muted-bg: hsla(0, 0%, 100%, 0.5);
+    --color-500: hsl(210, 17%, 97%); // light/blue-muted
+    --color-500-muted: white; // light/white
+    --color-accent-red: hsl(0, 75%, 50%);
+    --color-accent-red-hover: hsl(0, 55%, 50%);
+    --color-accent-aqua: hsl(172, 60%, 55%);
+    --color-accent-aqua-hover: hsl(172, 50%, 50%);
+    --color-screen-1: hsl(218, 70%, 60%);
+    --color-screen-1-transparent: hsla(220, 75%, 65%, 0.1);
+    --color-screen-2: hsl(320, 85%, 62%);
+    --color-screen-2-transparent: hsla(320, 85%, 62%, 0.1);
+    --color-screen-3: hsl(25, 85%, 63%);
+    --color-screen-3-transparent: hsla(25, 85%, 63%, 0.1);
+
+    --shadow-elevation: 0px 4px 36px rgba(0, 0, 0, 0.05);
+    --shadow-red: -2px 2px 10px 1px hsla(0, 70%, 60%, 0.4);
+    --shadow-kofi: -10px 15px 50px 5px rgba(0, 0, 0, 0.1);
   }
 }
-
-$blur-light: blur(4px);
-$blur-medium: blur(8px);
-
-$transition-forms: 0.25s ease-out;

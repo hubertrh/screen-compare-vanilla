@@ -11,6 +11,30 @@ body {
   width: 100vw;
   overflow: hidden;
 
+  & * {
+    transition: background-color 0.15s ease-out;
+  }
+
+  &.light-mode {
+    // TODO - add logo switching
+    .logo__img {
+      filter: invert(1) contrast(2);
+    }
+
+    .switch-mode {
+      filter: invert(0.1);
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        rotate: 360deg;
+      }
+    }
+
+    .btn-add__img {
+      filter: invert(1) contrast(2);
+    }
+  }
+
   main {
     width: 100vw;
     height: 75vh;

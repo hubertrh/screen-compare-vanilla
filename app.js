@@ -489,6 +489,20 @@ formCheckboxes.forEach((checkbox) => {
   });
 });
 
+// Dark mode switch
+const darkModeSwitch = document.querySelector(".switch-mode");
+
+darkModeSwitch.addEventListener("click", () => {
+  if (!document.body.classList.contains("light-mode")) {
+    darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
+  } else {
+    darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
+  }
+
+  document.body.classList.toggle("light-mode");
+});
+// END Dark mode switch
+
 // ON WINDOW LOAD
 // Ko-fi
 const kofiButton = document.querySelector(".ko-fi");
@@ -540,5 +554,7 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
-// TODO - fix diagonals
+// TODO - Ko-fi close on backdrop click
+// TODO - light/dark mode in local storage
+// TODO - change diagonals
 // TODO - add form hints
