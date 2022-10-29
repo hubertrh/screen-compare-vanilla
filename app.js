@@ -511,20 +511,31 @@ const kofiBackdrop = document.querySelector(".kofi-backdrop");
 const kofiWrapper = document.querySelector(".kofi-wrapper");
 const kofi = document.createElement("iframe");
 
+const openKofi = () => {
+  kofiBackdrop.classList.remove("invisible");
+  kofiBackdrop.style.opacity = "1";
+  kofiWrapper.style.translate = "0";
+}
+const closeKofi = () => {
+  kofiWrapper.style.translate = "120% 0";
+  kofiBackdrop.style.opacity = "0";
+
+  setTimeout(() => {
+    kofiBackdrop.classList.add("invisible");
+  }, 200);
+}
+
 kofiButton.addEventListener("click", () => {
   if (getComputedStyle(kofiBackdrop).opacity === "0") {
-    kofiBackdrop.classList.remove("invisible");
-    kofiBackdrop.style.opacity = "1";
-    kofiWrapper.style.translate = "0";
+    openKofi();
   }
   if (getComputedStyle(kofiBackdrop).opacity === "1") {
-    kofiWrapper.style.translate = "120% 0";
-    kofiBackdrop.style.opacity = "0";
-
-    setTimeout(() => {
-      kofiBackdrop.classList.add("invisible");
-    }, 200);
+    closeKofi();
   }
+});
+
+kofiBackdrop.addEventListener("click", () => {
+  closeKofi();
 });
 
 const appendKofi = () => {
@@ -555,6 +566,5 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
-// TODO - Ko-fi close on backdrop click
 // TODO - change diagonals
 // TODO - add form hints
