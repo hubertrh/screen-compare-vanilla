@@ -16,7 +16,6 @@ body {
   }
 
   &.light-mode {
-    // TODO - add logo switching
     .logo__img {
       filter: invert(1) contrast(2);
     }
