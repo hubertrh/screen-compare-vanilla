@@ -495,10 +495,11 @@ const darkModeSwitch = document.querySelector(".switch-mode");
 darkModeSwitch.addEventListener("click", () => {
   if (!document.body.classList.contains("light-mode")) {
     darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
+    document.cookie = "lightMode=true; max-age=31536000;";
   } else {
     darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
+    document.cookie = "lightMode=false; max-age=31536000;";
   }
-
   document.body.classList.toggle("light-mode");
 });
 // END Dark mode switch
@@ -555,6 +556,5 @@ window.addEventListener("load", () => {
 // END ON WINDOW LOAD
 
 // TODO - Ko-fi close on backdrop click
-// TODO - light/dark mode in local storage
 // TODO - change diagonals
 // TODO - add form hints

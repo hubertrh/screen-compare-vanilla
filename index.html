@@ -33,13 +33,29 @@
     <link href="/site.webmanifest" rel="manifest" />
   </head>
   <body>
+    <script>
+      if (
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("lightMode="))
+          ?.split("=")[1] !== undefined
+      ) {
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("lightMode="))
+          ?.split("=")[1] === "true"
+          ? document.body.classList.add("light-mode")
+          : null;
+      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        document.body.classList.add("light-mode");
+      }
+    </script>
     <header>
       <a class="logo" href=".">
         <img alt="logo" class="logo__img" src="./assets/icons/logo.png" />
       </a>
       <a class="title" href=".">ScreenCompare</a>
       <div class="buttons">
-        <!-- TODO - add wrapper and switch (?) -->
         <img
           alt="Light mode switch"
           class="switch-mode"
@@ -358,7 +374,9 @@
           </div>
         </section>
         <div class="btn-wrapper">
-          <button class="btn-reset"><img src="assets/icons/Icons/reset.svg" /></button>
+          <button class="btn-reset">
+            <img alt="Reset form" src="assets/icons/Icons/reset.svg" />
+          </button>
           <button class="btn-compare">Compare!</button>
         </div>
         <section class="screen-results invisible">
