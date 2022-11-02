@@ -7,9 +7,9 @@
       name="viewport"
     />
     <meta content="ie=edge" http-equiv="X-UA-Compatible" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
 
     <title>Screen Compare</title>
 
@@ -383,7 +383,55 @@
           <button class="btn-compare">Compare!</button>
         </div>
         <section class="screen-results invisible">
-          <div class="screen-results__details"></div>
+          <div class="screen-results__details">
+            <div class="details__top">
+              <div class="top__units">
+                <label for="top-switch">in / cm</label>
+                <input class="top__switch" id="top-switch" type="checkbox" />
+              </div>
+              <div class="top__ref-screen-bar">
+                <button class="ref-screen">1</button>
+                <button class="ref-screen">2</button>
+                <button class="ref-screen">3</button>
+              </div>
+            </div>
+            <div class="details__content">
+              <div class="details__description">
+                <p class="description__text">WIDTH</p>
+                <p class="description__text">HEIGHT</p>
+                <p class="description__text">DIAGONAL</p>
+                <p class="description__text">AREA</p>
+                <p class="description__text">PPI</p>
+              </div>
+              <div class="details__values">
+                <div class="values__row">
+                  <p class="row__value">10 in</p>
+                  <p class="row__value">20 in</p>
+                  <p class="row__value">30 in</p>
+                </div>
+                <div class="values__row">
+                  <p class="row__value">20 in</p>
+                  <p class="row__value">30 in</p>
+                  <p class="row__value">40 in</p>
+                </div>
+                <div class="values__row">
+                  <p class="row__value">30 in</p>
+                  <p class="row__value">40 in</p>
+                  <p class="row__value">50 in</p>
+                </div>
+                <div class="values__row">
+                  <p class="row__value">100 in2</p>
+                  <p class="row__value">200 in2</p>
+                  <p class="row__value">300 in2</p>
+                </div>
+                <div class="values__row">
+                  <p class="row__value">92 in</p>
+                  <p class="row__value">163 in</p>
+                  <p class="row__value">140 in</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="screen-results__visualizations">
             <div class="visualization-box">
               <div class="visualization visualization--1">
