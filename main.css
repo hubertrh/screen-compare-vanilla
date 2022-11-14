@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@500&family=Kumbh+Sans:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@500&family=Kumbh+Sans:wght@400;500;600&display=swap");
 :root {
   --color-transparent: rgba(0, 0, 0, 0);
   --color-900: hsl(210, 12%, 97%);
@@ -936,6 +936,126 @@ header .kofi-backdrop {
 .not-found .wrapper-404 p {
   margin-top: 1.5em;
   font-size: 0.8rem;
+}
+
+.details__top {
+  width: 100%;
+  height: 15%;
+  display: grid;
+  grid-template-columns: 3fr 8fr;
+  align-items: center;
+  border-bottom: 1px solid var(--color-700);
+}
+.details__top .top__units {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-700);
+  background-color: var(--color-600-muted);
+  border-radius: 1em 0 0 0;
+}
+.details__top .top__ref-screen-bar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  padding-bottom: 0.6em;
+  height: 100%;
+  --screen-index: 1;
+}
+.details__top .top__ref-screen-bar::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 33.33%;
+  height: 2px;
+  background-color: var(--color-accent-aqua);
+  translate: calc(var(--screen-index) * 100%);
+  transition: translate 0.1s ease-out;
+}
+.details__top .top__ref-screen-bar .ref-screen {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: var(--color-900);
+  font-size: 1.2rem;
+}
+.details__top .top__ref-screen-bar .ref-screen::before {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  translate: -50%;
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+}
+.details__top .top__ref-screen-bar .ref-screen:is(:nth-child(1))::before {
+  background-color: var(--color-screen-1);
+}
+.details__top .top__ref-screen-bar .ref-screen:is(:nth-child(2)) {
+  font-weight: 600;
+}
+.details__top .top__ref-screen-bar .ref-screen:is(:nth-child(2))::before {
+  background-color: var(--color-screen-2);
+}
+.details__top .top__ref-screen-bar .ref-screen:is(:nth-child(3))::before {
+  background-color: var(--color-screen-3);
+}
+
+.details__content {
+  width: 100%;
+  height: 85%;
+  display: grid;
+  grid-template-columns: 3fr 8fr;
+}
+.details__content > * {
+  width: 100%;
+  height: 100%;
+  padding: 1em 0 2em;
+}
+.details__content .details__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  border-right: 1px solid var(--color-700);
+  font-size: 0.9rem;
+}
+.details__content .details__values {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+}
+.details__content .details__values .values__row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+}
+.details__content .details__values .values__row .row__value {
+  position: relative;
+  --value-reference: "(50%)";
+}
+.details__content .details__values .values__row .row__value::before {
+  content: var(--value-reference);
+  position: absolute;
+  bottom: -75%;
+  left: 50%;
+  translate: -50%;
+  color: var(--color-800);
+  font-size: 0.7rem;
 }
 
 body {

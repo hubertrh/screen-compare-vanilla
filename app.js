@@ -177,10 +177,10 @@ const handleComparison = () => {
   const resolutions = Array.from(document.querySelectorAll(".res-input")).map((field) =>
     Number(field.value.replace(/,/g, "."))
   );
-  // console.log(`diagonals --> ${diagonals}`);
+  console.log(`diagonals --> ${diagonals}`);
   // console.log(`units --> ${units}`);
-  // console.log(`ratios --> ${ratios}`);
-  // console.log(`resolutions --> ${resolutions}`);
+  console.log(`ratios --> ${ratios}`);
+  console.log(`resolutions --> ${resolutions}`);
 
   units.forEach((unit, index) => {
     if (unit === "in" && diagonals[index] > 0) {
@@ -384,7 +384,9 @@ const handleComparison = () => {
 
     calculateSides();
     calculateProportions();
+    // handleGuides() done twice to position guides correctly
     handleGuides();
+    setTimeout(handleGuides, 100); // FIXME - change screen.offsetHeight/Width (?)
   };
 
   const thirdScreenElement = document.querySelector(".visualization--3");
@@ -515,7 +517,7 @@ const openKofi = () => {
   kofiBackdrop.classList.remove("invisible");
   kofiBackdrop.style.opacity = "1";
   kofiWrapper.style.translate = "0";
-}
+};
 const closeKofi = () => {
   kofiWrapper.style.translate = "120% 0";
   kofiBackdrop.style.opacity = "0";
@@ -523,7 +525,7 @@ const closeKofi = () => {
   setTimeout(() => {
     kofiBackdrop.classList.add("invisible");
   }, 200);
-}
+};
 
 kofiButton.addEventListener("click", () => {
   if (getComputedStyle(kofiBackdrop).opacity === "0") {
@@ -548,7 +550,7 @@ const appendKofi = () => {
   kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
   kofi.setAttribute("title", "Hubert Ko-fi");
 
-  console.log("--- KO-FI ERRORS");
+  console.log("Console might display KO-FI ERRORS");
   kofiWrapper.appendChild(kofi);
 };
 // END Ko-fi
@@ -563,8 +565,13 @@ const updateYear = () => {
 window.addEventListener("load", () => {
   updateYear();
   appendKofi();
+  // compareButton.click(); // TEMP
 });
 // END ON WINDOW LOAD
 
+// TODO - Save cookie preferences
+// TODO - Set max width/height of guides to longest/highest screen
+//  (event listener on window resize OR change order of functions
+//  calculating guides wrapper dimensions)
 // TODO - change diagonals
 // TODO - add form hints
