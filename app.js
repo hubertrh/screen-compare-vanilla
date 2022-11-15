@@ -188,7 +188,7 @@ const handleComparison = () => {
     }
   });
 
-  // console.log(`diagonals (cm) --> ${diagonals}`);
+  console.log(`diagonals (cm) --> ${diagonals}`);
 
   const calculate = () => {
     let sides = [];
@@ -208,7 +208,7 @@ const handleComparison = () => {
         sides.push(sideH);
       });
 
-      // console.log(`sides --> ${sides}`);
+      console.log(`sides --> ${sides}`);
     };
 
     const calculateProportions = () => {
@@ -375,18 +375,13 @@ const handleComparison = () => {
         }
       });
 
-      maxHeight = `${maxHeight}px`;
-      maxWidth = `${maxWidth}px`;
-
-      guidesWrapperBottom.style.width = maxWidth;
-      guidesWrapperLeft.style.height = maxHeight;
+      guidesWrapperBottom.style.width = `${maxWidth}px`;
+      guidesWrapperLeft.style.height = `${maxHeight}px`;
     };
 
     calculateSides();
     calculateProportions();
-    // handleGuides() done twice to position guides correctly
     handleGuides();
-    setTimeout(handleGuides, 100); // FIXME - change screen.offsetHeight/Width (?)
   };
 
   const thirdScreenElement = document.querySelector(".visualization--3");
@@ -570,8 +565,5 @@ window.addEventListener("load", () => {
 // END ON WINDOW LOAD
 
 // TODO - Save cookie preferences
-// TODO - Set max width/height of guides to longest/highest screen
-//  (event listener on window resize OR change order of functions
-//  calculating guides wrapper dimensions)
 // TODO - change diagonals
 // TODO - add form hints
