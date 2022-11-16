@@ -177,6 +177,8 @@ const handleComparison = () => {
   const resolutions = Array.from(document.querySelectorAll(".res-input")).map((field) =>
     Number(field.value.replace(/,/g, "."))
   );
+  let sides = [];
+
   console.log(`diagonals --> ${diagonals}`);
   // console.log(`units --> ${units}`);
   console.log(`ratios --> ${ratios}`);
@@ -191,8 +193,6 @@ const handleComparison = () => {
   console.log(`diagonals (cm) --> ${diagonals}`);
 
   const calculate = () => {
-    let sides = [];
-
     const calculateSides = () => {
       // Calculate screens' sides from diagonal and aspect ratio values
       diagonals.forEach((diagonal, index) => {
@@ -392,7 +392,45 @@ const handleComparison = () => {
     thirdScreenElement.classList.remove("hidden");
   }
 
+  const handleResultsTable = () => {
+    const valueRows = document.querySelectorAll(".values__row");
+
+    // Width
+    [...valueRows[0].children].forEach((child, index) => {
+      child.textContent = `${Number(sides[index * 2] / 2.54).toFixed(2)} in`;
+    });
+
+    // Height
+    [...valueRows[1].children].forEach((child, index) => {
+      child.textContent = `${Number(sides[index * 2 + 1] / 2.54).toFixed(2)} in`;
+    });
+
+    // Diagonal
+    [...valueRows[2].children].forEach((child, index) => {
+      child.textContent = `${Number(diagonals[index] / 2.54).toFixed(2)} in`;
+    });
+
+    // Area
+    [...valueRows[3].children].forEach((child, index) => {
+      child.textContent = `${Number(
+        (sides[index * 2] / 2.54) * (sides[index * 2 + 1] / 2.54)
+      ).toFixed(2)} in²`;
+    });
+
+    // PPI
+    [...valueRows[4].children].forEach((child, index) => {
+      const resDiagonal = Math.round(
+        Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
+      );
+      const ppi = Math.round(Number(resDiagonal / (diagonals[index] / 2.54)));
+      child.textContent = ppi.toString();
+    });
+
+    // FIXME: zeroes after number rounding
+  };
+
   calculate();
+  handleResultsTable();
 };
 
 const handleResultsLayout = () => {
@@ -559,8 +597,8 @@ const updateYear = () => {
 
 window.addEventListener("load", () => {
   updateYear();
+  compareButton.click(); // TEMP
   appendKofi();
-  // compareButton.click(); // TEMP
 });
 // END ON WINDOW LOAD
 
