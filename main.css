@@ -1104,7 +1104,7 @@ body main .wrapper-main {
 }
 body main .wrapper-main .screen-results {
   opacity: 1;
-  transition: all 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 /*# sourceMappingURL=main.css.map */
