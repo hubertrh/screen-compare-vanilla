@@ -118,7 +118,7 @@
       min-width: fit-content;
       min-height: fit-content;
 
-      // TODO - fix appearing guides and check below
+      // FIXME: appearing guides and check below
       & .guides {
         transition: all 0.2s ease;
       }
