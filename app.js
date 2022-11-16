@@ -602,6 +602,6 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
-// TODO - Add banner to save cookie preferences
-// TODO - change diagonals
-// TODO - add form hints
+// TODO: banner to save cookie preferences
+// FIXME: diagonals
+// TODO: form hints
