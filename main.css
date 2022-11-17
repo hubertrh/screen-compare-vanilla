@@ -960,7 +960,7 @@ header .kofi-backdrop {
   justify-content: space-around;
   padding-bottom: 0.6em;
   height: 100%;
-  --screen-index: 1;
+  --screen-index: 0;
 }
 .details__top .top__ref-screen-bar::before {
   content: "";
@@ -1044,7 +1044,7 @@ header .kofi-backdrop {
 }
 .details__content .details__values .values__row .row__value {
   position: relative;
-  --value-reference: "(50%)";
+  --value-reference: "(100%)";
 }
 .details__content .details__values .values__row .row__value::before {
   content: var(--value-reference);

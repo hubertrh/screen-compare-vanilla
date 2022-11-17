@@ -477,11 +477,26 @@ const compare = () => {
   handleResultsLayout();
 };
 
+// Reference details
 const handleReferenceBar = (e, refIndex) => {
   const refBar = document.querySelector(".top__ref-screen-bar");
 
   refBar.style.setProperty("--screen-index", refIndex.toString());
 };
+
+const handleReferenceValues = (e, refIndex) => {
+  const detailsRows = document.querySelectorAll('.values__row')
+
+  detailsRows.forEach((row) => {
+    [...row.children].forEach((refValue) => {
+      let refPercentage = (parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent));
+      refPercentage = Math.round(refPercentage * 100)
+      refPercentage = `"(${refPercentage}%)"`;
+
+      refValue.style.setProperty('--value-reference', refPercentage);
+    })
+  })
+}
 
 const refButtons = document.querySelectorAll(".ref-screen");
 
@@ -490,8 +505,13 @@ refButtons.forEach((button) => {
     const refIndex = Number(e.target.innerText) - 1;
 
     handleReferenceBar(e, refIndex);
+    handleReferenceValues(e, refIndex)
   });
 });
+
+// TODO: Calculating refs when calculating screens
+// TODO: Remove NaN column
+// END Reference details
 
 const compareButton = document.querySelector(".btn-compare");
 const resetButton = document.querySelector(".btn-reset");
