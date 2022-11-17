@@ -477,6 +477,22 @@ const compare = () => {
   handleResultsLayout();
 };
 
+const handleReferenceBar = (e, refIndex) => {
+  const refBar = document.querySelector(".top__ref-screen-bar");
+
+  refBar.style.setProperty("--screen-index", refIndex.toString());
+};
+
+const refButtons = document.querySelectorAll(".ref-screen");
+
+refButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const refIndex = Number(e.target.innerText) - 1;
+
+    handleReferenceBar(e, refIndex);
+  });
+});
+
 const compareButton = document.querySelector(".btn-compare");
 const resetButton = document.querySelector(".btn-reset");
 const forms = document.querySelectorAll(".screen-form");
