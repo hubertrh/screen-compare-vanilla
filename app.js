@@ -397,24 +397,24 @@ const handleComparison = () => {
 
     // Width
     [...valueRows[0].children].forEach((child, index) => {
-      child.textContent = `${Number(sides[index * 2] / 2.54).toFixed(2)} in`;
+      child.textContent = `${Number((sides[index * 2] / 2.54).toFixed(2))} in`;
     });
 
     // Height
     [...valueRows[1].children].forEach((child, index) => {
-      child.textContent = `${Number(sides[index * 2 + 1] / 2.54).toFixed(2)} in`;
+      child.textContent = `${Number((sides[index * 2 + 1] / 2.54).toFixed(2))} in`;
     });
 
     // Diagonal
     [...valueRows[2].children].forEach((child, index) => {
-      child.textContent = `${Number(diagonals[index] / 2.54).toFixed(2)} in`;
+      child.textContent = `${Number((diagonals[index] / 2.54).toFixed(2))} in`;
     });
 
     // Area
     [...valueRows[3].children].forEach((child, index) => {
       child.textContent = `${Number(
-        (sides[index * 2] / 2.54) * (sides[index * 2 + 1] / 2.54)
-      ).toFixed(2)} in²`;
+        ((sides[index * 2] / 2.54) * (sides[index * 2 + 1] / 2.54)).toFixed(2)
+      )} in²`;
     });
 
     // PPI
@@ -422,11 +422,11 @@ const handleComparison = () => {
       const resDiagonal = Math.round(
         Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
       );
-      const ppi = Math.round(Number(resDiagonal / (diagonals[index] / 2.54)));
+      const ppi = Number(Math.round(resDiagonal / (diagonals[index] / 2.54)));
       child.textContent = ppi.toString();
     });
 
-    // FIXME: zeroes after number rounding
+    // TODO: units conversion
   };
 
   calculate();
