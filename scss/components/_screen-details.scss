@@ -98,6 +98,10 @@
     border-right: 1px solid var(--color-700);
     // FIXME: shifted by font-size, make it grid?
     font-size: 0.9rem;
+
+    .ppi-guide {
+      transition: opacity 0.15s ease-out;
+    }
   }
 
   .details__values {
@@ -122,6 +126,10 @@
           translate: -50%;
           color: var(--color-800);
           font-size: 0.7rem;
+        }
+
+        &.ppi {
+          transition: opacity 0.15s ease-out;
         }
       }
     }

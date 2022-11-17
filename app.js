@@ -418,12 +418,27 @@ const handleComparison = () => {
     });
 
     // PPI
+    const ppiGuide = document.querySelector(".ppi-guide");
+
     [...valueRows[4].children].forEach((child, index) => {
-      const resDiagonal = Math.round(
-        Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
-      );
-      const ppi = Number(Math.round(resDiagonal / (diagonals[index] / 2.54)));
-      child.textContent = ppi.toString();
+      if (resolutions[index * 2].toString() === "0") {
+        child.style.opacity = "0";
+        if (![...valueRows[4].children].some((child) => child.style.opacity === "1")) {
+          ppiGuide.style.opacity = "0";
+        } else {
+          ppiGuide.style.opacity = "1";
+        }
+      } else {
+        child.style.opacity = "1";
+        ppiGuide.style.opacity = "1";
+
+        const resDiagonal = Math.round(
+          Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
+        );
+        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / 2.54)));
+
+        child.textContent = ppi.toString();
+      }
     });
 
     // TODO: units conversion
@@ -453,6 +468,8 @@ const compare = () => {
         input.value = input.placeholder;
       }
     });
+
+    // TODO: if res, both fields validation
   };
 
   validate();
