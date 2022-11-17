@@ -1023,6 +1023,9 @@ header .kofi-backdrop {
   border-right: 1px solid var(--color-700);
   font-size: 0.9rem;
 }
+.details__content .details__description .ppi-guide {
+  transition: opacity 0.15s ease-out;
+}
 .details__content .details__values {
   display: flex;
   flex-direction: column;
@@ -1048,6 +1051,9 @@ header .kofi-backdrop {
   translate: -50%;
   color: var(--color-800);
   font-size: 0.7rem;
+}
+.details__content .details__values .values__row .row__value.ppi {
+  transition: opacity 0.15s ease-out;
 }
 
 body {
