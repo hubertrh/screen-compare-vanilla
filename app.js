@@ -1,5 +1,9 @@
 "use strict";
 
+// DEV
+const c = console.log.bind(document);
+// END DEV
+
 const handleEscapeFocusOut = (element) => {
   element.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
@@ -179,10 +183,10 @@ const handleComparison = () => {
   );
   let sides = [];
 
-  console.log(`diagonals --> ${diagonals}`);
-  // console.log(`units --> ${units}`);
-  console.log(`ratios --> ${ratios}`);
-  console.log(`resolutions --> ${resolutions}`);
+  c(`diagonals --> ${diagonals}`);
+  // c(`units --> ${units}`);
+  c(`ratios --> ${ratios}`);
+  c(`resolutions --> ${resolutions}`);
 
   units.forEach((unit, index) => {
     if (unit === "in" && diagonals[index] > 0) {
@@ -190,7 +194,7 @@ const handleComparison = () => {
     }
   });
 
-  console.log(`diagonals (cm) --> ${diagonals}`);
+  c(`diagonals (cm) --> ${diagonals}`);
 
   const calculate = () => {
     const calculateSides = () => {
@@ -199,16 +203,16 @@ const handleComparison = () => {
         const ratioW = ratios[index * 2];
         const ratioH = ratios[index * 2 + 1];
         const sideH = (diagonal * ratioH) / Math.sqrt(ratioW ** 2 + ratioH ** 2);
-        // console.log(`sideH --> ${sideH}`);
+        // c(`sideH --> ${sideH}`);
 
         const sideW = (ratioW / ratioH) * sideH;
-        // console.log(`sideW --> ${sideW}`);
+        // c(`sideW --> ${sideW}`);
 
         sides.push(sideW);
         sides.push(sideH);
       });
 
-      console.log(`sides --> ${sides}`);
+      c(`sides --> ${sides}`);
     };
 
     const calculateProportions = () => {
@@ -233,10 +237,10 @@ const handleComparison = () => {
             scale = side / containerHeight;
           }
         }
-        // console.log(`side --> ${side}`);
+        // c(`side --> ${side}`);
       });
 
-      // console.log(`sides --> ${sides}`);
+      // c(`sides --> ${sides}`);
 
       screens.forEach((screen, index) => {
         screen.setAttribute(
@@ -636,7 +640,7 @@ const appendKofi = () => {
   kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
   kofi.setAttribute("title", "Hubert Ko-fi");
 
-  console.log("Console might display KO-FI ERRORS");
+  c("Console might display KO-FI ERRORS");
   kofiWrapper.appendChild(kofi);
 };
 // END Ko-fi
