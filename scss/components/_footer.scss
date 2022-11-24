@@ -55,6 +55,7 @@
 
 @media screen and (max-width: 1000px) {
   .footer {
+    position: relative;
     padding: 0;
 
     &__links > * {
@@ -69,7 +70,6 @@
 
 @media screen and (max-width: 500px) {
   .footer {
-    position: relative;
     height: 20vh;
     font-size: 0.8rem;
     flex-direction: column;
@@ -86,7 +86,6 @@
     }
 
     &__dot {
-      //font-size: 0.8rem;
       line-height: 0.5;
       margin: 0 0.3em;
     }
