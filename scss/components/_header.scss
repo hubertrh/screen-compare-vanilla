@@ -53,12 +53,14 @@ header {
   }
 
   .buttons {
-    margin-right: 3em;
+    margin-right: 3vw;
     height: 100%;
     position: absolute;
     top: 0;
     right: 0;
-    width: 12em;
+    width: 23vw;
+    max-width: 12em;
+    min-width: 4.5em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,7 +97,7 @@ header {
 
       &__img {
         width: 2em;
-        margin-right: 0.5em;
+        margin-right: 1vw;
 
         animation: wobble-const 3s ease-in-out infinite normal forwards;
 
@@ -107,6 +109,16 @@ header {
           }
           50% {
             translate: 1px -1px;
+            rotate: -8deg;
+          }
+        }
+
+        @keyframes rotate-const {
+          0%,
+          100% {
+            rotate: 8deg;
+          }
+          50% {
             rotate: -8deg;
           }
         }
@@ -151,5 +163,63 @@ header {
     opacity: 0;
 
     transition: opacity 0.2s ease-out;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  header .buttons {
+    .switch-mode {
+      margin-right: 0.5em !important;
+    }
+
+    .ko-fi__img {
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  header {
+    height: 13vw;
+
+    .logo {
+      height: 1.2em;
+
+      &__img {
+        height: 1.2em;
+      }
+    }
+
+    .title {
+      font-size: 1.4rem;
+    }
+
+    .buttons {
+      width: 16vw;
+
+      .switch-mode {
+        width: 1.5em;
+        height: 1.5em;
+      }
+
+      .ko-fi {
+        width: 2em;
+        height: 2em;
+        padding: 0;
+        border-radius: 50%;
+
+        &__img {
+          width: 1.8em;
+          margin-right: 0;
+          translate: 2px;
+
+          animation: rotate-const 3s ease-in-out infinite normal forwards;
+        }
+
+        &__text {
+          display: none;
+        }
+      }
+    }
   }
 }
