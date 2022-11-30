@@ -55,6 +55,7 @@
 
 @media screen and (max-width: 1000px) {
   .footer {
+    height: 7em;
     position: relative;
     padding: 0;
 
@@ -70,6 +71,7 @@
 
 @media screen and (max-width: 550px) {
   .footer {
+    padding: 0 15vw 2vh;
     height: 20vh;
     font-size: 0.8rem;
     flex-direction: column;
