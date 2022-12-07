@@ -117,6 +117,33 @@
   }
 
   .screen-form {
+    input {
+      text-align: center;
+      color: var(--color-900);
+      border: 1px solid var(--color-700-muted);
+      background-color: var(--color-600);
+      border-radius: 1.1em;
+      height: 2.2em;
+      transition: all 0.1s ease-out;
+
+      &::placeholder {
+        color: var(--color-700);
+      }
+
+      &:hover {
+        border: 1px solid var(--color-accent-aqua);
+
+        &::placeholder {
+          color: var(--color-800);
+        }
+      }
+
+      &:focus-visible {
+        outline: 1px solid var(--color-accent-aqua);
+        border: 1px solid var(--color-accent-aqua);
+      }
+    }
+
     margin: 0.5em 0;
 
     display: grid;
@@ -241,33 +268,6 @@
         margin-left: 0.5em;
       }
     }
-
-    input {
-      text-align: center;
-      color: var(--color-900);
-      border: 1px solid var(--color-700-muted);
-      background-color: var(--color-600);
-      border-radius: 1.1em;
-      height: 2.2em;
-      transition: all 0.1s ease-out;
-
-      &::placeholder {
-        color: var(--color-700);
-      }
-
-      &:hover {
-        border: 1px solid var(--color-accent-aqua);
-
-        &::placeholder {
-          color: var(--color-800);
-        }
-      }
-
-      &:focus-visible {
-        outline: 1px solid var(--color-accent-aqua);
-        border: 1px solid var(--color-accent-aqua);
-      }
-    }
   }
 
   .btn-add {
@@ -337,6 +337,39 @@
       left: 50%;
       translate: -50% -50%;
       width: 1.3em;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .screen-card {
+    .screen {
+      margin: 1em 0;
+      padding: 5% 1.5em;
+      border-top: solid 3px transparent;
+      min-width: 20em;
+      width: 90vw;
+      max-width: 40em;
+      font-size: 0.9rem;
+
+      &--inactive::before {
+        opacity: 0;
+      }
+    }
+
+    .screen-form {
+      input {
+        height: 2.6em;
+        border-radius: 1.3em;
+      }
+
+      .res-input {
+        width: calc(30% + 2 * 3vw);
+      }
+    }
+
+    .btn-add {
+      left: 50%;
     }
   }
 }

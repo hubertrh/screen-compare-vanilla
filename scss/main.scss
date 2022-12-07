@@ -37,16 +37,16 @@ body {
   main {
     width: 100vw;
     height: 75vh;
+    max-height: 75vh;
     display: grid;
     place-items: center;
 
     transition: all 0.3s ease-out;
 
     &:has(.screen-results.invisible) {
-      translate: 0 20vh;
-
       .screen-results {
         opacity: 0;
+        display: none;
       }
     }
 
@@ -62,5 +62,37 @@ body {
         transition: opacity 0.4s ease-in-out;
       }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    min-height: fit-content;
+    overflow: auto;
+
+    main {
+      height: auto;
+      max-height: unset;
+      margin: 10vh 0 5vh;
+
+      &:has(.screen-results.invisible) {
+        .wrapper-main {
+          height: 115%;
+        }
+      }
+
+      .wrapper-main {
+        height: fit-content;
+
+        transition: margin-top 0.3s ease;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  body main {
+    margin: 10vh 0 10vh;
+    //translate: 0 17vw;
   }
 }
