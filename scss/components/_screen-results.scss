@@ -3,35 +3,36 @@
 .screen-results {
   margin-top: 1em;
   width: 100%;
-  flex: 1;
-  @include flex-row;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr;
   gap: 4em;
-  justify-content: space-between;
 
   &__details {
     background-color: var(--color-600);
     box-shadow: var(--shadow-elevation);
     height: 100%;
-    flex: 5;
     border-radius: 1em;
+    grid-area: 1 / 1 / 2 / 6;
   }
 
   &__visualizations {
     background-color: var(--color-600-muted);
     box-shadow: var(--shadow-elevation);
     height: 100%;
-    flex: 7;
     border-radius: 1em;
     position: relative;
     display: grid;
     place-items: center;
+    grid-area: 1 / 6 / 2 / 13;
   }
 
   .visualization-box {
     position: relative;
-    width: 70%;
-    height: 70%;
-    margin: 0 0 5% 15%;
+    width: calc(100% - 8em);
+    height: calc(100% - 5.5em);
+    margin: 0 0 2.5em 6em;
 
     .visualization {
       border: solid 3px black;
@@ -126,7 +127,7 @@
       &--left {
         @include flex-column;
         justify-content: space-evenly;
-        right: 105%;
+        left: -6em;
         bottom: 0.5em;
         gap: 1em;
         min-width: 5em;
@@ -136,7 +137,7 @@
         @include flex-row;
         flex-direction: row-reverse;
         justify-content: space-evenly;
-        bottom: -21%;
+        bottom: -3em;
         left: -1em;
         gap: 1em;
       }
@@ -150,7 +151,7 @@
         &--left {
           width: 100%;
           border-bottom: solid 1.5px transparent;
-          padding-right: 1em;
+          padding-right: 0.5em;
           text-align: left;
 
           &::after {
@@ -208,7 +209,8 @@
 
           &--1 {
             color: var(--color-screen-1);
-            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-1);
+            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted),
+              1.5px -0.1em 0px 0px var(--color-screen-1);
 
             &::after {
               background-color: var(--color-screen-1);
@@ -217,7 +219,8 @@
 
           &--2 {
             color: var(--color-screen-2);
-            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-2);
+            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted),
+              1.5px -0.1em 0px 0px var(--color-screen-2);
 
             &::after {
               background-color: var(--color-screen-2);
@@ -226,7 +229,8 @@
 
           &--3 {
             color: var(--color-screen-3);
-            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted), 1.5px -0.1em 0px 0px var(--color-screen-3);
+            box-shadow: 0px -0.15em 0px 0px var(--color-600-muted),
+              1.5px -0.1em 0px 0px var(--color-screen-3);
 
             &::after {
               background-color: var(--color-screen-3);
@@ -234,6 +238,23 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .screen-results {
+    display: block;
+
+    &__details {
+      height: 25em; // FIXME - add js logic / change to table?
+    }
+
+    &__visualizations {
+      margin-top: 2em;
+      height: 30em; // FIXME in js
+
+      transition: height 0.2s ease-out;
     }
   }
 }

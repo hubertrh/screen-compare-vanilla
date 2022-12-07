@@ -183,10 +183,10 @@ const handleComparison = () => {
   );
   let sides = [];
 
-  c(`diagonals --> ${diagonals}`);
+  // c(`diagonals --> ${diagonals}`);
   // c(`units --> ${units}`);
-  c(`ratios --> ${ratios}`);
-  c(`resolutions --> ${resolutions}`);
+  // c(`ratios --> ${ratios}`);
+  // c(`resolutions --> ${resolutions}`);
 
   units.forEach((unit, index) => {
     if (unit === "in" && diagonals[index] > 0) {
@@ -194,10 +194,14 @@ const handleComparison = () => {
     }
   });
 
-  c(`diagonals (cm) --> ${diagonals}`);
+  // c(`diagonals (cm) --> ${diagonals}`);
+
+  const media1000 = window.matchMedia("(max-width: 1000px)");
 
   const calculate = () => {
     const calculateSides = () => {
+      sides = [];
+
       // Calculate screens' sides from diagonal and aspect ratio values
       diagonals.forEach((diagonal, index) => {
         const ratioW = ratios[index * 2];
@@ -238,6 +242,7 @@ const handleComparison = () => {
           }
         }
         // c(`side --> ${side}`);
+        c(`scale --> ${scale}`);
       });
 
       // c(`sides --> ${sides}`);
@@ -383,9 +388,52 @@ const handleComparison = () => {
       guidesWrapperLeft.style.height = `${maxHeight}px`;
     };
 
+    const screenBox = document.querySelector(".visualization-box");
+
+    const centerVisualisations = () => {
+      const screens = document.querySelectorAll(".visualization");
+      let maxHeight = 0;
+      let maxWidth = 0;
+
+      screens.forEach((screen) => {
+        if (screen.offsetHeight > maxHeight) {
+          maxHeight = screen.offsetHeight;
+        }
+
+        if (screen.offsetWidth > maxWidth) {
+          maxWidth = screen.offsetWidth;
+        }
+      });
+
+      screenBox.setAttribute(
+        "style",
+        `
+      width: ${maxWidth}px;
+      height: ${maxHeight}px;
+      `
+      );
+    };
+
+    const resizeBox = () => {
+      const box = document.querySelector(".screen-results__visualizations");
+      const screenBoxComputedHeight = getComputedStyle(screenBox).height;
+
+      box.style.height = `calc(${screenBoxComputedHeight} + 6em`;
+    };
+
     calculateSides();
     calculateProportions();
     handleGuides();
+
+    setTimeout(() => {
+      calculateSides();
+      calculateProportions();
+      handleGuides();
+      centerVisualisations();
+      if (media1000.matches) {
+        resizeBox();
+      }
+    }, 100); // FIXME by observing style change?
   };
 
   const thirdScreenElement = document.querySelector(".visualization--3");
@@ -456,10 +504,6 @@ const handleResultsLayout = () => {
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
   document.querySelector(".screen-results").classList.remove("invisible");
   document.querySelector(".btn-wrapper").style.translate = "0";
-
-  const addBtn = document.querySelector(".btn-add");
-  addBtn.style.translate = "calc((27.5vw / 2) - 50%) -50%";
-
   document.querySelectorAll(".screen").item(2).classList.remove("screen--last");
 };
 
@@ -489,18 +533,19 @@ const handleReferenceBar = (e, refIndex) => {
 };
 
 const handleReferenceValues = (e, refIndex) => {
-  const detailsRows = document.querySelectorAll('.values__row')
+  const detailsRows = document.querySelectorAll(".values__row");
 
   detailsRows.forEach((row) => {
     [...row.children].forEach((refValue) => {
-      let refPercentage = (parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent));
-      refPercentage = Math.round(refPercentage * 100)
+      let refPercentage =
+        parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent);
+      refPercentage = Math.round(refPercentage * 100);
       refPercentage = `"(${refPercentage}%)"`;
 
-      refValue.style.setProperty('--value-reference', refPercentage);
-    })
-  })
-}
+      refValue.style.setProperty("--value-reference", refPercentage);
+    });
+  });
+};
 
 const refButtons = document.querySelectorAll(".ref-screen");
 
@@ -509,7 +554,7 @@ refButtons.forEach((button) => {
     const refIndex = Number(e.target.innerText) - 1;
 
     handleReferenceBar(e, refIndex);
-    handleReferenceValues(e, refIndex)
+    handleReferenceValues(e, refIndex);
   });
 });
 
@@ -640,7 +685,7 @@ const appendKofi = () => {
   kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
   kofi.setAttribute("title", "Hubert Ko-fi");
 
-  c("Console might display KO-FI ERRORS");
+  console.warn("Console might display KO-FI ERRORS");
   kofiWrapper.appendChild(kofi);
 };
 // END Ko-fi
@@ -654,11 +699,14 @@ const updateYear = () => {
 
 window.addEventListener("load", () => {
   updateYear();
-  compareButton.click(); // TEMP
+  // compareButton.click(); // DEV
   appendKofi();
 });
 // END ON WINDOW LOAD
 
+// FIXME: styling with large user viewport
 // TODO: banner to save cookie preferences
 // FIXME: diagonals
 // TODO: form hints
+// FIXME: resizing
+// FIXME: Ko-fi @media styling

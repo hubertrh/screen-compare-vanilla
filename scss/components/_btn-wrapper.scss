@@ -10,6 +10,7 @@
   }
 
   .btn-reset {
+    appearance: none;
     position: relative;
     color: var(--color-accent-aqua);
     text-align: center;
@@ -81,5 +82,11 @@
       outline: solid 1.5px var(--color-accent-aqua);
       outline-offset: 0.2em;
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .btn-wrapper {
+    margin: 2em 0;
   }
 }
