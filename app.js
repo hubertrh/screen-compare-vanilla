@@ -216,7 +216,7 @@ const handleComparison = () => {
         sides.push(sideH);
       });
 
-      c(`sides --> ${sides}`);
+      // c(`sides --> ${sides}`);
     };
 
     const calculateProportions = () => {
@@ -242,7 +242,7 @@ const handleComparison = () => {
           }
         }
         // c(`side --> ${side}`);
-        c(`scale --> ${scale}`);
+        // c(`scale --> ${scale}`);
       });
 
       // c(`sides --> ${sides}`);
@@ -421,19 +421,18 @@ const handleComparison = () => {
       box.style.height = `calc(${screenBoxComputedHeight} + 6em`;
     };
 
-    calculateSides();
-    calculateProportions();
-    handleGuides();
+    async function handleVisualisations() {
+      await calculateSides();
+      await calculateProportions();
+      await handleGuides();
+      await centerVisualisations();
 
-    setTimeout(() => {
-      calculateSides();
-      calculateProportions();
-      handleGuides();
-      centerVisualisations();
       if (media1000.matches) {
         resizeBox();
       }
-    }, 100); // FIXME by observing style change?
+    }
+
+    void handleVisualisations();
   };
 
   const thirdScreenElement = document.querySelector(".visualization--3");
@@ -710,3 +709,4 @@ window.addEventListener("load", () => {
 // TODO: form hints
 // FIXME: resizing
 // FIXME: Ko-fi @media styling
+// FIXME: addBtn position
