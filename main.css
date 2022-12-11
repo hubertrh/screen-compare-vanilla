@@ -1234,7 +1234,6 @@ body main {
   transition: all 0.3s ease-out;
 }
 body main:has(.screen-results.invisible) .screen-results {
-  opacity: 0;
   display: none;
 }
 body main .wrapper-main {
@@ -1248,7 +1247,7 @@ body main .wrapper-main {
 }
 body main .wrapper-main .screen-results {
   opacity: 1;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 1000px) {

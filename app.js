@@ -500,8 +500,21 @@ const handleComparison = () => {
 };
 
 const handleResultsLayout = () => {
+  const results = document.querySelector(".screen-results");
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (!mutation.target.classList.contains("invisible")) {
+        document.querySelector(".screen-results").classList.remove("transparent");
+        observer.disconnect();
+      }
+    });
+  });
+
+  observer.observe(results, { attributes: true, attributeFilter: ["class"] });
+
+  results.classList.remove("invisible");
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
-  document.querySelector(".screen-results").classList.remove("invisible");
   document.querySelector(".btn-wrapper").style.translate = "0";
   document.querySelectorAll(".screen").item(2).classList.remove("screen--last");
 };
