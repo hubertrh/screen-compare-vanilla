@@ -45,7 +45,6 @@ body {
 
     &:has(.screen-results.invisible) {
       .screen-results {
-        opacity: 0;
         display: none;
       }
     }
@@ -59,7 +58,7 @@ body {
       .screen-results {
         opacity: 1;
 
-        transition: opacity 0.4s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
       }
     }
   }
