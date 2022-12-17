@@ -1024,6 +1024,7 @@ header .kofi-backdrop {
 @media screen and (max-width: 1000px) {
   .screen-results {
     display: block;
+    scroll-margin-top: 20vw;
   }
   .screen-results__details {
     height: 25em;

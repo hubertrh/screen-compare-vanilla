@@ -588,6 +588,9 @@ const handleReset = () => {
 
 compareButton.addEventListener("click", () => {
   compare();
+
+  const resultsSection = document.getElementById("screen-results");
+  resultsSection.scrollIntoView({ behavior: "smooth" });
 });
 
 resetButton.addEventListener("click", () => {
