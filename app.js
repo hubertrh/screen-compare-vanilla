@@ -591,6 +591,9 @@ compareButton.addEventListener("click", () => {
 
   const resultsSection = document.getElementById("screen-results");
   resultsSection.scrollIntoView({ behavior: "smooth" });
+
+  handleReferenceBar(null, 0);
+  handleReferenceValues(null, 0);
 });
 
 resetButton.addEventListener("click", () => {
