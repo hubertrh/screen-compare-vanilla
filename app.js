@@ -474,14 +474,19 @@ const handleComparison = () => {
     [...valueRows[4].children].forEach((child, index) => {
       if (resolutions[index * 2].toString() === "0") {
         child.style.opacity = "0";
-        if (![...valueRows[4].children].some((child) => child.style.opacity === "1")) {
-          ppiGuide.style.opacity = "0";
+        if ([...valueRows[4].children].every((child) => child.style.opacity === "0")) {
+          valueRows[4].style.display = "none";
+          ppiGuide.style.display = "none";
+        // } else if (![...valueRows[4].children].some((child) => child.style.opacity === "1")) {
         } else {
           ppiGuide.style.opacity = "1";
         }
+
+
       } else {
         child.style.opacity = "1";
-        ppiGuide.style.opacity = "1";
+        valueRows[4].style.display = "grid";
+        ppiGuide.style.display = "block";
 
         const resDiagonal = Math.round(
           Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
@@ -519,6 +524,30 @@ const handleResultsLayout = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--last");
 };
 
+const handleThirdDetailsColumn = () => {
+  const thirdScreen = document.querySelectorAll(".screen")[2];
+  const refBar = document.querySelector(".top__ref-screen-bar");
+  const valueRows = document.querySelectorAll(".values__row");
+
+  if (thirdScreen.classList.contains("screen--inactive")) {
+    refBar.style.setProperty("--tab-width", "50%");
+    refBar.children[2].style.display = "none";
+
+    valueRows.forEach((row) => {
+      row.children[2].style.display = "none";
+      row.style.gridTemplateColumns = "repeat(2, 1fr)"
+    })
+  } else {
+    refBar.style.setProperty("--tab-width", "33.33%");
+    refBar.children[2].style.display = "block";
+
+    valueRows.forEach((row) => {
+      row.children[2].style.display = "block";
+      row.style.gridTemplateColumns = "repeat(3, 1fr)"
+    })
+  }
+}
+
 const compare = () => {
   const validate = () => {
     const requiredInputs = document.querySelectorAll("input[required]");
@@ -535,6 +564,7 @@ const compare = () => {
   validate();
   handleComparison();
   handleResultsLayout();
+  handleThirdDetailsColumn();
 };
 
 // Reference details
@@ -569,9 +599,6 @@ refButtons.forEach((button) => {
     handleReferenceValues(e, refIndex);
   });
 });
-
-// TODO: Calculating refs when calculating screens
-// TODO: Remove NaN column
 // END Reference details
 
 const compareButton = document.querySelector(".btn-compare");
@@ -722,6 +749,7 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
+// FIXME: Visualisation shifting after adding and then removing third screen
 // FIXME: styling with large user viewport
 // TODO: banner to save cookie preferences
 // FIXME: diagonals
