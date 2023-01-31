@@ -285,13 +285,17 @@ const handleComparison = () => {
 
       // remove screen with class "hidden" from sortedScreens array
       sortedScreens.forEach((screen, index) => {
+        let factor = 2;
+
         if (screen.classList.contains("hidden")) {
           sortedScreens.splice(index, 1);
+          factor = 1;
         }
-      });
 
-      sortedScreens.forEach((screen, index) => {
         screen.style.zIndex = (index + 1).toString();
+
+        const tempStyle = screen.children[0].style.transform;
+        screen.children[0].style.transform = `${tempStyle} translate(${-index * 2 + factor}em)`;
       });
 
       const guidesWrapperBottom = document.querySelector(".guides-wrapper--bottom");
@@ -477,12 +481,9 @@ const handleComparison = () => {
         if ([...valueRows[4].children].every((child) => child.style.opacity === "0")) {
           valueRows[4].style.display = "none";
           ppiGuide.style.display = "none";
-        // } else if (![...valueRows[4].children].some((child) => child.style.opacity === "1")) {
         } else {
           ppiGuide.style.opacity = "1";
         }
-
-
       } else {
         child.style.opacity = "1";
         valueRows[4].style.display = "grid";
@@ -535,18 +536,18 @@ const handleThirdDetailsColumn = () => {
 
     valueRows.forEach((row) => {
       row.children[2].style.display = "none";
-      row.style.gridTemplateColumns = "repeat(2, 1fr)"
-    })
+      row.style.gridTemplateColumns = "repeat(2, 1fr)";
+    });
   } else {
     refBar.style.setProperty("--tab-width", "33.33%");
     refBar.children[2].style.display = "block";
 
     valueRows.forEach((row) => {
       row.children[2].style.display = "block";
-      row.style.gridTemplateColumns = "repeat(3, 1fr)"
-    })
+      row.style.gridTemplateColumns = "repeat(3, 1fr)";
+    });
   }
-}
+};
 
 const compare = () => {
   const validate = () => {
