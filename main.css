@@ -1100,13 +1100,14 @@ header .kofi-backdrop {
   padding-bottom: 0.6em;
   height: 100%;
   --screen-index: 0;
+  --tab-width: 33.33%;
 }
 .details__top .top__ref-screen-bar::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 33.33%;
+  width: var(--tab-width);
   height: 2px;
   background-color: var(--color-accent-aqua);
   translate: calc(var(--screen-index) * 100%);
