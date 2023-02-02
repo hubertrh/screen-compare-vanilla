@@ -285,6 +285,8 @@ const handleComparison = () => {
 
       // remove screen with class "hidden" from sortedScreens array
       sortedScreens.forEach((screen, index) => {
+        screen.style.zIndex = (index + 1).toString();
+
         let factor = 2;
 
         if (screen.classList.contains("hidden")) {
@@ -292,10 +294,14 @@ const handleComparison = () => {
           factor = 1;
         }
 
-        screen.style.zIndex = (index + 1).toString();
+        let tempStyle = screen.children[0].style.transform;
 
-        const tempStyle = screen.children[0].style.transform;
         screen.children[0].style.transform = `${tempStyle} translate(${-index * 2 + factor}em)`;
+        tempStyle = screen.children[0].style.transform;
+
+        if (Number(screen.style.width.slice(0, -2)) <= 135) {
+          screen.children[0].style.transform = tempStyle.slice(0, -15);
+        }
       });
 
       const guidesWrapperBottom = document.querySelector(".guides-wrapper--bottom");
@@ -745,7 +751,7 @@ const updateYear = () => {
 
 window.addEventListener("load", () => {
   updateYear();
-  // compareButton.click(); // DEV
+  compareButton.click(); // DEV
   appendKofi();
 });
 // END ON WINDOW LOAD
@@ -753,7 +759,6 @@ window.addEventListener("load", () => {
 // FIXME: Visualisation shifting after adding and then removing third screen
 // FIXME: styling with large user viewport
 // TODO: banner to save cookie preferences
-// FIXME: diagonals
 // TODO: form hints
 // FIXME: resizing
 // FIXME: Ko-fi @media styling
