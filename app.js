@@ -69,6 +69,20 @@ const handleInputResize = (e) => {
   }
 };
 
+const refButtons = document.querySelectorAll(".ref-screen");
+
+const handleTableScreenName = (button, index) => {
+  if (nameInputs[index].value === "") {
+    button.textContent = `Display ${index + 1}`;
+  } else {
+    button.textContent = nameInputs[index].value.slice(0, 7);
+
+    if(nameInputs[index].value.length > 7) {
+      button.textContent = `${button.textContent}...`
+    }
+  }
+};
+
 const handleInputBlur = (e) => {
   if (
     e.target.hasAttribute("readonly") &&
@@ -84,6 +98,10 @@ const handleInputBlur = (e) => {
       e.target.blur();
     }
   }
+
+  refButtons.forEach((button, index) => {
+    handleTableScreenName(button, index);
+  });
 };
 
 const handleInputFocusOut = (e) => {
@@ -579,6 +597,11 @@ const handleReferenceBar = (e, refIndex) => {
   const refBar = document.querySelector(".top__ref-screen-bar");
 
   refBar.style.setProperty("--screen-index", refIndex.toString());
+
+  [...e.target.parentElement.children].forEach(button => {
+    button.style.fontWeight = "400";
+  });
+  e.target.style.fontWeight = "600";
 };
 
 const handleReferenceValues = (e, refIndex) => {
@@ -596,11 +619,11 @@ const handleReferenceValues = (e, refIndex) => {
   });
 };
 
-const refButtons = document.querySelectorAll(".ref-screen");
+refButtons.forEach((button, index) => {
+  handleTableScreenName(button, index);
 
-refButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    const refIndex = Number(e.target.innerText) - 1;
+    const refIndex = Number(e.target.id.slice(11) - 1);
 
     handleReferenceBar(e, refIndex);
     handleReferenceValues(e, refIndex);
@@ -756,6 +779,7 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
+// TODO: Table screen names
 // FIXME: Visualisation shifting after adding and then removing third screen
 // FIXME: styling with large user viewport
 // TODO: banner to save cookie preferences
