@@ -1080,6 +1080,7 @@ header .kofi-backdrop {
   border-bottom: 1px solid var(--color-700);
 }
 .details__top .top__units {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1089,6 +1090,58 @@ header .kofi-backdrop {
   border-right: 1px solid var(--color-700);
   background-color: var(--color-600-muted);
   border-radius: 1em 0 0 0;
+}
+.details__top .top__units .text-toggle-switch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 3.8em;
+  height: fit-content;
+}
+.details__top .top__units .text-toggle-switch:has(:focus-visible) {
+  outline: 1px solid var(--color-accent-aqua);
+  outline-offset: 1px;
+}
+.details__top .top__units .text-toggle-switch .text-units-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+}
+.details__top .top__units .text-toggle-switch .text-units-switch {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.details__top .top__units .text-toggle-switch .text-units-switch:focus {
+  outline-color: var(--color-accent-aqua);
+}
+.details__top .top__units .text-toggle-switch .text-units-switch:focus:not(:focus-visible) {
+  outline: 0;
+}
+.details__top .top__units .text-toggle-switch .text-units-switch:checked + .text-units-slider {
+  width: 50%;
+  translate: -5%;
+}
+.details__top .top__units .text-toggle-switch .text-units-slider {
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  translate: -135%;
+  width: 37%;
+  height: 0.1em;
+  cursor: pointer;
+  background-color: var(--color-accent-aqua);
+  transition: all 0.1s ease-in-out;
+}
+.details__top .top__units .text-units-label {
+  cursor: pointer;
 }
 .details__top .top__ref-screen-bar {
   position: relative;
