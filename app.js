@@ -187,6 +187,23 @@ numberInputs.forEach((input) => {
 });
 
 const handleComparison = () => {
+  const detailsUnitSwitch = document.querySelector(".text-units-switch");
+  let unitsDivider = 2.54;
+  let switchUnits = "in";
+  let fractionDigits = 2;
+
+  const handleUnitsValues = () => {
+    if (!detailsUnitSwitch.checked) {
+      unitsDivider = 2.54;
+      switchUnits = "in";
+      fractionDigits = 2;
+    } else {
+      unitsDivider = 1;
+      switchUnits = "cm";
+      fractionDigits = 1;
+    }
+  }
+
   const diagonals = Array.from(document.querySelectorAll(".size-input[required]")).map((field) =>
     Number(field.value.replace(/,/g, "."))
   );
@@ -276,11 +293,13 @@ const handleComparison = () => {
       });
     };
 
+    handleUnitsValues();
+
     const handleGuides = () => {
       const diagonalGuides = document.querySelectorAll(".diagonal");
 
       diagonals.forEach((diagonal, index) => {
-        diagonalGuides[index].textContent = `${Number((diagonal / 2.54).toFixed(2))} in`;
+        diagonalGuides[index].textContent = `${Number((diagonal / unitsDivider).toFixed(fractionDigits))} ${switchUnits}`;
 
         const angle = Math.atan(ratios[index * 2 + 1] / ratios[index * 2]) * (180 / Math.PI);
 
@@ -314,10 +333,10 @@ const handleComparison = () => {
 
         let tempStyle = screen.children[0].style.transform;
 
-        screen.children[0].style.transform = `${tempStyle} translate(${-index * 2 + factor}em)`;
+        screen.children[0].style.transform = `${tempStyle} translate(${-index * 2.5 + factor}em)`;
         tempStyle = screen.children[0].style.transform;
 
-        if (Number(screen.style.width.slice(0, -2)) <= 135) {
+        if (Number(screen.style.width.slice(0, -2)) <= 150) {
           screen.children[0].style.transform = tempStyle.slice(0, -15);
         }
       });
@@ -349,8 +368,8 @@ const handleComparison = () => {
         }`;
 
         const textContent = `${Number(
-          (sides[screenNumber * 2 + (index % 2)] / 2.54).toFixed(2)
-        )} in`;
+          (sides[screenNumber * 2 + (index % 2)] / unitsDivider).toFixed(fractionDigits)
+        )} ${switchUnits}`;
 
         newGuide.textContent = textContent.toString();
 
@@ -471,38 +490,29 @@ const handleComparison = () => {
     thirdScreenElement.classList.remove("hidden");
   }
 
-  const detailsUnitSwitch = document.querySelector(".text-units-switch");
-
   const handleResultsTable = () => {
     const valueRows = document.querySelectorAll(".values__row");
-    let divider = 2.54;
-    let units = "in";
-
-    if (detailsUnitSwitch.checked) {
-      divider = 1;
-      units = "cm";
-    }
 
     // Width
     [...valueRows[0].children].forEach((child, index) => {
-      child.textContent = `${Number((sides[index * 2] / divider).toFixed(2))} ${units}`;
+      child.textContent = `${Number((sides[index * 2] / unitsDivider).toFixed(2))} ${switchUnits}`;
     });
 
     // Height
     [...valueRows[1].children].forEach((child, index) => {
-      child.textContent = `${Number((sides[index * 2 + 1] / divider).toFixed(2))} ${units}`;
+      child.textContent = `${Number((sides[index * 2 + 1] / unitsDivider).toFixed(2))} ${switchUnits}`;
     });
 
     // Diagonal
     [...valueRows[2].children].forEach((child, index) => {
-      child.textContent = `${Number((diagonals[index] / divider).toFixed(2))} ${units}`;
+      child.textContent = `${Number((diagonals[index] / unitsDivider).toFixed(2))} ${switchUnits}`;
     });
 
     // Area
     [...valueRows[3].children].forEach((child, index) => {
       child.textContent = `${Number(
-        ((sides[index * 2] / divider) * (sides[index * 2 + 1] / divider)).toFixed(2)
-      )} ${units}²`;
+        ((sides[index * 2] / unitsDivider) * (sides[index * 2 + 1] / unitsDivider)).toFixed(2)
+      )} ${switchUnits}²`;
     });
 
     // PPI
@@ -525,14 +535,16 @@ const handleComparison = () => {
         const resDiagonal = Math.round(
           Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
         );
-        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / divider)));
+        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / unitsDivider)));
 
         child.textContent = ppi.toString();
       }
     });
   };
 
-  detailsUnitSwitch.addEventListener("change", (e) => {
+  detailsUnitSwitch.addEventListener("change", async (e) => {
+    await handleUnitsValues();
+    calculate();
     handleResultsTable();
   });
 
