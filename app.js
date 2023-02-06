@@ -471,29 +471,38 @@ const handleComparison = () => {
     thirdScreenElement.classList.remove("hidden");
   }
 
+  const detailsUnitSwitch = document.querySelector(".text-units-switch");
+
   const handleResultsTable = () => {
     const valueRows = document.querySelectorAll(".values__row");
+    let divider = 2.54;
+    let units = "in";
+
+    if (detailsUnitSwitch.checked) {
+      divider = 1;
+      units = "cm";
+    }
 
     // Width
     [...valueRows[0].children].forEach((child, index) => {
-      child.textContent = `${Number((sides[index * 2] / 2.54).toFixed(2))} in`;
+      child.textContent = `${Number((sides[index * 2] / divider).toFixed(2))} ${units}`;
     });
 
     // Height
     [...valueRows[1].children].forEach((child, index) => {
-      child.textContent = `${Number((sides[index * 2 + 1] / 2.54).toFixed(2))} in`;
+      child.textContent = `${Number((sides[index * 2 + 1] / divider).toFixed(2))} ${units}`;
     });
 
     // Diagonal
     [...valueRows[2].children].forEach((child, index) => {
-      child.textContent = `${Number((diagonals[index] / 2.54).toFixed(2))} in`;
+      child.textContent = `${Number((diagonals[index] / divider).toFixed(2))} ${units}`;
     });
 
     // Area
     [...valueRows[3].children].forEach((child, index) => {
       child.textContent = `${Number(
-        ((sides[index * 2] / 2.54) * (sides[index * 2 + 1] / 2.54)).toFixed(2)
-      )} in²`;
+        ((sides[index * 2] / divider) * (sides[index * 2 + 1] / divider)).toFixed(2)
+      )} ${units}²`;
     });
 
     // PPI
@@ -516,14 +525,16 @@ const handleComparison = () => {
         const resDiagonal = Math.round(
           Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
         );
-        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / 2.54)));
+        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / divider)));
 
         child.textContent = ppi.toString();
       }
     });
-
-    // TODO: units conversion
   };
+
+  detailsUnitSwitch.addEventListener("change", (e) => {
+    handleResultsTable();
+  });
 
   calculate();
   handleResultsTable();
@@ -778,7 +789,6 @@ window.addEventListener("load", () => {
 });
 // END ON WINDOW LOAD
 
-// TODO: Table screen names
 // FIXME: Visualisation shifting after adding and then removing third screen
 // FIXME: styling with large user viewport
 // TODO: banner to save cookie preferences
