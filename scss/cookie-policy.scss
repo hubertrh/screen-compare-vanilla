@@ -82,7 +82,7 @@ body {
 
         // Set color of the link underline without text decoration
         a {
-          border-bottom: 1px solid rgba(0, 0, 0, 0);
+          border-bottom: 1px solid var(--color-700);
           transition: border-bottom 0.1s ease-out;
 
           &:hover {
