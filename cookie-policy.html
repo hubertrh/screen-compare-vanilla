@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
+
+    <title>Screen Compare</title>
+
+    <link href="cookie-policy.min.css" rel="stylesheet" />
+    <script defer src="app.js"></script>
+
+    <link
+      href="./assets/icons/favicon/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-16x16.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+
+    <!-- LogRocket -->
+    <script crossorigin="anonymous" src="https://cdn.lr-in-prod.com/LogRocket.min.js"></script>
+    <script>
+      window.LogRocket && window.LogRocket.init("mqupwv/screencompare");
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href=".">
+        <img alt="logo" class="logo__img" src="./assets/icons/logo.png" />
+      </a>
+      <a class="title" href=".">ScreenCompare</a>
+      <div class="buttons">
+        <img
+          alt="Light mode switch"
+          class="switch-mode"
+          src="assets/icons/Icons/light-mode.svg"
+          tabindex="0"
+        />
+        <button class="ko-fi">
+          <img alt="Ko-fi" class="ko-fi__img" src="assets/icons/Icons/kofi.png" />
+          <span class="ko-fi__text">Tip&nbsp;me</span>
+        </button>
+      </div>
+      <!-- Uncomment below for prod -->
+      <!--      <div class="kofi-wrapper"></div>-->
+      <div class="kofi-backdrop invisible"></div>
+      <script>
+        if (
+          document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("lightMode="))
+            ?.split("=")[1] !== undefined
+        ) {
+          if (
+            document.cookie
+              .split("; ")
+              .find((row) => row.startsWith("lightMode="))
+              ?.split("=")[1] === "true"
+          ) {
+            document.body.classList.add("light-mode");
+            document.querySelector(".switch-mode").src = "assets/icons/Icons/dark-mode.svg";
+          }
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          document.body.classList.add("light-mode");
+        }
+      </script>
+    </header>
+    <main>
+      <div class="wrapper-main">
+        <div class="cookie-policy">
+          <h1>Cookie Policy for ScreenCompare</h1>
+          <h2>Hi there!</h2>
+          <p>
+            We want you to have the best experience on our site, and that's why we use cookies.
+            Don't worry, they're just small files that get saved to your computer and make your time
+            here even better. Here's a little more information about what cookies do, why we use
+            them, and how you can control them.
+          </p>
+          <h2>Why We Love Cookies</h2>
+          <p>
+            Cookies help us make our site better for you! They let us remember your preferences and
+            give us insight into how you use our site. We use this information to make sure you have
+            the best experience possible.
+          </p>
+          <h2>Don't Worry, You're in Control</h2>
+          <p>
+            If you're not sure about cookies, don't worry, you can still use our site. But, if you
+            prefer, you can adjust your browser settings to stop cookies from being saved. Just keep
+            in mind that doing so may affect some of the features on our site.
+          </p>
+          <h2>Our Cookies</h2>
+          <p>We have two types of cookies: site preferences and third-party cookies.</p>
+          <ul role="list">
+            <li>
+              Site preferences cookies help us remember your preferences and give you a more
+              personalised experience.
+            </li>
+            <li>
+              Third-party cookies, like Google Analytics and such, help us understand how you use
+              our site and give us ideas for ways to make it even better. These cookies may track
+              things such as how long you spend on the site and the pages that you visit so we can
+              continue to produce engaging content.
+            </li>
+          </ul>
+          <h2>More Information</h2>
+          <p>
+            Hopefully that has clarified things for you and as was previously mentioned if there is
+            something that you aren't sure whether you need or not it's usually safer to leave
+            cookies enabled in case it does interact with one of the features you use on our site.
+          </p>
+          <h2>Still Have Questions?</h2>
+          <p>
+            If you are still looking for more information then feel free to reach out to us at
+            <a href="mailto:example@email.com?subject = Query about ScreenCompare's Cookie Policy"
+              >example@email.com</a
+            >. We're always here to help!
+          </p>
+          <h3>Happy browsing!</h3>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__credits">
+        <p class="copyright">ScreenCompare &copy 2023</p>
+        <p class="author">Hubert Rogala-Haracz</p>
+      </div>
+      <div class="footer__divider"></div>
+      <div class="footer__links">
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <p class="footer__dot">&bull;</p>
+        <a href="#!">Leave Feedback</a>
+      </div>
+    </footer>
+  </body>
+</html>
