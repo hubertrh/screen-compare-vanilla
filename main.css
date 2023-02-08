@@ -1309,7 +1309,7 @@ body main .cookie-consent {
   border-radius: 1em;
   padding: 1.5em;
   z-index: 1002;
-  width: 80vw;
+  width: 70vw;
   max-width: 70em;
 }
 body main .cookie-consent__title {
@@ -1419,11 +1419,11 @@ body main .wrapper-main .screen-results {
     top: 60%;
   }
   body main .cookie-consent__title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
   }
   body main .cookie-consent__text {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
   }
   body main .cookie-consent .cookie-consent__button-wrapper {
     margin: 0.5em 1em 0 0;
@@ -1442,6 +1442,15 @@ body main .wrapper-main .screen-results {
 @media screen and (max-width: 550px) {
   body main {
     margin: 10vh 0 10vh;
+  }
+  body main .cookie-consent {
+    width: 80vw;
+  }
+  body main .cookie-consent__title {
+    font-size: 1.5rem;
+  }
+  body main .cookie-consent__text {
+    font-size: 0.85rem;
   }
 }
 

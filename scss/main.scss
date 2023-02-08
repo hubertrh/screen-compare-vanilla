@@ -64,7 +64,7 @@ body {
       border-radius: 1em;
       padding: 1.5em;
       z-index: 1002;
-      width: 80vw;
+      width: 70vw;
       max-width: 70em;
 
       &__title {
@@ -192,12 +192,12 @@ body {
         top: 60%;
 
         &__title {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           text-align: center;
         }
 
         &__text {
-          font-size: 0.85rem;
+          font-size: 1.1rem;
         }
 
         .cookie-consent__button-wrapper {
@@ -227,5 +227,17 @@ body {
 @media screen and (max-width: 550px) {
   body main {
     margin: 10vh 0 10vh;
+
+    .cookie-consent {
+      width: 80vw;
+
+      &__title {
+        font-size: 1.5rem;
+      }
+
+      &__text {
+        font-size: 0.85rem;
+      }
+    }
   }
 }
