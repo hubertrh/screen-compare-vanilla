@@ -738,6 +738,38 @@ darkModeSwitch.addEventListener("click", () => {
 });
 // END Dark mode switch
 
+// Cookie consent
+const cookieConsent = document.querySelector(".cookie-consent");
+const cookieConsentButtonAccept = document.querySelector(".cookie-consent__button--accept");
+const cookieConsentButtonReject = document.querySelector(".cookie-consent__button--reject");
+const cookieConsentBackdrop = document.querySelector(".cookie-consent-backdrop");
+
+const acceptCookies = () => {
+  document.cookie = "cookiesAccepted=true; max-age=31536000;";
+  cookieConsentBackdrop.classList.add("invisible");
+  cookieConsent.classList.add("invisible");
+}
+const rejectCookies = () => {
+  document.cookie = "cookiesAccepted=false; max-age=31536000;";
+  cookieConsentBackdrop.classList.add("invisible");
+  cookieConsent.classList.add("invisible");
+}
+const handleCookieConsent = () => {
+  if (!document.cookie.includes("cookiesAccepted=true")) {
+    cookieConsentBackdrop.classList.remove("invisible");
+    cookieConsent.classList.remove("invisible");
+
+    cookieConsentButtonAccept.addEventListener("click", () => {
+      acceptCookies();
+    });
+
+    cookieConsentButtonReject.addEventListener("click", () => {
+      rejectCookies();
+    });
+  }
+};
+// END Cookie consent
+
 // ON WINDOW LOAD
 // Ko-fi
 const kofiButton = document.querySelector(".ko-fi");
@@ -795,8 +827,9 @@ const updateYear = () => {
 };
 
 window.addEventListener("load", () => {
+  handleCookieConsent();
   updateYear();
-  compareButton.click(); // DEV
+  // compareButton.click(); // DEV
   appendKofi();
 });
 // END ON WINDOW LOAD
