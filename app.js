@@ -73,7 +73,7 @@ const refButtons = document.querySelectorAll(".ref-screen");
 
 const handleTableScreenName = (button, index) => {
   if (nameInputs[index].value === "") {
-    button.textContent = `Display ${index + 1}`;
+    button.textContent = `Display\xa0${index + 1}`; // \xa0 - non-breaking space
   } else {
     button.textContent = nameInputs[index].value.slice(0, 7);
 
@@ -829,7 +829,7 @@ const updateYear = () => {
 window.addEventListener("load", () => {
   handleCookieConsent();
   updateYear();
-  // compareButton.click(); // DEV
+  compareButton.click(); // DEV
   appendKofi();
 });
 // END ON WINDOW LOAD
