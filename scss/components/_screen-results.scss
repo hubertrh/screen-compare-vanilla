@@ -256,6 +256,23 @@
       height: 30em; // FIXME in js
 
       transition: height 0.2s ease-out;
+
+      .visualization-box {
+        .diagonal {
+          font-size: 0.9rem;
+        }
+
+        .guides-wrapper {
+          .guides {
+            min-width: unset;
+            font-size: 0.9rem;
+
+            &--bottom {
+              text-align: center;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1034,6 +1034,16 @@ header .kofi-backdrop {
     height: 30em;
     transition: height 0.2s ease-out;
   }
+  .screen-results__visualizations .visualization-box .diagonal {
+    font-size: 0.9rem;
+  }
+  .screen-results__visualizations .visualization-box .guides-wrapper .guides {
+    min-width: unset;
+    font-size: 0.9rem;
+  }
+  .screen-results__visualizations .visualization-box .guides-wrapper .guides--bottom {
+    text-align: center;
+  }
 }
 .not-found {
   width: 50vw;
