@@ -35,10 +35,23 @@
     />
     <link href="/site.webmanifest" rel="manifest" />
 
-    <!-- LogRocket -->
-    <script crossorigin="anonymous" src="https://cdn.lr-in-prod.com/LogRocket.min.js"></script>
+    <!-- Hotjar -->
     <script>
-      window.LogRocket && window.LogRocket.init("mqupwv/screencompare");
+      if (!document.cookie.includes("cookiesAccepted=false")) {
+        (function (h, o, t, j, a, r) {
+          h.hj =
+            h.hj ||
+            function () {
+              (h.hj.q = h.hj.q || []).push(arguments);
+            };
+          h._hjSettings = { hjid: 3351298, hjsv: 6 };
+          a = o.getElementsByTagName("head")[0];
+          r = o.createElement("script");
+          r.async = 1;
+          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+          a.appendChild(r);
+        })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+      }
     </script>
   </head>
   <body>
@@ -93,7 +106,9 @@
           <button class="cookie-consent__button cookie-consent__button--accept">
             Yes,&nbsp;please!
           </button>
-          <button class="cookie-consent__button cookie-consent__button--reject">No,&nbsp;thanks</button>
+          <button class="cookie-consent__button cookie-consent__button--reject">
+            No,&nbsp;thanks
+          </button>
         </div>
       </div>
       <div class="cookie-consent-backdrop invisible"></div>
