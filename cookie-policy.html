@@ -57,20 +57,15 @@
       <!--      <div class="kofi-wrapper"></div>-->
       <div class="kofi-backdrop invisible"></div>
       <script>
-        if (
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("lightMode="))
-            ?.split("=")[1] !== undefined
-        ) {
-          if (
-            document.cookie
-              .split("; ")
-              .find((row) => row.startsWith("lightMode="))
-              ?.split("=")[1] === "true"
-          ) {
+        if (document.cookie.includes("cookiesAccepted=true")) {
+          if (document.cookie.includes("lightMode=true")) {
             document.body.classList.add("light-mode");
             document.querySelector(".switch-mode").src = "assets/icons/Icons/dark-mode.svg";
+          } else if (document.cookie.includes("lightMode=false")) {
+            document.body.classList.remove("light-mode");
+            document.querySelector(".switch-mode").src = "assets/icons/Icons/light-mode.svg";
+          } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            document.body.classList.add("light-mode");
           }
         } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
           document.body.classList.add("light-mode");
@@ -78,6 +73,24 @@
       </script>
     </header>
     <main>
+      <div class="cookie-consent invisible">
+        <div class="cookie-consent__text-wrapper">
+          <h1 class="cookie-consent__title">The cookie banner</h1>
+          <p class="cookie-consent__text">
+            Say yes to&nbsp;cookies and&nbsp;no to&nbsp;crumbs in&nbsp;your&nbsp;keyboard.
+            Our&nbsp;cookies promise delightful browsing experiences and&nbsp;zero keyboard cleanup.
+            Agree?
+          </p>
+          <a class="cookie-consent__link" href="/cookie-policy.html">Our Cookie Policy</a>
+        </div>
+        <div class="cookie-consent__button-wrapper">
+          <button class="cookie-consent__button cookie-consent__button--accept">
+            Yes,&nbsp;please!
+          </button>
+          <button class="cookie-consent__button cookie-consent__button--reject">No,&nbsp;thanks</button>
+        </div>
+      </div>
+      <div class="cookie-consent-backdrop invisible"></div>
       <div class="wrapper-main">
         <div class="cookie-policy">
           <h1>Cookie Policy for ScreenCompare</h1>
