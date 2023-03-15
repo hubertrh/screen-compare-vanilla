@@ -836,7 +836,6 @@ window.addEventListener("load", () => {
 
 // FIXME: Visualisation shifting after adding and then removing third screen
 // FIXME: styling with large user viewport
-// TODO: banner to save cookie preferences
 // TODO: form hints
 // FIXME: resizing
 // FIXME: Ko-fi @media styling
