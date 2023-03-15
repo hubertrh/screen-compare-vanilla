@@ -1,2 +1,3 @@
-# ScreenCompare (Vanilla JS)
-## v0.4.0-alpha
+# ScreenCompare (Vanilla JS + Vite)
+
+## v0.5.0-alpha
