@@ -77,8 +77,8 @@ const handleTableScreenName = (button, index) => {
   } else {
     button.textContent = nameInputs[index].value.slice(0, 7);
 
-    if(nameInputs[index].value.length > 7) {
-      button.textContent = `${button.textContent}...`
+    if (nameInputs[index].value.length > 7) {
+      button.textContent = `${button.textContent}...`;
     }
   }
 };
@@ -202,7 +202,7 @@ const handleComparison = () => {
       switchUnits = "cm";
       fractionDigits = 1;
     }
-  }
+  };
 
   const diagonals = Array.from(document.querySelectorAll(".size-input[required]")).map((field) =>
     Number(field.value.replace(/,/g, "."))
@@ -299,7 +299,9 @@ const handleComparison = () => {
       const diagonalGuides = document.querySelectorAll(".diagonal");
 
       diagonals.forEach((diagonal, index) => {
-        diagonalGuides[index].textContent = `${Number((diagonal / unitsDivider).toFixed(fractionDigits))} ${switchUnits}`;
+        diagonalGuides[index].textContent = `${Number(
+          (diagonal / unitsDivider).toFixed(fractionDigits)
+        )} ${switchUnits}`;
 
         const angle = Math.atan(ratios[index * 2 + 1] / ratios[index * 2]) * (180 / Math.PI);
 
@@ -500,7 +502,9 @@ const handleComparison = () => {
 
     // Height
     [...valueRows[1].children].forEach((child, index) => {
-      child.textContent = `${Number((sides[index * 2 + 1] / unitsDivider).toFixed(2))} ${switchUnits}`;
+      child.textContent = `${Number(
+        (sides[index * 2 + 1] / unitsDivider).toFixed(2)
+      )} ${switchUnits}`;
     });
 
     // Diagonal
@@ -621,7 +625,7 @@ const handleReferenceBar = (e, refIndex) => {
 
   refBar.style.setProperty("--screen-index", refIndex.toString());
 
-  [...e.target.parentElement.children].forEach(button => {
+  [...e.target.parentElement.children].forEach((button) => {
     button.style.fontWeight = "400";
   });
   e.target.style.fontWeight = "600";
@@ -672,7 +676,6 @@ compareButton.addEventListener("click", () => {
 
   const resultsSection = document.getElementById("screen-results");
   resultsSection.scrollIntoView({ behavior: "smooth" });
-
 });
 
 resetButton.addEventListener("click", () => {
@@ -728,10 +731,10 @@ const darkModeSwitch = document.querySelector(".switch-mode");
 
 darkModeSwitch.addEventListener("click", () => {
   if (!document.body.classList.contains("light-mode")) {
-    darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
+    darkModeSwitch.src = "/dark-mode.svg";
     document.cookie = "lightMode=true; max-age=31536000;";
   } else {
-    darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
+    darkModeSwitch.src = "/light-mode.svg";
     document.cookie = "lightMode=false; max-age=31536000;";
   }
   document.body.classList.toggle("light-mode");
@@ -748,12 +751,12 @@ const acceptCookies = () => {
   document.cookie = "cookiesAccepted=true; max-age=31536000;";
   cookieConsentBackdrop.classList.add("invisible");
   cookieConsent.classList.add("invisible");
-}
+};
 const rejectCookies = () => {
   document.cookie = "cookiesAccepted=false; max-age=31536000;";
   cookieConsentBackdrop.classList.add("invisible");
   cookieConsent.classList.add("invisible");
-}
+};
 const handleCookieConsent = () => {
   if (!document.cookie.includes("cookiesAccepted=true")) {
     cookieConsentBackdrop.classList.remove("invisible");
@@ -840,4 +843,3 @@ window.addEventListener("load", () => {
 // FIXME: resizing
 // FIXME: Ko-fi @media styling
 // FIXME: addBtn position
-
