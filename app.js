@@ -818,7 +818,7 @@ const appendKofi = () => {
   kofi.setAttribute("title", "Hubert Ko-fi");
 
   console.warn("Console might display KO-FI ERRORS");
-  kofiWrapper.appendChild(kofi);
+  kofiWrapper?.appendChild(kofi);
 };
 // END Ko-fi
 
