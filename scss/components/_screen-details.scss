@@ -197,6 +197,19 @@
 
         &.ppi {
           transition: opacity 0.15s ease-out;
+
+          &::after {
+            content: "?";
+            font-size: 0.7rem;
+            position: absolute;
+            top: 50%;
+            right: -2.5em;
+            translate: 0 -10%;
+            width: 1.4em;
+            height: 1.4em;
+            background-color: var(--validation-color); // green, darkgoldenrod, brown
+            border-radius: 50%;
+          }
         }
       }
     }

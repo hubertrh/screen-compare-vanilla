@@ -216,6 +216,8 @@ const handleComparison = () => {
   const resolutions = Array.from(document.querySelectorAll(".res-input")).map((field) =>
     Number(field.value.replace(/,/g, "."))
   );
+  let ppis = [];
+
   let sides = [];
 
   // c(`diagonals --> ${diagonals}`);
@@ -228,12 +230,30 @@ const handleComparison = () => {
       diagonals[index] = diagonals[index] * 2.54;
     }
   });
-
   // c(`diagonals (cm) --> ${diagonals}`);
 
   const media1000 = window.matchMedia("(max-width: 1000px)");
 
   const calculate = () => {
+    const calculatePpis = () => {
+      for (let index = 0; index <= 2; index++) {
+        // c(`index --> ${index}`);
+        // c(`resolutions[${index * 2}] --> ${resolutions[index * 2]}`);
+
+        if (resolutions[index * 2] !== 0) {
+          // c("1");
+          const resDiagonal = Math.round(
+            Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
+          );
+          ppis = [...ppis, Number(Math.round(resDiagonal / (diagonals[index] / unitsDivider)))];
+        } else {
+          // c("2");
+          ppis = [...ppis, ""];
+        }
+      }
+      c(`ppis --> ${ppis[0]}, ${ppis[1]}, ${ppis[2]}`);
+    };
+
     const calculateSides = () => {
       sides = [];
 
@@ -457,9 +477,9 @@ const handleComparison = () => {
       screenBox.setAttribute(
         "style",
         `
-      width: ${maxWidth}px;
-      height: ${maxHeight}px;
-      `
+        width: ${maxWidth}px;
+        height: ${maxHeight}px;
+        `
       );
     };
 
@@ -471,6 +491,7 @@ const handleComparison = () => {
     };
 
     async function handleVisualisations() {
+      calculatePpis();
       await calculateSides();
       await calculateProportions();
       await handleGuides();
@@ -546,6 +567,45 @@ const handleComparison = () => {
     });
   };
 
+  const handlePpiValidationColors = () => {
+    const sizeTresholds = {
+      mobile: 6.9 * 2.54,
+      tablet: 11.1 * 2.54,
+    };
+
+    diagonals.forEach((diagonal, index) => {
+      const ppiThresholds = {
+        mobile: { green: 400, darkgoldenrod: 300, brown: 0 },
+        tablet: { green: 200, darkgoldenrod: 150, brown: 0 },
+        desktop: { green: 150, darkgoldenrod: 100, brown: 0 },
+      };
+
+      function getDeviceType(diagonal) {
+        if (diagonal <= sizeTresholds.mobile) {
+          return "mobile";
+        } else if (diagonal <= sizeTresholds.tablet) {
+          return "tablet";
+        } else {
+          return "desktop";
+        }
+      }
+
+      function getColor(ppi, deviceType) {
+        const thresholds = ppiThresholds[deviceType];
+        for (let color in thresholds) {
+          if (ppi >= thresholds[color]) {
+            return color;
+          }
+        }
+      }
+
+      const deviceType = getDeviceType(diagonal);
+      const color = getColor(ppis[index], deviceType);
+      const curPpiElement = document.querySelectorAll(".row__value.ppi")[index];
+      curPpiElement.style.setProperty("--validation-color", color);
+    });
+  };
+
   detailsUnitSwitch.addEventListener("change", async (e) => {
     await handleUnitsValues();
     calculate();
@@ -554,6 +614,7 @@ const handleComparison = () => {
 
   calculate();
   handleResultsTable();
+  handlePpiValidationColors();
 };
 
 const handleResultsLayout = () => {
