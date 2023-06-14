@@ -672,6 +672,27 @@ const compare = () => {
     });
 
     // TODO: if res, both fields validation
+
+    const resolutionFields = document.querySelectorAll(".res-input");
+
+    resolutionFields.forEach((field, index) => {
+      // console.log(field.value !== "", index, index % 2);
+      if (field.value !== "") {
+        field.classList.remove("field-error");
+
+        if (index % 2) {
+          c("even");
+          if (resolutionFields[index - 1].value === "") {
+            resolutionFields[index - 1].classList.add("field-error");
+          }
+        } else {
+          c("odd");
+          if (resolutionFields[index + 1].value === "") {
+            resolutionFields[index + 1].classList.add("field-error");
+          }
+        }
+      }
+    });
   };
 
   validate();
