@@ -615,20 +615,22 @@ const compare = () => {
     const resolutionFields = document.querySelectorAll(".res-input");
 
     resolutionFields.forEach((field, index) => {
-      console.log(field.value !== "", index, index % 2);
-      // if (field.value !== "") {
-      //   if (index % 2) {
-      //     // even
-      //     if (resolutionFields[index + 1].value === "") {
-      //       c(`Field no. ${index + 1 + 1} is empty`);
-      //     }
-      //   } else {
-      //     // odd
-      //     if (resolutionFields[index - 1].value === "") {
-      //       c(`Field no. ${index - 1 + 1} is empty`);
-      //     }
-      //   }
-      // }
+      // console.log(field.value !== "", index, index % 2);
+      if (field.value !== "") {
+        field.classList.remove("field-error");
+
+        if (index % 2) {
+          c("even");
+          if (resolutionFields[index - 1].value === "") {
+            resolutionFields[index - 1].classList.add("field-error");
+          }
+        } else {
+          c("odd");
+          if (resolutionFields[index + 1].value === "") {
+            resolutionFields[index + 1].classList.add("field-error");
+          }
+        }
+      }
     });
   };
 
