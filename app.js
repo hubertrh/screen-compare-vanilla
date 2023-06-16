@@ -237,17 +237,12 @@ const handleComparison = () => {
   const calculate = () => {
     const calculatePpis = () => {
       for (let index = 0; index <= 2; index++) {
-        // c(`index --> ${index}`);
-        // c(`resolutions[${index * 2}] --> ${resolutions[index * 2]}`);
-
-        if (resolutions[index * 2] !== 0) {
-          // c("1");
+        if (resolutions[index * 2] !== 0 && resolutions[index * 2 + 1] !== 0) {
           const resDiagonal = Math.round(
             Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
           );
           ppis = [...ppis, Number(Math.round(resDiagonal / (diagonals[index] / unitsDivider)))];
         } else {
-          // c("2");
           ppis = [...ppis, ""];
         }
       }
@@ -541,30 +536,30 @@ const handleComparison = () => {
     });
 
     // PPI
-    const ppiGuide = document.querySelector(".ppi-guide");
+    const handlePpiRow = () => {
+      const ppiGuide = document.querySelector(".ppi-guide");
 
-    [...valueRows[4].children].forEach((child, index) => {
-      if (resolutions[index * 2].toString() === "0") {
-        child.style.opacity = "0";
-        if ([...valueRows[4].children].every((child) => child.style.opacity === "0")) {
-          valueRows[4].style.display = "none";
-          ppiGuide.style.display = "none";
+      [...valueRows[4].children].forEach((child, index) => {
+        if (resolutions[index * 2] === 0 && resolutions[index * 2 + 1] === 0) {
+          child.style.opacity = "0";
+          child.textContent = "";
         } else {
-          ppiGuide.style.opacity = "1";
+          child.style.opacity = "1";
+          child.textContent = ppis[index].toString();
         }
+      });
+      if ([...valueRows[4].children].every((child) => child.style.opacity === "0")) {
+        valueRows[4].style.display = "none";
+        ppiGuide.style.display = "none";
+        ppiGuide.style.opacity = "0";
       } else {
-        child.style.opacity = "1";
         valueRows[4].style.display = "grid";
         ppiGuide.style.display = "block";
-
-        const resDiagonal = Math.round(
-          Number(Math.sqrt(resolutions[index * 2] ** 2 + resolutions[index * 2 + 1] ** 2))
-        );
-        const ppi = Number(Math.round(resDiagonal / (diagonals[index] / unitsDivider)));
-
-        child.textContent = ppi.toString();
+        ppiGuide.style.opacity = "1";
       }
-    });
+    };
+
+    handlePpiRow();
   };
 
   const handlePpiValidationColors = () => {
@@ -671,22 +666,19 @@ const compare = () => {
       }
     });
 
-    // TODO: if res, both fields validation
-
     const resolutionFields = document.querySelectorAll(".res-input");
 
     resolutionFields.forEach((field, index) => {
-      // console.log(field.value !== "", index, index % 2);
       if (field.value !== "") {
         field.classList.remove("field-error");
 
         if (index % 2) {
-          c("even");
+          // even
           if (resolutionFields[index - 1].value === "") {
             resolutionFields[index - 1].classList.add("field-error");
           }
         } else {
-          c("odd");
+          // odd
           if (resolutionFields[index + 1].value === "") {
             resolutionFields[index + 1].classList.add("field-error");
           }
@@ -714,16 +706,21 @@ const handleReferenceBar = (e, refIndex) => {
 };
 
 const handleReferenceValues = (e, refIndex) => {
-  const detailsRows = document.querySelectorAll(".values__row");
+  const detailsRows = document.querySelectorAll(".values__row:last-child");
 
   detailsRows.forEach((row) => {
-    [...row.children].forEach((refValue) => {
+    [...row.children].forEach((refValue, index) => {
       let refPercentage =
         parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent);
       refPercentage = Math.round(refPercentage * 100);
-      refPercentage = `"(${refPercentage}%)"`;
+      c(refPercentage);
 
-      refValue.style.setProperty("--value-reference", refPercentage);
+      if (isNaN(refPercentage)) {
+        refValue.style.setProperty("--value-reference", `"(100%)"`);
+      } else {
+        refPercentage = `"(${refPercentage}%)"`;
+        refValue.style.setProperty("--value-reference", refPercentage);
+      }
     });
   });
 };
