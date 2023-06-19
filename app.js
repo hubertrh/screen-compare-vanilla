@@ -246,7 +246,6 @@ const handleComparison = () => {
           ppis = [...ppis, ""];
         }
       }
-      c(`ppis --> ${ppis[0]}, ${ppis[1]}, ${ppis[2]}`);
     };
 
     const calculateSides = () => {
@@ -713,7 +712,6 @@ const handleReferenceValues = (e, refIndex) => {
       let refPercentage =
         parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent);
       refPercentage = Math.round(refPercentage * 100);
-      c(refPercentage);
 
       if (isNaN(refPercentage)) {
         refValue.style.setProperty("--value-reference", `"(100%)"`);
