@@ -13,5 +13,8 @@
     "@testing-library/cypress": "^9.0.0",
     "cypress": "^12.8.0",
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "firebase": "^9.23.0"
   }
 }

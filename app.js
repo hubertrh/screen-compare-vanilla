@@ -1,5 +1,39 @@
 "use strict";
 
+// Firebase config
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+import { getAuth, signInAnonymously } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCPFHnutWJg_oDDKR9DyDPzEm-DXWdhmxo",
+  authDomain: "screencompare.firebaseapp.com",
+  databaseURL: "https://screencompare-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "screencompare",
+  storageBucket: "screencompare.appspot.com",
+  messagingSenderId: "1080235317181",
+  appId: "1:1080235317181:web:1a2d8a776d69b3787064d4",
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
+// Authenticate anonymously
+const auth = getAuth();
+
+signInAnonymously(auth)
+  .then(() => {
+    console.log("Signed in anonymously");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error(`Error code: ${errorCode}, message: ${errorMessage}`);
+  });
+// END Firebase config
+
 // DEV
 const c = console.log.bind(document);
 // END DEV
@@ -899,12 +933,14 @@ const appendKofi = () => {
 };
 // END Ko-fi
 
+// Update year in footer
 const updateYear = () => {
   const copyright = document.querySelector(".copyright");
   const year = new Date().getFullYear().toString();
 
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
+// END Update year in footer
 
 window.addEventListener("load", () => {
   handleCookieConsent();
