@@ -20,11 +20,6 @@ dd {
   margin: 0;
 }
 
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
-
 html:focus-within {
   scroll-behavior: smooth;
 }

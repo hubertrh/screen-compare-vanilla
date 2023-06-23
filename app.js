@@ -135,7 +135,7 @@ unitSwitches.forEach((unitSwitch) => {
 
 // 3rd form add/remove
 const addButton = document.querySelector(".btn-add");
-const removeButton = document.querySelector(".btn-remove");
+const removeButton = document.querySelector(".btn-remove--last-form");
 
 const handleAddForm = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--inactive");
@@ -735,7 +735,42 @@ refButtons.forEach((button, index) => {
 });
 // END Reference details
 
-const compareButton = document.querySelector(".btn-compare");
+// Common screens
+const commonScreensBtn = document.querySelector(".common-screens-btn");
+const commonScreensBtnClose = document.querySelector(".btn-remove--common-screens");
+const commonScreensDialogWrapper = document.querySelector(".common-screens-dialog-wrapper");
+const commonScreensDialog = document.querySelector(".common-screens-dialog");
+// const commonScreensDialogBackdrop = document.querySelector(".common-screens-dialog::backdrop");
+
+commonScreensBtn.addEventListener("click", () => {
+  if (!commonScreensDialog.hasAttribute("open")) {
+    commonScreensDialog.showModal();
+  } else {
+    commonScreensDialog.close();
+  }
+});
+
+commonScreensBtnClose.addEventListener("click", () => {
+  commonScreensDialog.close();
+});
+
+commonScreensDialog.addEventListener("click", (e) => {
+  const rect = commonScreensDialog.getBoundingClientRect();
+
+  const isInDialog =
+    rect.top <= e.clientY &&
+    e.clientY <= rect.top + rect.height &&
+    rect.left <= e.clientX &&
+    e.clientX <= rect.left + rect.width;
+
+  if (!isInDialog) {
+    commonScreensDialog.close();
+  }
+});
+
+// END Common screens
+
+const compareButton = document.querySelector(".btn-main--compare");
 const resetButton = document.querySelector(".btn-reset");
 const forms = document.querySelectorAll(".screen-form");
 const formInputs = document.querySelectorAll(".screen-forms input:not([type='checkbox'])");

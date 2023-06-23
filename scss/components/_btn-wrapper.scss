@@ -60,29 +60,6 @@
       transition: width 0.05s ease-out, font-size 0.05s ease-out;
     }
   }
-
-  .btn-compare {
-    color: var(--color-500);
-    text-align: center;
-    background-color: var(--color-accent-aqua);
-    border: none;
-    border-radius: 2em;
-    padding: 0.5em 1.5em;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-left: 1em;
-
-    transition: background-color 0.15s ease-out, translate 0.1s ease-out;
-
-    &:hover {
-      background-color: var(--color-accent-aqua-hover);
-    }
-
-    &:focus-visible {
-      outline: solid 1.5px var(--color-accent-aqua);
-      outline-offset: 0.2em;
-    }
-  }
 }
 
 @media screen and (max-width: 1000px) {
