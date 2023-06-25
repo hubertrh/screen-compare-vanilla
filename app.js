@@ -1,5 +1,54 @@
 "use strict";
 
+// Firebase config
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  increment,
+  query,
+  collection,
+  orderBy,
+  limit,
+} from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCPFHnutWJg_oDDKR9DyDPzEm-DXWdhmxo",
+  authDomain: "screencompare.firebaseapp.com",
+  databaseURL: "https://screencompare-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "screencompare",
+  storageBucket: "screencompare.appspot.com",
+  messagingSenderId: "1080235317181",
+  appId: "1:1080235317181:web:1a2d8a776d69b3787064d4",
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
+// Initialize Firestore
+const db = getFirestore();
+// END Firebase config
+
+// Authenticate anonymously
+const auth = getAuth();
+
+signInAnonymously(auth)
+  .then(() => {
+    c("Signed in anonymously");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error(`Error code: ${errorCode}, message: ${errorMessage}`);
+  });
+// END Authenticate anonymously
+
 // DEV
 const c = console.log.bind(document);
 // END DEV
@@ -606,9 +655,47 @@ const handleComparison = () => {
     handleResultsTable();
   });
 
+  const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
+    // Generate a unique ID based on the form response
+    const formResponseId = `${screenSize}_${xAspectRatio}_${yAspectRatio}`;
+    const formResponseRef = doc(db, "formResponses", formResponseId);
+
+    // Get the current document
+    const formResponseDoc = await getDoc(formResponseRef);
+
+    if (formResponseDoc.exists()) {
+      // If the document exists, increment the count
+      await updateDoc(formResponseRef, {
+        count: increment(1),
+      });
+    } else {
+      // If the document does not exist, create it with a count of 1
+      await setDoc(formResponseRef, {
+        screenSize,
+        xAspectRatio,
+        yAspectRatio,
+        count: 1,
+      });
+    }
+  };
+
+  const saveFormData = () => {
+    const isThirdScreenActive = !document.querySelector(".screen--inactive");
+    const screens = isThirdScreenActive ? 3 : 2;
+
+    for (let index = 0; index < screens; index++) {
+      const diagonalInInches = diagonals[index] / 2.54;
+      const xAspectRatio = ratios[index * 2];
+      const yAspectRatio = ratios[index * 2 + 1];
+
+      addToDatabase(diagonalInInches, xAspectRatio, yAspectRatio);
+    }
+  };
+
   calculate();
   handleResultsTable();
   handlePpiValidationColors();
+  saveFormData();
 };
 
 const handleResultsLayout = () => {
@@ -885,6 +972,21 @@ const handleCookieConsent = () => {
 };
 // END Cookie consent
 
+const getTop5Screens = async () => {
+  // Query for the top 5 form responses
+  const formResponsesQuery = query(
+    collection(db, "formResponses"),
+    orderBy("count", "desc"),
+    limit(5)
+  );
+
+  const querySnapshot = await getDocs(formResponsesQuery);
+
+  querySnapshot.forEach((doc) => {
+    c(doc.id, " => ", doc.data());
+  });
+};
+
 // ON WINDOW LOAD
 // Ko-fi
 const kofiButton = document.querySelector(".ko-fi");
@@ -934,16 +1036,19 @@ const appendKofi = () => {
 };
 // END Ko-fi
 
+// Update year in footer
 const updateYear = () => {
   const copyright = document.querySelector(".copyright");
   const year = new Date().getFullYear().toString();
 
   copyright.textContent = `ScreenCompare \u00A9 ${year}`;
 };
+// END Update year in footer
 
 window.addEventListener("load", () => {
   handleCookieConsent();
   updateYear();
+  getTop5Screens();
   compareButton.click(); // DEV
   appendKofi();
 });
