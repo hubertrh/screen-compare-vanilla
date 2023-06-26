@@ -695,7 +695,7 @@ const handleComparison = () => {
   calculate();
   handleResultsTable();
   handlePpiValidationColors();
-  saveFormData();
+  // saveFormData();
 };
 
 const handleResultsLayout = () => {
@@ -792,19 +792,26 @@ const handleReferenceBar = (e, refIndex) => {
 };
 
 const handleReferenceValues = (e, refIndex) => {
-  const detailsRows = document.querySelectorAll(".values__row:last-child");
+  const detailsRows = document.querySelectorAll(".values__row");
 
   detailsRows.forEach((row) => {
     [...row.children].forEach((refValue, index) => {
-      let refPercentage =
-        parseFloat(refValue.textContent) / parseFloat([...row.children][refIndex].textContent);
+      const referenceValue = parseFloat(refValue.textContent);
+      const referenceIndexValue = parseFloat(row.children[refIndex].textContent);
+      let refPercentage = referenceValue / referenceIndexValue;
       refPercentage = Math.round(refPercentage * 100);
 
-      if (isNaN(refPercentage)) {
-        refValue.style.setProperty("--value-reference", `"(100%)"`);
+      if (refValue.textContent === "") {
+        refValue.style.setProperty("--value-reference", `""`);
+        refValue.style.setProperty("--questionmark", `""`);
+        refValue.style.setProperty("--validation-color", `transparent`);
+      } else if (isNaN(refPercentage)) {
+        refValue.style.setProperty("--value-reference", `"\u2014"`);
+        refValue.style.setProperty("--questionmark", `"?"`);
       } else {
         refPercentage = `"(${refPercentage}%)"`;
         refValue.style.setProperty("--value-reference", refPercentage);
+        refValue.style.setProperty("--questionmark", `"?"`);
       }
     });
   });
@@ -885,7 +892,7 @@ formInputs.forEach((input) => {
   input.addEventListener("keypress", (e) => {
     if (!input.classList.contains("name") && e.key === "Enter") {
       e.target.blur();
-      compare();
+      compareButton.click();
     }
   });
 
