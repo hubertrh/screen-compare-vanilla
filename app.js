@@ -535,17 +535,17 @@ const handleComparison = () => {
 
     async function handleVisualisations() {
       calculatePpis();
-      await calculateSides();
-      await calculateProportions();
-      await handleGuides();
-      await centerVisualisations();
+      await Promise.resolve(calculateSides());
+      await Promise.resolve(calculateProportions());
+      await Promise.resolve(handleGuides());
+      await Promise.resolve(centerVisualisations());
 
       if (media1000.matches) {
         resizeBox();
       }
     }
 
-    void handleVisualisations();
+    handleVisualisations();
   };
 
   const thirdScreenElement = document.querySelector(".visualization--3");
@@ -588,7 +588,7 @@ const handleComparison = () => {
       const ppiGuide = document.querySelector(".ppi-guide");
 
       [...valueRows[4].children].forEach((child, index) => {
-        if (resolutions[index * 2] === 0 && resolutions[index * 2 + 1] === 0) {
+        if (resolutions[index * 2] === 0 || resolutions[index * 2 + 1] === 0) {
           child.style.opacity = "0";
           child.textContent = "";
         } else {
@@ -801,18 +801,8 @@ const handleReferenceValues = (e, refIndex) => {
       let refPercentage = referenceValue / referenceIndexValue;
       refPercentage = Math.round(refPercentage * 100);
 
-      if (refValue.textContent === "") {
-        refValue.style.setProperty("--value-reference", `""`);
-        refValue.style.setProperty("--questionmark", `""`);
-        refValue.style.setProperty("--validation-color", `transparent`);
-      } else if (isNaN(refPercentage)) {
-        refValue.style.setProperty("--value-reference", `"\u2014"`);
-        refValue.style.setProperty("--questionmark", `"?"`);
-      } else {
-        refPercentage = `"(${refPercentage}%)"`;
-        refValue.style.setProperty("--value-reference", refPercentage);
-        refValue.style.setProperty("--questionmark", `"?"`);
-      }
+      const refValueVar = isNaN(refPercentage) ? `"\u2014"` : `"(${refPercentage}%)"`;
+      refValue.style.setProperty("--value-reference", refValueVar);
     });
   });
 };
