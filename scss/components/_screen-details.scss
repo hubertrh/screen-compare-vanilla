@@ -184,7 +184,6 @@
         position: relative;
         text-align: center;
         --value-reference: "(100%)";
-        --questionmark: "?";
 
         &::before {
           content: var(--value-reference);
@@ -200,7 +199,7 @@
           transition: opacity 0.15s ease-out;
 
           &::after {
-            content: var(--questionmark);
+            content: "?";
             font-size: 0.7rem;
             position: absolute;
             top: 50%;
