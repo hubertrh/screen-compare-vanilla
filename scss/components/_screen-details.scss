@@ -184,22 +184,23 @@
         position: relative;
         text-align: center;
         --value-reference: "(100%)";
+        --questionmark: "?";
+
+        &::before {
+          content: var(--value-reference);
+          position: absolute;
+          bottom: -55%;
+          left: 50%;
+          translate: -50%;
+          color: var(--color-800);
+          font-size: clamp(0.7rem, 0.55vw, 0.55vw);
+        }
 
         &.ppi {
           transition: opacity 0.15s ease-out;
 
-          &::before {
-            content: var(--value-reference);
-            position: absolute;
-            bottom: -55%;
-            left: 50%;
-            translate: -50%;
-            color: var(--color-800);
-            font-size: clamp(0.7rem, 0.55vw, 0.55vw);
-          }
-
           &::after {
-            content: "?";
+            content: var(--questionmark);
             font-size: 0.7rem;
             position: absolute;
             top: 50%;
