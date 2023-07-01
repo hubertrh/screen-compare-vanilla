@@ -5,7 +5,7 @@ import { CookieHandler } from "./handlers/cookieHandler";
 // DEV
 const c = console.log.bind(document);
 
-// Unfocus header elements on escape
+// Unfocuses header elements on escape
 const headerElements = document.querySelectorAll("header *");
 
 headerElements.forEach((el) => {
