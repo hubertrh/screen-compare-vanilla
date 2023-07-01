@@ -1,78 +1,27 @@
-"use strict";
-
-// DEV
-const c = console.log.bind(document);
-// END DEV
-
-// Firebase config
-import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth, signInAnonymously } from "firebase/auth";
 import {
-  getFirestore,
-  doc,
-  getDoc,
-  getDocs,
-  increment,
-  query,
-  collection,
-  orderBy,
-  limit,
-  writeBatch,
-} from "firebase/firestore";
+  handleDarkModeSwitch,
+  handleEscapeFocusOut,
+  setCheckingInternetConnection,
+  updateYear,
+} from "./utils/domUtils";
+import { KofiHandler } from "./handlers/kofiHandler";
+import { CookieHandler } from "./handlers/cookieHandler";
+import { addToDatabase, getTopScreens } from "./database/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCPFHnutWJg_oDDKR9DyDPzEm-DXWdhmxo",
-  authDomain: "screencompare.firebaseapp.com",
-  databaseURL: "https://screencompare-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "screencompare",
-  storageBucket: "screencompare.appspot.com",
-  messagingSenderId: "1080235317181",
-  appId: "1:1080235317181:web:1a2d8a776d69b3787064d4",
-};
+const c = console.log.bind(document); // DEV
 
-// Initialize Firebase
-if (navigator.onLine) {
-  initializeApp(firebaseConfig);
-  c("Firebase initialized");
-}
-
-// Initialize Firestore
-const db = getFirestore();
-// END Firebase config
-
-// Authenticate anonymously
-const auth = getAuth();
-
-if (navigator.onLine) {
-  signInAnonymously(auth)
-    .then(() => {
-      c("Signed in anonymously");
-      getTop5Screens();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(`Error code: ${errorCode}, message: ${errorMessage}`);
-    });
-}
-// END Authenticate anonymously
-
-const handleEscapeFocusOut = (element) => {
-  element.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      e.target.blur();
-    }
-  });
-};
-
+// Unfocus header elements on escape
 const headerElements = document.querySelectorAll("header *");
 
 headerElements.forEach((el) => {
   handleEscapeFocusOut(el);
 });
 
-// Third screen tab index change
+/**
+ * Handles the change of tabindex for the form elements in the third screen.
+ * If the third screen is inactive, all form elements inside it will have a tabindex of -1.
+ * If the third screen is active, all form elements inside it will have no tabindex attribute.
+ */
 const handleTabIndexChange = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
   const thirdScreenFormElements = thirdScreen.getElementsByTagName("*");
@@ -93,7 +42,6 @@ window.addEventListener("keydown", (e) => {
     handleTabIndexChange();
   }
 });
-// END Third screen tab index change
 
 // Screen edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
@@ -112,7 +60,6 @@ const clickEditButton = (e) => {
 editNameButtons.forEach((button) => {
   button.addEventListener("click", (e) => clickEditButton(e));
 });
-// END Screen edit button
 
 // Screen name input (resize, blur, focusout)
 const nameInputs = document.querySelectorAll(".name");
@@ -137,6 +84,14 @@ const handleTableScreenName = (button, index) => {
   }
 };
 
+/**
+ * Handles the blur event on the input element.
+ * If the input is readonly and the user presses a key
+ * that is not a number, letter or enter, the readonly
+ * attribute is removed. If the user presses enter,
+ * the readonly attribute is added and the input is blurred.
+ * @param {Event} e - The event object.
+ */
 const handleInputBlur = (e) => {
   if (
     e.target.hasAttribute("readonly") &&
@@ -170,7 +125,6 @@ nameInputs.forEach((input) => {
   input.addEventListener("keydown", (e) => handleInputBlur(e));
   input.addEventListener("focusout", (e) => handleInputFocusOut(e));
 });
-// END Screen name input (resize, blur, focusout)
 
 // Unit switch label
 const unitSwitches = document.querySelectorAll(".units-switch");
@@ -185,7 +139,6 @@ const handleUnitSwitch = (e) => {
 unitSwitches.forEach((unitSwitch) => {
   unitSwitch.addEventListener("change", (e) => handleUnitSwitch(e));
 });
-// END Unit switch label
 
 // 3rd form add/remove
 const addButton = document.querySelector(".btn-add");
@@ -222,7 +175,6 @@ const handleRemoveForm = () => {
 
 addButton.addEventListener("click", () => handleAddForm());
 removeButton.addEventListener("click", () => handleRemoveForm());
-// END 3rd form add/remove
 
 // Handling form data
 const numberInputs = document.querySelectorAll("input[type=number]");
@@ -616,7 +568,7 @@ const handleComparison = () => {
   };
 
   const handlePpiValidationColors = () => {
-    const sizeTresholds = {
+    const sizeThresholds = {
       mobile: 6.9 * 2.54,
       tablet: 11.1 * 2.54,
     };
@@ -629,9 +581,9 @@ const handleComparison = () => {
       };
 
       function getDeviceType(diagonal) {
-        if (diagonal <= sizeTresholds.mobile) {
+        if (diagonal <= sizeThresholds.mobile) {
           return "mobile";
-        } else if (diagonal <= sizeTresholds.tablet) {
+        } else if (diagonal <= sizeThresholds.tablet) {
           return "tablet";
         } else {
           return "desktop";
@@ -659,41 +611,6 @@ const handleComparison = () => {
     calculate();
     handleResultsTable();
   });
-
-  const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
-    if (!navigator.onLine) {
-      console.log("Firestore - No internet connection.");
-      return; // Terminate the function if there's no connection
-    }
-
-    // Initialize a batch
-    const batch = writeBatch(db);
-
-    // Generate a unique ID based on the form response
-    const formResponseId = `${screenSize}_${xAspectRatio}_${yAspectRatio}`;
-    const formResponseRef = doc(db, "formResponses", formResponseId);
-
-    // Get the current document
-    const formResponseDoc = await getDoc(formResponseRef);
-
-    if (formResponseDoc.exists()) {
-      // If the document exists, increment the count
-      batch.update(formResponseRef, {
-        count: increment(1),
-      });
-    } else {
-      // If the document does not exist, create it with a count of 1
-      batch.set(formResponseRef, {
-        screenSize,
-        xAspectRatio,
-        yAspectRatio,
-        count: 1,
-      });
-    }
-
-    // Commit the batch
-    await batch.commit();
-  };
 
   const saveFormData = () => {
     const isThirdScreenActive = !document.querySelector(".screen--inactive");
@@ -795,7 +712,7 @@ const compare = () => {
   handleThirdDetailsColumn();
 };
 
-// Reference details
+// Details table reference values
 const handleReferenceBar = (e, refIndex) => {
   const refBar = document.querySelector(".top__ref-screen-bar");
 
@@ -833,14 +750,11 @@ refButtons.forEach((button, index) => {
     handleReferenceValues(e, refIndex);
   });
 });
-// END Reference details
 
 // Common screens
 const commonScreensBtn = document.querySelector(".common-screens-btn");
 const commonScreensBtnClose = document.querySelector(".btn-remove--common-screens");
-const commonScreensDialogWrapper = document.querySelector(".common-screens-dialog-wrapper");
 const commonScreensDialog = document.querySelector(".common-screens-dialog");
-// const commonScreensDialogBackdrop = document.querySelector(".common-screens-dialog::backdrop");
 
 commonScreensBtn.addEventListener("click", () => {
   if (!commonScreensDialog.hasAttribute("open")) {
@@ -868,8 +782,6 @@ commonScreensDialog.addEventListener("click", (e) => {
   }
 });
 
-// END Common screens
-
 const compareButton = document.querySelector(".btn-main--compare");
 const resetButton = document.querySelector(".btn-reset");
 const forms = document.querySelectorAll(".screen-form");
@@ -882,17 +794,17 @@ const handleReset = () => {
   });
 };
 
+resetButton.addEventListener("click", () => {
+  handleReset();
+});
+
 compareButton.addEventListener("click", () => {
   compare();
   refButtons[0].click();
-  getTop5Screens();
+  getTopScreens();
 
   const resultsSection = document.getElementById("screen-results");
   resultsSection.scrollIntoView({ behavior: "smooth" });
-});
-
-resetButton.addEventListener("click", () => {
-  handleReset();
 });
 
 formInputs.forEach((input) => {
@@ -903,11 +815,11 @@ formInputs.forEach((input) => {
     }
   });
 
-  handleEscapeFocusOut(input);
-
   input.addEventListener("focus", (e) => {
     e.target.select();
   });
+
+  handleEscapeFocusOut(input);
 });
 
 formCheckboxes.forEach((checkbox) => {
@@ -943,184 +855,15 @@ formCheckboxes.forEach((checkbox) => {
 const darkModeSwitch = document.querySelector(".switch-mode");
 
 darkModeSwitch.addEventListener("click", () => {
-  if (!document.body.classList.contains("light-mode")) {
-    darkModeSwitch.src = "/dark-mode.svg";
-    document.cookie = "lightMode=true; max-age=31536000;";
-  } else {
-    darkModeSwitch.src = "/light-mode.svg";
-    document.cookie = "lightMode=false; max-age=31536000;";
-  }
-  document.body.classList.toggle("light-mode");
+  handleDarkModeSwitch();
 });
-// END Dark mode switch
-
-// Cookie consent
-const cookieConsent = document.querySelector(".cookie-consent");
-const cookieConsentButtonAccept = document.querySelector(".cookie-consent__button--accept");
-const cookieConsentButtonReject = document.querySelector(".cookie-consent__button--reject");
-const cookieConsentBackdrop = document.querySelector(".cookie-consent-backdrop");
-
-const acceptCookies = () => {
-  document.cookie = "cookiesAccepted=true; max-age=31536000;";
-  cookieConsentBackdrop.classList.add("invisible");
-  cookieConsent.classList.add("invisible");
-};
-const rejectCookies = () => {
-  document.cookie = "cookiesAccepted=false; max-age=31536000;";
-  cookieConsentBackdrop.classList.add("invisible");
-  cookieConsent.classList.add("invisible");
-};
-const handleCookieConsent = () => {
-  if (!document.cookie.includes("cookiesAccepted=true")) {
-    cookieConsentBackdrop.classList.remove("invisible");
-    cookieConsent.classList.remove("invisible");
-
-    cookieConsentButtonAccept.addEventListener("click", () => {
-      acceptCookies();
-    });
-
-    cookieConsentButtonReject.addEventListener("click", () => {
-      rejectCookies();
-    });
-  }
-};
-// END Cookie consent
-
-async function getTop5Screens() {
-  // Check if there's an internet connection
-  if (!navigator.onLine) {
-    console.log("Firestore - No internet connection.");
-    return; // Terminate the function if there's no connection
-  }
-
-  // Query for the top 5 form responses
-  const formResponsesQuery = query(
-    collection(db, "formResponses"),
-    orderBy("count", "desc"),
-    limit(5)
-  );
-
-  try {
-    const querySnapshot = await getDocs(formResponsesQuery);
-    const spanItems = document.querySelectorAll(
-      ".common-screens-dialog__column:first-child li span"
-    );
-
-    // Create an array of the querySnapshot documents
-    const docs = querySnapshot.docs;
-
-    // Iterate over each spanItem
-    spanItems.forEach((span, i) => {
-      // Check if the document exists
-      if (docs[i]) {
-        const doc = docs[i];
-
-        // Create new text node for screen size
-        const screenSize = document.createTextNode(doc.data().screenSize + "'");
-
-        // Create new text node for aspect ratio
-        const aspectRatio = document.createTextNode(
-          `${doc.data().xAspectRatio}:${doc.data().yAspectRatio}`
-        );
-
-        // Create new pre element for tab
-        const tabPre = document.createElement("pre");
-        tabPre.textContent = "\t ";
-
-        // Clear the span of its original children
-        while (span.firstChild) {
-          span.firstChild.remove();
-        }
-
-        // Append new nodes to the span
-        span.appendChild(screenSize);
-        span.appendChild(tabPre);
-        span.appendChild(aspectRatio);
-      }
-    });
-  } catch (error) {
-    console.error("Error fetching documents: ", error);
-  }
-}
-
-// ON WINDOW LOAD
-// Ko-fi
-const kofiButton = document.querySelector(".ko-fi");
-const kofiBackdrop = document.querySelector(".kofi-backdrop");
-const kofiWrapper = document.querySelector(".kofi-wrapper");
-const kofi = document.createElement("iframe");
-
-const openKofi = () => {
-  kofiBackdrop.classList.remove("invisible");
-  kofiBackdrop.style.opacity = "1";
-  kofiWrapper.style.translate = "0";
-};
-const closeKofi = () => {
-  kofiWrapper.style.translate = "120% 0";
-  kofiBackdrop.style.opacity = "0";
-
-  setTimeout(() => {
-    kofiBackdrop.classList.add("invisible");
-  }, 200);
-};
-
-kofiButton.addEventListener("click", () => {
-  if (getComputedStyle(kofiBackdrop).opacity === "0") {
-    openKofi();
-  }
-  if (getComputedStyle(kofiBackdrop).opacity === "1") {
-    closeKofi();
-  }
-});
-
-kofiBackdrop.addEventListener("click", () => {
-  closeKofi();
-});
-
-const appendKofi = () => {
-  kofi.setAttribute("height", "712");
-  kofi.setAttribute("id", "kofiframe");
-  kofi.setAttribute(
-    "src",
-    "https://ko-fi.com/rogalaharacz/?hidefeed=true&widget=true&embed=true&preview=true"
-  );
-  kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
-  kofi.setAttribute("title", "Hubert Ko-fi");
-
-  console.warn("Console might display KO-FI ERRORS");
-  kofiWrapper?.appendChild(kofi);
-};
-// END Ko-fi
-
-// Update year in footer
-const updateYear = () => {
-  const copyright = document.querySelector(".copyright");
-  const year = new Date().getFullYear().toString();
-
-  copyright.textContent = `ScreenCompare \u00A9 ${year}`;
-};
-// END Update year in footer
-
-const setCheckingInternetConnection = () => {
-  setInterval(() => {
-    if (!navigator.onLine) {
-      c("No Internet Connection");
-    }
-  }, 5000);
-};
 
 window.addEventListener("load", () => {
-  handleCookieConsent();
+  const cookieHandler = new CookieHandler();
+  cookieHandler.handleCookieConsent();
   updateYear();
-  compareButton.click(); // DEV
-  appendKofi();
+  const kofiHandler = new KofiHandler();
+  kofiHandler.appendKofi();
   setCheckingInternetConnection();
+  compareButton.click(); // DEV
 });
-// END ON WINDOW LOAD
-
-// FIXME: Visualisation shifting after adding and then removing third screen
-// FIXME: styling with large user viewport
-// TODO: form hints
-// FIXME: resizing
-// FIXME: Ko-fi @media styling
-// FIXME: addBtn position
