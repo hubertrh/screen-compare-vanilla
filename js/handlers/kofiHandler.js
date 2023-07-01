@@ -41,6 +41,11 @@ export class KofiHandler {
     }, 200);
   }
 
+  /**
+   * Appends the Ko-fi iframe to the kofiWrapper element and sets its attributes.
+   * Also adds event listeners to the Ko-fi button and backdrop to handle clicks.
+   * @returns {void}
+   */
   appendKofi() {
     this.kofi.setAttribute("height", "712");
     this.kofi.setAttribute("id", "kofiframe");

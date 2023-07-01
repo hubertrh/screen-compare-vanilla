@@ -27,6 +27,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// reCAPTCHA v3
 initializeAppCheck(app, {
   provider: new ReCaptchaV3Provider("6LfaM8cmAAAAAHCYzmLi9C0NYRUXt46rphpZYWRq"),
 
@@ -40,6 +41,13 @@ const db = getFirestore();
 // Authenticate anonymously
 const auth = getAuth();
 
+/**
+ * Adds a new form response to the Firestore database.
+ * @param {number} screenSize - The screen size of the form response.
+ * @param {number} xAspectRatio - The X aspect ratio of the form response.
+ * @param {number} yAspectRatio - The Y aspect ratio of the form response.
+ * @returns {Promise<void>} - A Promise that resolves when the form response has been added to the database.
+ */
 const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
   if (!navigator.onLine) {
     console.log("Firestore - No internet connection.");
@@ -75,6 +83,10 @@ const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
   await batch.commit();
 };
 
+/**
+ * Retrieves the top 5 form responses from the Firestore database and updates the UI.
+ * @returns {Promise<void>} - A Promise that resolves when the top 5 form responses have been retrieved and the UI has been updated.
+ */
 const getTopScreens = async () => {
   if (!navigator.onLine) {
     console.log("Firestore - No internet connection.");

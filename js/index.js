@@ -10,7 +10,7 @@ import { addToDatabase, getTopScreens } from "./database/firestore";
 
 const c = console.log.bind(document); // DEV
 
-// Unfocus header elements on escape
+// Unfocuses header elements on escape
 const headerElements = document.querySelectorAll("header *");
 
 headerElements.forEach((el) => {
@@ -43,9 +43,15 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-// Screen edit button
+// Screen name edit button
 const editNameButtons = document.querySelectorAll(".name-edit");
 
+/**
+ * Handles the click event on the edit button.
+ * If the input element is readonly, removes the readonly attribute and selects the input.
+ * If the input element is not readonly, adds the readonly attribute.
+ * @param {Event} e - The event object.
+ */
 const clickEditButton = (e) => {
   const target = e.target.closest(".screen-name").querySelector(".name");
 
@@ -72,6 +78,15 @@ const handleInputResize = (e) => {
 
 const refButtons = document.querySelectorAll(".ref-screen");
 
+/**
+ * Updates the text content of a button element
+ * based on the value of the corresponding input element.
+ * If the input value is empty, the button text will be "Display [index + 1]".
+ * If the input value is not empty, the button text will be the first 7 characters of the input value.
+ * If the input value is longer than 7 characters, the button text will be truncated and appended with "...".
+ * @param {Element} button - The button element to update.
+ * @param {number} index - The index of the corresponding input element.
+ */
 const handleTableScreenName = (button, index) => {
   if (nameInputs[index].value === "") {
     button.textContent = `Display\xa0${index + 1}`; // \xa0 - non-breaking space
@@ -128,6 +143,15 @@ nameInputs.forEach((input) => {
 
 // Unit switch label
 const unitSwitches = document.querySelectorAll(".units-switch");
+
+/**
+ * Handles the change event on the unit switch input element.
+ * Updates the text content of the corresponding label element
+ * based on the value of the input element.
+ * If the input is checked, the label text will be "cm".
+ * If the input is not checked, the label text will be "in".
+ * @param {Event} e - The event object.
+ */
 const handleUnitSwitch = (e) => {
   const label = document.querySelector(`label[for=${e.target.id}].units-label`);
 
@@ -176,14 +200,26 @@ const handleRemoveForm = () => {
 addButton.addEventListener("click", () => handleAddForm());
 removeButton.addEventListener("click", () => handleRemoveForm());
 
-// Handling form data
+// Handles form data
 const numberInputs = document.querySelectorAll("input[type=number]");
+
 numberInputs.forEach((input) => {
+  /**
+   * Handles the input event for number input elements by validating the input value
+   * using regex and removing the typed character if it does not match.
+   * @param {InputEvent} e - The input event.
+   */
   input.addEventListener("input", (e) => {
     let regexTest;
     if (e.target.classList.contains("res-input")) {
+      // Regular expression to match a number with up to 5 digits before the decimal point
+      // and up to 2 digits after the decimal point, or a number with up to 5 digits
+      // without a decimal point.
       regexTest = /^\d{1,5}\.\d{0,2}$|^\d{1,5}$/g.test(e.target.value);
     } else {
+      // Regular expression to match a number with up to 3 digits before the decimal point
+      // and up to 2 digits after the decimal point, or a number with up to 3 digits
+      // without a decimal point.
       regexTest = /^\d{1,3}\.\d{0,2}$|^\d{1,3}$/g.test(e.target.value);
     }
     if (!regexTest) {
@@ -192,11 +228,15 @@ numberInputs.forEach((input) => {
   });
 });
 
+/**
+ * Handles the comparison of the screens by calculating
+ * their proportions and scaling them accordingly.
+ */
 const handleComparison = () => {
   const detailsUnitSwitch = document.querySelector(".text-units-switch");
-  let unitsDivider = 2.54;
-  let switchUnits = "in";
-  let fractionDigits = 2;
+  let unitsDivider;
+  let switchUnits;
+  let fractionDigits;
 
   const handleUnitsValues = () => {
     if (!detailsUnitSwitch.checked) {
@@ -209,6 +249,8 @@ const handleComparison = () => {
       fractionDigits = 1;
     }
   };
+
+  handleUnitsValues();
 
   const diagonals = Array.from(document.querySelectorAll(".size-input[required]")).map((field) =>
     Number(field.value.replace(/,/g, "."))
@@ -240,6 +282,10 @@ const handleComparison = () => {
 
   const media1000 = window.matchMedia("(max-width: 1000px)");
 
+  /**
+   * Calculates the ppis, sides, and proportions
+   * of the screens based on the input values.
+   */
   const calculate = () => {
     const calculatePpis = () => {
       for (let index = 0; index <= 2; index++) {
@@ -257,7 +303,7 @@ const handleComparison = () => {
     const calculateSides = () => {
       sides = [];
 
-      // Calculate screens' sides from diagonal and aspect ratio values
+      // Calculates screens' sides from diagonal and aspect ratio values
       diagonals.forEach((diagonal, index) => {
         const ratioW = ratios[index * 2];
         const ratioH = ratios[index * 2 + 1];
@@ -313,8 +359,9 @@ const handleComparison = () => {
       });
     };
 
-    handleUnitsValues();
-
+    /**
+     * Handles the diagonal guides and sorts the screens by diagonal size.
+     */
     const handleGuides = () => {
       const diagonalGuides = document.querySelectorAll(".diagonal");
 
@@ -342,7 +389,7 @@ const handleComparison = () => {
         return bDiagonal - aDiagonal;
       });
 
-      // remove screen with class "hidden" from sortedScreens array
+      // removes screen with class "hidden" from sortedScreens array
       sortedScreens.forEach((screen, index) => {
         screen.style.zIndex = (index + 1).toString();
 
@@ -366,7 +413,7 @@ const handleComparison = () => {
       const guidesWrapperBottom = document.querySelector(".guides-wrapper--bottom");
       const guidesWrapperLeft = document.querySelector(".guides-wrapper--left");
 
-      // remove all guides
+      // removes all guides
       while (guidesWrapperBottom.firstChild) {
         guidesWrapperBottom.removeChild(guidesWrapperBottom.firstChild);
       }
@@ -513,6 +560,9 @@ const handleComparison = () => {
     thirdScreenElement.classList.remove("hidden");
   }
 
+  /**
+   * Handles the results table by updating the values of the width, height, diagonal, and area of the screens.
+   */
   const handleResultsTable = () => {
     const valueRows = document.querySelectorAll(".values__row");
 
@@ -540,7 +590,10 @@ const handleComparison = () => {
       )} ${switchUnits}²`;
     });
 
-    // PPI
+    /**
+     * Handles the PPI row by updating the values of the PPI
+     * of the screens and hiding/showing the PPI guide.
+     */
     const handlePpiRow = () => {
       const ppiGuide = document.querySelector(".ppi-guide");
 
@@ -567,6 +620,9 @@ const handleComparison = () => {
     handlePpiRow();
   };
 
+  /**
+   * Updates the PPI validation colors for each screen based on their PPI values and device type.
+   */
   const handlePpiValidationColors = () => {
     const sizeThresholds = {
       mobile: 6.9 * 2.54,
@@ -631,6 +687,16 @@ const handleComparison = () => {
   saveFormData();
 };
 
+/**
+ * Handles the layout of the results screen by removing the "invisible" class
+ * and adding the "transparent" class to the screen-results element.
+ * Also removes the "screen-forms--double" class from the screen-forms element,
+ * sets the translate style of the btn-wrapper element to "0",
+ * and removes the "screen--last" class from the third screen element.
+ * Uses a MutationObserver to detect when the "invisible" class is removed
+ * from the screen-results element and removes the "transparent" class
+ * from the screen-results element.
+ */
 const handleResultsLayout = () => {
   const results = document.querySelector(".screen-results");
 
@@ -651,6 +717,14 @@ const handleResultsLayout = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--last");
 };
 
+/**
+ * Handles the display of the third screen's details column.
+ * If the third screen is inactive, the details column is hidden
+ * and the reference bar width is set to 50%.
+ * If the third screen is active, the details column is shown
+ * and the reference bar width is set to 33.33%.
+ * Also adjusts the grid template columns of the value rows accordingly.
+ */
 const handleThirdDetailsColumn = () => {
   const thirdScreen = document.querySelectorAll(".screen")[2];
   const refBar = document.querySelector(".top__ref-screen-bar");
@@ -676,6 +750,12 @@ const handleThirdDetailsColumn = () => {
 };
 
 const compare = () => {
+  /**
+   * Validates the form data by checking if all required fields are filled in.
+   * If a required field is empty, its placeholder text is used as its value.
+   * Also checks if the resolution fields are filled in correctly
+   * and adds an error class if not.
+   */
   const validate = () => {
     const requiredInputs = document.querySelectorAll("input[required]");
 
@@ -712,7 +792,12 @@ const compare = () => {
   handleThirdDetailsColumn();
 };
 
-// Details table reference values
+/**
+ * Handles the reference bar by setting the active reference screen index
+ * as a CSS variable and updating the font weight of the reference buttons.
+ * @param {Event} e - The click event object.
+ * @param {number} refIndex - The index of the active reference screen.
+ */
 const handleReferenceBar = (e, refIndex) => {
   const refBar = document.querySelector(".top__ref-screen-bar");
 
@@ -724,6 +809,13 @@ const handleReferenceBar = (e, refIndex) => {
   e.target.style.fontWeight = "600";
 };
 
+/**
+ * Handles the display of the reference values for each screen.
+ * Calculates the percentage difference between each value and the value of the
+ * screen selected as the reference screen, and displays it in parentheses next to the value.
+ * @param {Event} e - The click event object.
+ * @param {number} refIndex - The index of the active reference screen.
+ */
 const handleReferenceValues = (e, refIndex) => {
   const detailsRows = document.querySelectorAll(".values__row");
 
