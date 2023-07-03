@@ -20,6 +20,8 @@ const handleEscapeFocusOut = (element) => {
  * and updates the cookie to remember the user's preference.
  */
 const handleDarkModeSwitch = () => {
+  const darkModeSwitch = document.querySelector(".switch-mode");
+
   if (!document.body.classList.contains("light-mode")) {
     darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
     document.cookie = "lightMode=true; max-age=31536000;";
