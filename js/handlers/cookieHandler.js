@@ -1,4 +1,4 @@
-export class CookieHandler {
+export default class CookieHandler {
   constructor() {
     this.cookieConsent = document.querySelector(".cookie-consent");
     this.cookieConsentButtonAccept = document.querySelector(".cookie-consent__button--accept");

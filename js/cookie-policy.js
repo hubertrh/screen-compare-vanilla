@@ -1,6 +1,6 @@
+import CookieHandler from "./handlers/cookieHandler";
+import KofiHandler from "./handlers/kofiHandler";
 import { handleDarkModeSwitch, handleEscapeFocusOut, updateYear } from "./utils/domUtils";
-import { KofiHandler } from "./handlers/kofiHandler";
-import { CookieHandler } from "./handlers/cookieHandler";
 
 // DEV
 const c = console.log.bind(document);

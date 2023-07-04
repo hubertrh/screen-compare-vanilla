@@ -1,4 +1,4 @@
-export class KofiHandler {
+export default class KofiHandler {
   constructor() {
     this.kofi = document.createElement("iframe");
     this.kofiBackdrop = document.querySelector(".kofi-backdrop");
