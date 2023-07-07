@@ -50,7 +50,7 @@ const auth = getAuth();
  */
 const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
   if (!navigator.onLine) {
-    console.log("Firestore - No internet connection.");
+    console.log("addToDatabase - No internet connection.");
     return; // Terminate the function if there's no connection
   }
 
@@ -89,7 +89,7 @@ const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
  */
 const getTopScreens = async () => {
   if (!navigator.onLine) {
-    console.log("Firestore - No internet connection.");
+    console.log("getTopScreens - No internet connection.");
     return; // Terminate the function if there's no connection
   }
 
