@@ -20,25 +20,6 @@
     <link href="assets/icons/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
     <link href="assets/icons/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
     <link href="/site.webmanifest" rel="manifest" />
-
-    <!-- Hotjar -->
-    <script>
-      if (!document.cookie.includes("cookiesAccepted=false")) {
-        (function (h, o, t, j, a, r) {
-          h.hj =
-            h.hj ||
-            function () {
-              (h.hj.q = h.hj.q || []).push(arguments);
-            };
-          h._hjSettings = { hjid: 3351298, hjsv: 6 };
-          a = o.getElementsByTagName("head")[0];
-          r = o.createElement("script");
-          r.async = 1;
-          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-          a.appendChild(r);
-        })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-      }
-    </script>
   </head>
   <body>
     <header>
@@ -57,16 +38,14 @@
       <!-- <div class="kofi-wrapper"></div> -->
       <div class="kofi-backdrop invisible"></div>
       <script>
-        if (document.cookie.includes("cookiesAccepted=true")) {
-          if (document.cookie.includes("lightMode=true")) {
-            document.body.classList.add("light-mode");
-            document.querySelector(".switch-mode").src = "/dark-mode.svg";
-          } else if (document.cookie.includes("lightMode=false")) {
-            document.body.classList.remove("light-mode");
-            document.querySelector(".switch-mode").src = "/light-mode.svg";
-          } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-            document.body.classList.add("light-mode");
-          }
+        let lightMode = localStorage.getItem("lightMode");
+
+        if (lightMode === "true") {
+          document.body.classList.add("light-mode");
+          document.querySelector(".switch-mode").src = "/dark-mode.svg";
+        } else if (lightMode === "false") {
+          document.body.classList.remove("light-mode");
+          document.querySelector(".switch-mode").src = "/light-mode.svg";
         } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
           document.body.classList.add("light-mode");
         }

@@ -24,10 +24,14 @@ const handleDarkModeSwitch = () => {
 
   if (!document.body.classList.contains("light-mode")) {
     darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
-    document.cookie = "lightMode=true; max-age=31536000;";
+    if (document.cookie.includes("cookiesAccepted=true")) {
+      document.cookie = "lightMode=true; max-age=31536000;";
+    }
   } else {
     darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
-    document.cookie = "lightMode=false; max-age=31536000;";
+    if (document.cookie.includes("cookiesAccepted=true")) {
+      document.cookie = "lightMode=false; max-age=31536000;";
+    }
   }
   document.body.classList.toggle("light-mode");
 };
@@ -50,4 +54,22 @@ const setCheckingInternetConnection = () => {
   }, 5000);
 };
 
-export { handleEscapeFocusOut, handleDarkModeSwitch, updateYear, setCheckingInternetConnection };
+const isScriptLoaded = (url) => {
+  return Array.from(document.getElementsByTagName("script")).some((script) => script.src === url);
+};
+
+const addScript = (source) => {
+  if (!isScriptLoaded(source)) {
+    let scriptTag = document.createElement("script");
+    scriptTag.src = source;
+    document.body.appendChild(scriptTag);
+  }
+};
+
+export {
+  handleEscapeFocusOut,
+  handleDarkModeSwitch,
+  updateYear,
+  setCheckingInternetConnection,
+  addScript,
+};

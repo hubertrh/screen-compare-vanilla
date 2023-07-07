@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
+
+    <title>Screen Compare - Leave Feedback</title>
+
+    <link href="feedback.min.css" rel="stylesheet" />
+    <script defer type="module" src="js/feedback.js"></script>
+
+    <link
+      href="./assets/icons/favicon/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="./assets/icons/favicon/favicon-16x16.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+
+    <!-- Hotjar -->
+    <script>
+      if (!document.cookie.includes("cookiesAccepted=false")) {
+        (function (h, o, t, j, a, r) {
+          h.hj =
+            h.hj ||
+            function () {
+              (h.hj.q = h.hj.q || []).push(arguments);
+            };
+          h._hjSettings = { hjid: 3351298, hjsv: 6 };
+          a = o.getElementsByTagName("head")[0];
+          r = o.createElement("script");
+          r.async = 1;
+          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+          a.appendChild(r);
+        })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href=".">
+        <img alt="logo" class="logo__img" src="./assets/icons/logo.png" />
+      </a>
+      <a class="title" href=".">ScreenCompare</a>
+      <div class="buttons">
+        <img
+          alt="Light mode switch"
+          class="switch-mode"
+          src="assets/icons/Icons/light-mode.svg"
+          tabindex="0"
+        />
+        <button class="ko-fi">
+          <img alt="Ko-fi" class="ko-fi__img" src="assets/icons/Icons/kofi.png" />
+          <span class="ko-fi__text">Tip&nbsp;me</span>
+        </button>
+      </div>
+      <!-- Uncomment below for prod -->
+      <!--      <div class="kofi-wrapper"></div>-->
+      <div class="kofi-backdrop invisible"></div>
+      <script>
+        if (document.cookie.includes("cookiesAccepted=true")) {
+          if (document.cookie.includes("lightMode=true")) {
+            document.body.classList.add("light-mode");
+            document.querySelector(".switch-mode").src = "assets/icons/Icons/dark-mode.svg";
+          } else if (document.cookie.includes("lightMode=false")) {
+            document.body.classList.remove("light-mode");
+            document.querySelector(".switch-mode").src = "assets/icons/Icons/light-mode.svg";
+          } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            document.body.classList.add("light-mode");
+          }
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          document.body.classList.add("light-mode");
+        }
+      </script>
+    </header>
+    <main>
+      <div class="cookie-consent invisible">
+        <div class="cookie-consent__text-wrapper">
+          <h1 class="cookie-consent__title">The cookie banner</h1>
+          <p class="cookie-consent__text">
+            Say yes to&nbsp;cookies and&nbsp;no to&nbsp;crumbs in&nbsp;your&nbsp;keyboard.
+            Our&nbsp;cookies promise delightful browsing experiences and&nbsp;zero keyboard cleanup.
+            Agree?
+          </p>
+          <a class="cookie-consent__link" href="/cookie-policy.html">Our Cookie Policy</a>
+        </div>
+        <div class="cookie-consent__button-wrapper">
+          <button class="cookie-consent__button cookie-consent__button--accept">
+            Yes,&nbsp;please!
+          </button>
+          <button class="cookie-consent__button cookie-consent__button--reject">
+            No,&nbsp;thanks
+          </button>
+        </div>
+      </div>
+      <div class="cookie-consent-backdrop invisible"></div>
+      <div class="wrapper-main">
+        <div class="feedback">
+          <h1>Leave Feedback</h1>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__credits">
+        <p class="copyright">ScreenCompare &copy; 2023</p>
+        <p class="author">Hubert Rogala-Haracz</p>
+      </div>
+      <div class="footer__divider"></div>
+      <div class="footer__links">
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <p class="footer__dot">&bull;</p>
+        <a href=".">Leave Feedback</a>
+      </div>
+    </footer>
+  </body>
+</html>
