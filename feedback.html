@@ -115,6 +115,31 @@
       <div class="wrapper-main">
         <div class="feedback">
           <h1>Leave Feedback</h1>
+          <form>
+            <fieldset>
+              <div>
+                <label for="feedback-features"
+                  >Is there anything you feel is missing in the tool?</label
+                >
+                <textarea id="feedback-features" name="feedback-features"></textarea>
+              </div>
+              <div>
+                <label for="feedback-bugs">Have you noticed any bugs while using it?</label>
+                <textarea id="feedback-bugs" name="feedback-bugs"></textarea>
+              </div>
+              <div>
+                <label for="feedback-device"
+                  >Is there a device you'd like to see in the Quick Access list?</label
+                >
+                <input type="text" id="feedback-device" name="feedback-device" />
+              </div>
+              <div>
+                <label for="feedback-thoughts">Please share any other thoughts</label>
+                <textarea id="feedback-thoughts" name="feedback-thoughts"></textarea>
+              </div>
+            </fieldset>
+            <button class="btn-main btn-main--feedback">Submit feedback</button>
+          </form>
         </div>
       </div>
     </main>
