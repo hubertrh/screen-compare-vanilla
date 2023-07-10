@@ -17,21 +17,17 @@ const handleEscapeFocusOut = (element) => {
 
 /**
  * Toggles between light and dark mode for the website
- * and updates the cookie to remember the user's preference.
+ * and updates the localStorage to remember the user's preference.
  */
 const handleDarkModeSwitch = () => {
   const darkModeSwitch = document.querySelector(".switch-mode");
 
   if (!document.body.classList.contains("light-mode")) {
     darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
-    if (document.cookie.includes("cookiesAccepted=true")) {
-      document.cookie = "lightMode=true; max-age=31536000;";
-    }
+    localStorage.setItem("lightMode", "true");
   } else {
     darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
-    if (document.cookie.includes("cookiesAccepted=true")) {
-      document.cookie = "lightMode=false; max-age=31536000;";
-    }
+    localStorage.setItem("lightMode", "false");
   }
   document.body.classList.toggle("light-mode");
 };
