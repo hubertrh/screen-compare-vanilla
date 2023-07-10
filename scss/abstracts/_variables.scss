@@ -8,6 +8,8 @@ $transition-forms: 0.25s ease-out;
 // Color variables
 :root {
   --color-transparent: rgba(0, 0, 0, 0);
+  --color-scrollbar: rgba(255, 255, 255, 0.4);
+  --color-scrollbar-hover: rgba(255, 255, 255, 0.6);
   --color-900: hsl(210, 12%, 97%);
   --color-800: hsl(222, 10%, 80%);
   --color-700: hsl(221, 17%, 55%);
@@ -33,6 +35,8 @@ $transition-forms: 0.25s ease-out;
   --shadow-kofi: -10px 15px 50px 5px rgba(0, 0, 0, 0.7);
 
   .light-mode {
+    --color-scrollbar: rgba(0, 0, 0, 0.4);
+    --color-scrollbar-hover: rgba(0, 0, 0, 0.6);
     --color-900: hsl(230, 18%, 20%);
     --color-800: hsl(225, 12%, 20%);
     --color-700: hsl(221, 24%, 69%);

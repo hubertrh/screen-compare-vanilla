@@ -84,7 +84,7 @@ body {
         }
       }
 
-      .cookie-consent__button-wrapper {
+      &__button-wrapper {
         @include flex-column;
         margin: 0.5em 1em 0 0;
 

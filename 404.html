@@ -46,16 +46,17 @@
       const redirectMsg = document.getElementById("redirect-msg");
       const countdown = document.getElementById("countdown");
       let i = 5;
-      setInterval(() => {
-        if (i > 0) {
-          countdown.textContent = (Number(countdown.textContent) - 1).toString();
-          i--;
+
+      const intervalId = setInterval(() => {
+        i--;
+        countdown.textContent = i;
+
+        if (i <= 0) {
+          clearInterval(intervalId);
+          redirectMsg.textContent = "Redirecting now...";
+          window.location.replace("/");
         }
       }, 1000);
-      setTimeout(() => {
-        redirectMsg.textContent = "Redirecting now...";
-        window.location.replace("./");
-      }, 5000);
     </script>
   </body>
 </html>

@@ -13,6 +13,7 @@ import {
   query,
   writeBatch,
 } from "firebase/firestore";
+import { sha256 } from "js-sha256";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCPFHnutWJg_oDDKR9DyDPzEm-DXWdhmxo",
@@ -48,9 +49,9 @@ const auth = getAuth();
  * @param {number} yAspectRatio - The Y aspect ratio of the form response.
  * @returns {Promise<void>} - A Promise that resolves when the form response has been added to the database.
  */
-const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
+const addScreenToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
   if (!navigator.onLine) {
-    console.log("addToDatabase - No internet connection.");
+    console.log("addScreenToDatabase - No internet connection.");
     return; // Terminate the function if there's no connection
   }
 
@@ -77,6 +78,55 @@ const addToDatabase = async (screenSize, xAspectRatio, yAspectRatio) => {
       yAspectRatio,
       count: 1,
     });
+  }
+
+  // Commit the batch
+  await batch.commit();
+};
+
+const addFeedbackToDatabase = async (
+  feedbackFeatures,
+  feedbackBugs,
+  feedbackDevice,
+  feedbackThoughts
+) => {
+  if (!navigator.onLine) {
+    throw new Error("No internet connection.");
+  }
+
+  // Initialize a batch
+  const batch = writeBatch(db);
+
+  // Array of feedback types and their respective values
+  const feedbackArray = [
+    { type: "Features", value: feedbackFeatures },
+    { type: "Bugs", value: feedbackBugs },
+    { type: "Devices", value: feedbackDevice },
+    { type: "Thoughts", value: feedbackThoughts },
+  ];
+
+  for (let feedback of feedbackArray) {
+    if (feedback.value !== "") {
+      // Generate a unique ID based on the hash of the feedback value (first 8 characters)
+      const feedbackId = sha256(feedback.value).substring(0, 8);
+      const feedbackRef = doc(db, feedback.type, feedbackId);
+
+      // Get the current document
+      const feedbackDoc = await getDoc(feedbackRef);
+
+      if (feedbackDoc.exists()) {
+        // If the document exists, increment the count
+        batch.update(feedbackRef, {
+          count: increment(1),
+        });
+      } else {
+        // If the document does not exist, create it with a count of 1 and the feedback response
+        batch.set(feedbackRef, {
+          response: feedback.value,
+          count: 1,
+        });
+      }
+    }
   }
 
   // Commit the batch
@@ -153,4 +203,4 @@ signInAnonymously(auth)
     console.error(`Error code: ${errorCode}, message: ${errorMessage}`);
   });
 
-export { addToDatabase, getTopScreens };
+export { addScreenToDatabase, addFeedbackToDatabase, getTopScreens };
