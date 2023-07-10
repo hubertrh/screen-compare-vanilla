@@ -1,4 +1,4 @@
-import { addToDatabase } from "../database/firestore";
+import { addScreenToDatabase } from "../database/firestore";
 
 const c = console.log.bind(document); // DEV
 
@@ -418,7 +418,7 @@ export default class ComparisonHandler {
       const xAspectRatio = this.ratios[index * 2];
       const yAspectRatio = this.ratios[index * 2 + 1];
 
-      addToDatabase(diagonalInInches, xAspectRatio, yAspectRatio);
+      addScreenToDatabase(diagonalInInches, xAspectRatio, yAspectRatio);
     }
   }
 

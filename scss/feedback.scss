@@ -178,11 +178,17 @@ body {
                 height: 3rem;
                 display: inline-flex;
                 align-items: center;
+
+                .optional {
+                  font-size: 0.8rem;
+                  color: var(--color-700-muted);
+                  margin-left: 0.5em;
+                }
               }
 
-              input,
               textarea {
                 margin-top: 0.5em;
+                padding: 0.7em;
                 width: 100%;
                 height: 12vh;
                 color: var(--color-900);
@@ -190,6 +196,11 @@ body {
                 border: 2px solid var(--color-700);
                 border-radius: 1em;
                 resize: none;
+
+                &:focus-visible {
+                  outline: solid 1.5px var(--color-accent-aqua);
+                  outline-offset: 0.2em;
+                }
 
                 &::-webkit-scrollbar {
                   width: 8px;
@@ -221,6 +232,8 @@ body {
             border: none;
             border-radius: 2em;
             font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
             cursor: pointer;
 
             transition: background-color 0.15s ease-out, translate 0.1s ease-out;
@@ -232,6 +245,19 @@ body {
             &:focus-visible {
               outline: solid 1.5px var(--color-accent-aqua);
               outline-offset: 0.2em;
+            }
+
+            &--error {
+              background-color: var(--color-accent-red-hover);
+              color: var(--color-900);
+
+              &:hover {
+                background-color: var(--color-accent-red);
+              }
+
+              &:focus-visible {
+                outline: solid 1.5px var(--color-accent-red-hover);
+              }
             }
           }
         }
@@ -326,16 +352,19 @@ body {
 
           fieldset {
             grid-template-columns: auto;
-            gap: 1.5em;
+            gap: 2em;
 
             div {
               label {
                 display: inline;
               }
 
-              input,
               textarea {
                 height: 20vh;
+              }
+
+              #feedback-device {
+                height: auto;
               }
             }
           }
