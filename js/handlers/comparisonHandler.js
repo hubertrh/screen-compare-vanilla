@@ -59,6 +59,8 @@ export default class ComparisonHandler {
   }
 
   calculatePpis() {
+    this.ppis = [];
+
     for (let index = 0; index <= 2; index++) {
       if (this.resolutions[index * 2] !== 0 && this.resolutions[index * 2 + 1] !== 0) {
         const resDiagonal = Math.round(
@@ -345,6 +347,7 @@ export default class ComparisonHandler {
      * of the screens and hiding/showing the PPI guide.
      */
     const handlePpiRow = () => {
+      console.log(`this.ppis: ${this.ppis}`);
       const ppiGuide = document.querySelector(".ppi-guide");
 
       [...valueRows[4].children].forEach((child, index) => {
@@ -443,7 +446,20 @@ export default class ComparisonHandler {
     }
   }
 
+  resetState() {
+    this.unitsDivider = 0;
+    this.switchUnits = "";
+    this.fractionDigits = 0;
+    this.diagonals = [];
+    this.units = [];
+    this.ratios = [];
+    this.resolutions = [];
+    this.ppis = [];
+    this.sides = [];
+  }
+
   async handleComparison() {
+    this.resetState();
     await Promise.resolve(this.handleUnitsValues());
     this.handleDiagonalsAndUnits();
     this.handleRatios();
