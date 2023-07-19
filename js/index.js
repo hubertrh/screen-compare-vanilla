@@ -370,7 +370,7 @@ const handleReferenceValues = (_, refIndex) => {
       let refPercentage = referenceValue / referenceIndexValue;
       refPercentage = Math.round(refPercentage * 100);
 
-      const refValueVar = isNaN(refPercentage) ? `"\u2014"` : `"(${refPercentage}%)"`;
+      const refValueVar = isNaN(refPercentage) ? `"\u2014"` : `"(${refPercentage}%)"`; // \u2014 - em dash
       refValue.style.setProperty("--value-reference", refValueVar);
     });
   });
