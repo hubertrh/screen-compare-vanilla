@@ -1,4 +1,5 @@
-const c = console.log.bind(document); // DEV
+import darkModeIcon from "/dark-mode.svg";
+import lightModeIcon from "/light-mode.svg";
 
 /**
  * Adds an event listener to the specified element
@@ -23,10 +24,10 @@ const handleDarkModeSwitch = () => {
   const darkModeSwitch = document.querySelector(".switch-mode");
 
   if (!document.body.classList.contains("light-mode")) {
-    darkModeSwitch.src = "assets/icons/Icons/dark-mode.svg";
+    darkModeSwitch.src = darkModeIcon;
     localStorage.setItem("lightMode", "true");
   } else {
-    darkModeSwitch.src = "assets/icons/Icons/light-mode.svg";
+    darkModeSwitch.src = lightModeIcon;
     localStorage.setItem("lightMode", "false");
   }
   document.body.classList.toggle("light-mode");
