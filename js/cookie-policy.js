@@ -2,9 +2,6 @@ import CookieHandler from "./handlers/cookieHandler";
 import KofiHandler from "./handlers/kofiHandler";
 import { handleDarkModeSwitch, handleEscapeFocusOut, updateYear } from "./utils/domUtils";
 
-// DEV
-const c = console.log.bind(document);
-
 // Unfocuses header elements on escape
 const headerElements = document.querySelectorAll("header *");
 
