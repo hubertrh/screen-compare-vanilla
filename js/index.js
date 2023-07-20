@@ -9,8 +9,6 @@ import {
   updateYear,
 } from "./utils/domUtils";
 
-const c = console.log.bind(document); // DEV
-
 // Unfocuses header elements on escape
 const headerElements = document.querySelectorAll("header *");
 
@@ -169,7 +167,7 @@ unitSwitches.forEach((unitSwitch) => {
 const addButton = document.querySelector(".btn-add");
 const removeButton = document.querySelector(".btn-remove--last-form");
 
-const handleAddForm = () => {
+const addForm = () => {
   document.querySelectorAll(".screen").item(2).classList.remove("screen--inactive");
   document.querySelector(".screen-forms").classList.remove("screen-forms--double");
   document.querySelector(".btn-add").classList.add("color-transparent");
@@ -184,7 +182,7 @@ const handleAddForm = () => {
   }, 150);
 };
 
-const handleRemoveForm = () => {
+const removeForm = () => {
   document.querySelectorAll(".screen").item(2).classList.add("screen--inactive");
   document.querySelector(".screen-forms").classList.add("screen-forms--double");
   document.querySelector(".btn-add").classList.remove("invisible");
@@ -198,8 +196,8 @@ const handleRemoveForm = () => {
   document.getElementById("ratio-h-3").removeAttribute("required");
 };
 
-addButton.addEventListener("click", () => handleAddForm());
-removeButton.addEventListener("click", () => handleRemoveForm());
+addButton.addEventListener("click", () => addForm());
+removeButton.addEventListener("click", () => removeForm());
 
 // Handles form data
 const numberInputs = document.querySelectorAll("input[type=number]");
@@ -364,7 +362,7 @@ const handleReferenceValues = (_, refIndex) => {
   const detailsRows = document.querySelectorAll(".values__row");
 
   detailsRows.forEach((row) => {
-    [...row.children].forEach((refValue, index) => {
+    [...row.children].forEach((refValue) => {
       const referenceValue = parseFloat(refValue.textContent);
       const referenceIndexValue = parseFloat(row.children[refIndex].textContent);
       let refPercentage = referenceValue / referenceIndexValue;

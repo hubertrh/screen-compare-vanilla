@@ -4,4 +4,4 @@
     <option name="myRunOnReformat" value="true" />
     <option name="myFilesPattern" value="{**/*,*}.{html,css,scss,js,ts,jsx,tsx,json,prettierrc}" />
   </component>
-</project>
+</project> 
