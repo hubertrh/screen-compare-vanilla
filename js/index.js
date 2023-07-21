@@ -386,21 +386,15 @@ refButtons.forEach((button, index) => {
 });
 
 // Common screens
-const commonScreensBtn = document.querySelector(".common-screens-btn");
+const commonScreensBtn = document.querySelectorAll(".common-screens-btn");
 const commonScreensBtnClose = document.querySelector(".btn-remove--common-screens");
 const commonScreensDialog = document.querySelector(".common-screens-dialog");
 
-commonScreensBtn.addEventListener("click", () => {
-  if (!commonScreensDialog.hasAttribute("open")) {
-    commonScreensDialog.showModal();
-  } else {
-    commonScreensDialog.close();
-  }
+commonScreensBtn.forEach((button) => {
+  button.addEventListener("click", () => commonScreensDialog.showModal());
 });
 
-commonScreensBtnClose.addEventListener("click", () => {
-  commonScreensDialog.close();
-});
+commonScreensBtnClose.addEventListener("click", () => commonScreensDialog.close());
 
 commonScreensDialog.addEventListener("click", (e) => {
   const rect = commonScreensDialog.getBoundingClientRect();
