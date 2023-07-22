@@ -2,7 +2,23 @@ name: CI/CD Workflow
 on: [push, pull_request]
 
 jobs:
+  jest-tests:
+    name: Run Jest tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Jest tests
+        run: npm run coverage
+  
   cypress-run:
+    name: Run Cypress tests
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
@@ -26,9 +42,10 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  
   build_and_preview:
-    needs: cypress-run
+    name: Preview on PR
+    needs: [jest-tests, cypress-run]
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +57,8 @@ jobs:
           projectId: screencompare
           
   build_and_deploy:
-    needs: cypress-run
+    name: Deploy on Push to main
+    needs: [cypress-run, jest-tests]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
