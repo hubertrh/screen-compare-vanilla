@@ -1,0 +1,55 @@
+name: CI/CD Workflow
+on: [push, pull_request]
+
+jobs:
+  cypress-run:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [16, 18]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm run preview
+          wait-on: ${{ matrix.node-version == 18 && 'http://[::1]:5173' || 'http://localhost:5173' }}
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build_and_preview:
+    needs: cypress-run
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preview on PR
+      - uses: actions/checkout@v3
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCREENCOMPARE }}"
+          projectId: screencompare
+          
+  build_and_deploy:
+    needs: cypress-run
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy on Push to main
+      - uses: actions/checkout@v3
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCREENCOMPARE }}'
+          channelId: live
+          projectId: screencompare
