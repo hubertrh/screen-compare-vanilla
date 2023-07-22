@@ -23,7 +23,7 @@ jobs:
         run: npm ci
         
       - name: Build and start Vite server
-        run: npm run dev
+        run: npm run dev &
         
       - name: Wait for Vite server to start
         run: sleep 10
