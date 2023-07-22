@@ -37,7 +37,7 @@ jobs:
           build: npm run build
           start: npm run preview
           browser: chrome
-          wait-on: 'http://localhost:3000' # Waits for above
+          wait-on: 'http://localhost:4173' # Waits for above
           # Records to Cypress Cloud 
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
