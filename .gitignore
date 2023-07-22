@@ -170,3 +170,6 @@ fabric.properties
 /cypress/screenshots/
 /cypress/videos/
 /cypress/downloads/
+
+# Vitest coverage
+/coverage/
