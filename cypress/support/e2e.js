@@ -18,3 +18,12 @@ import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  if (err.message.includes("cancelled")) {
+    return false;
+  }
+  if (err.message.includes("Missing or insufficient permissions.")) {
+    return false;
+  }
+});

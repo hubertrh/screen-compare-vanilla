@@ -9,11 +9,12 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "test:e2e": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --record --key f6aeca8f-3bb5-47bb-8d78-363e93f4aea1"
   },
   "devDependencies": {
     "@testing-library/cypress": "^9.0.0",
-    "cypress": "^12.16.0",
+    "cypress": "^12.17.2",
     "jsdom": "^22.1.0",
     "vite": "^4.1.0",
     "vite-svg-loader": "^4.0.0",
