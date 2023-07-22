@@ -165,3 +165,8 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 
 **/*.DS_Store
+
+# Cypress directories
+/cypress/screenshots/
+/cypress/videos/
+/cypress/downloads/

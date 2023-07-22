@@ -1,1 +1,0 @@
-import{h as o,a as n,C as a,u as d,K as c}from"./kofiHandler-9490bf04.js";console.log.bind(document);const t=document.querySelectorAll("header *");t.forEach(e=>{o(e)});const i=document.querySelector(".switch-mode");i.addEventListener("click",()=>{n()});window.addEventListener("load",()=>{new a().handleCookieConsent(),d(),new c().appendKofi()});
