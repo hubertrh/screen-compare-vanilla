@@ -15,6 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+        
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v5
@@ -22,7 +27,7 @@ jobs:
           # Starts web server for E2E tests - replace with your own server invocation
           # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
           start: npm run preview
-          wait-on: 'http://localhost:5173' # Waits for above
+          wait-on: ${{ matrix.node-version == 18 && 'http://[::1]:5173' || 'http://localhost:5173' }} # Waits for above
           # Records to Cypress Cloud 
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
