@@ -1,4 +1,4 @@
-import { addScript } from "../utils/domUtils";
+import Hotjar from "@hotjar/browser";
 
 export default class CookieHandler {
   constructor() {
@@ -6,6 +6,9 @@ export default class CookieHandler {
     this.cookieConsentButtonAccept = document.querySelector(".cookie-consent__button--accept");
     this.cookieConsentButtonReject = document.querySelector(".cookie-consent__button--reject");
     this.cookieConsentBackdrop = document.querySelector(".cookie-consent-backdrop");
+
+    this.siteId = 3351298;
+    this.hotjarVersion = 6;
   }
 
   /**
@@ -25,7 +28,7 @@ export default class CookieHandler {
         this.rejectCookies();
       });
     } else if (document.cookie.includes("cookiesAccepted=true")) {
-      addScript("/js/third-party/hotjar.js");
+      Hotjar.init(this.siteId, this.hotjarVersion);
     }
   }
 
@@ -34,7 +37,7 @@ export default class CookieHandler {
     this.cookieConsentBackdrop.classList.add("invisible");
     this.cookieConsent.classList.add("invisible");
 
-    addScript("/js/third-party/hotjar.js");
+    Hotjar.init(this.siteId, this.hotjarVersion);
   }
 
   rejectCookies() {
