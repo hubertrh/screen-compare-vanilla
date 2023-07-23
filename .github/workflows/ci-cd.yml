@@ -14,6 +14,8 @@ jobs:
           node-version: 18
       - name: Install Dependencies
         run: npm ci
+      - name: Build
+        run: npm run build
       - name: Run Jest tests
         run: npm run coverage
   
@@ -35,7 +37,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          start: npx vite build; npx vite preview --port 4173
+          start: npx vite preview --port 4173
           wait-on: ${{ matrix.node-version == 18 && 'http://[::1]:4173' || 'http://localhost:4173' }}
           record: true
           parallel: true
