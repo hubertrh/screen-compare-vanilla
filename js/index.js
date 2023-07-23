@@ -493,5 +493,5 @@ window.addEventListener("load", () => {
   const kofiHandler = new KofiHandler();
   kofiHandler.appendKofi();
   setCheckingInternetConnection();
-  compareButton.click(); // DEV
+  // compareButton.click(); // DEV
 });
