@@ -7,7 +7,7 @@
     "dev": "vite --port 4173",
     "build": "vite build",
     "preview": "vite preview --port 5173",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage",
     "cy:open": "cypress open",
     "cy:run": "cypress run --record --key f6aeca8f-3bb5-47bb-8d78-363e93f4aea1"
