@@ -2,6 +2,8 @@
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import CookieHandler from "./cookieHandler";
+import Hotjar from "@hotjar/browser";
+
 vi.mock("../utils/domUtils");
 
 // Simulate document and window objects
@@ -27,6 +29,7 @@ Object.defineProperty(window.document, "cookie", {
 
 describe("CookieHandler", () => {
   let cookieHandler;
+  let hotjarInitSpy;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -35,7 +38,9 @@ describe("CookieHandler", () => {
       <button class="cookie-consent__button--reject"></button>
       <div class="cookie-consent-backdrop invisible"></div>
     `;
+
     cookieHandler = new CookieHandler();
+    hotjarInitSpy = vi.spyOn(Hotjar, "init");
   });
 
   it("shows the cookie consent banner if no cookies have been accepted yet", () => {
@@ -52,8 +57,7 @@ describe("CookieHandler", () => {
 
     expect(cookieHandler.cookieConsentBackdrop.classList.contains("invisible")).toBe(true);
     expect(cookieHandler.cookieConsent.classList.contains("invisible")).toBe(true);
-    // TODO: Fix this test
-    // expect(addScript).toHaveBeenCalledWith("/js/third-party/hotjar.js");
+    expect(hotjarInitSpy).toHaveBeenCalledWith(cookieHandler.siteId, cookieHandler.hotjarVersion);
   });
 
   it("accepts cookies, hides the cookie consent banner, and adds third-party script when accept button is clicked", () => {
@@ -62,8 +66,7 @@ describe("CookieHandler", () => {
     expect(document.cookie).toEqual("cookiesAccepted=true; max-age=31536000;");
     expect(cookieHandler.cookieConsentBackdrop.classList.contains("invisible")).toBe(true);
     expect(cookieHandler.cookieConsent.classList.contains("invisible")).toBe(true);
-    // TODO: Fix this test
-    // expect(addScript).toHaveBeenCalledWith("/js/third-party/hotjar.js");
+    expect(hotjarInitSpy).toHaveBeenCalledWith(cookieHandler.siteId, cookieHandler.hotjarVersion);
   });
 
   it("rejects cookies and hides the cookie consent banner when reject button is clicked", () => {
