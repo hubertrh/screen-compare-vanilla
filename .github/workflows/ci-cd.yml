@@ -4,6 +4,7 @@ on: [push, pull_request]
 jobs:
   jest-tests:
     name: Run Jest tests
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,7 +22,7 @@ jobs:
   
   cypress-run:
     name: Run Cypress tests
-    if: github.event_name == 'push'
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -47,7 +48,6 @@ jobs:
   
   build_and_preview:
     name: Preview on PR
-    needs: [jest-tests, cypress-run]
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
