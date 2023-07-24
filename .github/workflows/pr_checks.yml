@@ -1,10 +1,9 @@
-name: CI/CD
-on: [push, pull_request]
+name: PR Checks
+on: pull_request
 
 jobs:
   jest-tests:
     name: Run Jest tests
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,10 +18,9 @@ jobs:
         run: npm run build
       - name: Run Jest tests
         run: npm run coverage
-  
+
   cypress-run:
     name: Run Cypress tests
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -45,10 +43,9 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+
   build_and_preview:
     name: Preview on PR
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -56,17 +53,4 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCREENCOMPARE }}"
-          projectId: screencompare
-          
-  build_and_deploy:
-    name: Deploy on Push to main
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCREENCOMPARE }}'
-          channelId: live
           projectId: screencompare
