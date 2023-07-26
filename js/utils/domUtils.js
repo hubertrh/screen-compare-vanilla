@@ -1,6 +1,8 @@
 import darkModeIcon from "/dark-mode.svg";
 import lightModeIcon from "/light-mode.svg";
 
+const c = console.log.bind(console);
+
 /**
  * Adds an event listener to the specified element
  * that listens for the "Escape" keydown event.
