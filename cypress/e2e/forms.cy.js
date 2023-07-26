@@ -1,7 +1,7 @@
 describe("Screen Comparison Form", () => {
   beforeEach(() => {
     cy.clearCookies();
-    cy.visit("http://localhost:4173");
+    cy.visit("/");
     cy.get(".cookie-consent__button--reject").click();
   });
 
