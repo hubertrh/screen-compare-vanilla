@@ -2,6 +2,7 @@ describe("Screen Comparison Form", () => {
   beforeEach(() => {
     cy.clearCookies();
     cy.visit("/");
+    cy.get(".cookie-consent__button--reject").click();
     cy.wait(1000);
     cy.get(".cookie-consent__button--reject").click();
   });
