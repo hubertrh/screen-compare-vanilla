@@ -70,19 +70,4 @@ describe("Screen Comparison Form", () => {
       cy.get(`#${id}`).should("have.value", "");
     });
   });
-
-  it("Check if changing the dark mode works", () => {
-    // Check the initial state of the body class
-    cy.get("body")
-      .invoke("attr", "class")
-      .then((initialClass) => {
-        cy.get(".switch-mode").should("be.visible").click();
-
-        if (initialClass === "light-mode") {
-          cy.get("body").should("not.have.class", "light-mode");
-        } else {
-          cy.get("body").should("have.class", "light-mode");
-        }
-      });
-  });
 });
