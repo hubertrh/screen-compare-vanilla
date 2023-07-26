@@ -1,5 +1,5 @@
-import darkModeIcon from "/dark-mode.svg";
-import lightModeIcon from "/light-mode.svg";
+import darkModeIcon from "/icons/dark-mode.svg";
+import lightModeIcon from "/icons/light-mode.svg";
 
 const c = console.log.bind(console);
 
