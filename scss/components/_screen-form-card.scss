@@ -293,6 +293,7 @@
     border-radius: 50%;
     box-shadow: var(--shadow-elevation);
     margin: 1.4em 5% 1.2em;
+    padding: 0;
     background-color: var(--color-accent-aqua);
     cursor: pointer;
     z-index: 1;
@@ -307,8 +308,10 @@
     }
 
     &__icon {
-      width: 70%;
-      height: 70%;
+      width: 1.5em;
+      height: 1.5em;
+      max-width: none;
+      max-height: none;
     }
   }
 
@@ -380,6 +383,16 @@
 
     .btn-add {
       left: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .screen-card {
+    .screen-form {
+      .res-input {
+        width: calc(30% + 1vw);
+      }
     }
   }
 }

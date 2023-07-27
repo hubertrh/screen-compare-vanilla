@@ -97,6 +97,11 @@ body {
         background-color: var(--color-accent-red);
       }
 
+      &:focus-visible {
+        outline: solid 1.5px var(--color-accent-red);
+        outline-offset: 0.2em;
+      }
+
       &__img {
         position: absolute;
         rotate: 45deg;
