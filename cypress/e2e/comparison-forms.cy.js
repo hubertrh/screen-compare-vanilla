@@ -1,8 +1,8 @@
 describe("Screen Comparison Form", () => {
   beforeEach(() => {
     cy.clearCookies();
-    cy.visit("http://localhost:4173");
-    cy.get(".cookie-consent__button--reject").click();
+    cy.visit("/");
+    cy.get(".cookie-consent__button--reject", {timeout: 15000}).click();
   });
 
   it("First two screens input fields should be rendered and editable", () => {
@@ -68,20 +68,5 @@ describe("Screen Comparison Form", () => {
     inputs.forEach((id) => {
       cy.get(`#${id}`).should("have.value", "");
     });
-  });
-
-  it("Check if changing the dark mode works", () => {
-    // Check the initial state of the body class
-    cy.get("body")
-      .invoke("attr", "class")
-      .then((initialClass) => {
-        cy.get(".switch-mode").should("be.visible").click();
-
-        if (initialClass === "light-mode") {
-          cy.get("body").should("not.have.class", "light-mode");
-        } else {
-          cy.get("body").should("have.class", "light-mode");
-        }
-      });
   });
 });

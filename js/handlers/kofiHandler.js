@@ -47,6 +47,10 @@ export default class KofiHandler {
    * @returns {void}
    */
   appendKofi() {
+    console.log("////////////////////////////////");
+    console.log("Console may display KO-FI ERRORS");
+    console.log("////////////////////////////////");
+
     this.kofi.setAttribute("height", "712");
     this.kofi.setAttribute("id", "kofiframe");
     this.kofi.setAttribute(
@@ -56,7 +60,6 @@ export default class KofiHandler {
     this.kofi.setAttribute("style", "border: none; width: 100%; padding: 0; background: #f9f9f9");
     this.kofi.setAttribute("title", "Hubert Ko-fi");
 
-    console.warn("Console might display KO-FI ERRORS");
     this.kofiWrapper?.appendChild(this.kofi);
 
     this.handleKofiClicks();

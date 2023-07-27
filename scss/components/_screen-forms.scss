@@ -15,10 +15,8 @@
 }
 
 .common-screens-dialog {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 90%;
+  max-height: 87svh;
   background-color: var(--color-600);
   padding: 2em;
   border: none;
@@ -104,6 +102,24 @@
   .wrapper-main:has(.screen-results.invisible) {
     .screen-forms--double {
       translate: 0;
+    }
+  }
+
+  .common-screens-dialog__wrapper {
+    grid: 1fr 1fr / 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .common-screens-dialog {
+    margin-top: 9vh;
+
+    &__wrapper {
+      display: block;
+    }
+
+    &__column {
+      padding: 1.5em 0;
     }
   }
 }
