@@ -351,29 +351,6 @@ const handleReferenceBar = (e, refIndex) => {
   e.target.style.fontWeight = "600";
 };
 
-/**
- * Handles the display of the reference values for each screen.
- * Calculates the percentage difference between each value and the value of the
- * screen selected as the reference screen, and displays it in parentheses next to the value.
- * @param {Event} e - The click event object.
- * @param {number} refIndex - The index of the active reference screen.
- */
-const handleReferenceValues = (_, refIndex) => {
-  const detailsRows = document.querySelectorAll(".values__row");
-
-  detailsRows.forEach((row) => {
-    [...row.children].forEach((refValue) => {
-      const referenceValue = parseFloat(refValue.textContent);
-      const referenceIndexValue = parseFloat(row.children[refIndex].textContent);
-      let refPercentage = referenceValue / referenceIndexValue;
-      refPercentage = Math.round(refPercentage * 100);
-
-      const refValueVar = isNaN(refPercentage) ? `"\u2014"` : `"(${refPercentage}%)"`; // \u2014 - em dash
-      refValue.style.setProperty("--value-reference", refValueVar);
-    });
-  });
-};
-
 refButtons.forEach((button, index) => {
   handleTableScreenName(button, index);
 
@@ -381,7 +358,7 @@ refButtons.forEach((button, index) => {
     const refIndex = Number(e.target.id.slice(11) - 1);
 
     handleReferenceBar(e, refIndex);
-    handleReferenceValues(e, refIndex);
+    comparisonHandler.handleReferenceValues(null, refIndex);
   });
 });
 

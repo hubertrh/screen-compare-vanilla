@@ -1,7 +1,5 @@
 import { addScreenToDatabase } from "../database/firestore";
 
-const c = console.log.bind(document); // DEV
-
 export default class ComparisonHandler {
   constructor() {
     this.detailsUnitSwitch = document.querySelector(".text-units-switch");
@@ -347,7 +345,6 @@ export default class ComparisonHandler {
      * of the screens and hiding/showing the PPI guide.
      */
     const handlePpiRow = () => {
-      console.log(`this.ppis: ${this.ppis}`);
       const ppiGuide = document.querySelector(".ppi-guide");
 
       [...valueRows[4].children].forEach((child, index) => {
@@ -412,6 +409,29 @@ export default class ComparisonHandler {
     });
   }
 
+  /**
+   * Handles the display of the reference values for each screen.
+   * Calculates the percentage difference between each value and the value of the
+   * screen selected as the reference screen, and displays it in parentheses next to the value.
+   * @param {Event} e - The click event object.
+   * @param {number} refIndex - The index of the active reference screen.
+   */
+  handleReferenceValues(_, refIndex) {
+    const detailsRows = document.querySelectorAll(".values__row");
+
+    detailsRows.forEach((row) => {
+      [...row.children].forEach((refValue) => {
+        const referenceValue = parseFloat(refValue.textContent);
+        const referenceIndexValue = parseFloat(row.children[refIndex].textContent);
+        let refPercentage = referenceValue / referenceIndexValue;
+        refPercentage = Math.round(refPercentage * 100);
+
+        const refValueVar = isNaN(refPercentage) ? `"\u2014"` : `"(${refPercentage}%)"`; // \u2014 - em dash
+        refValue.style.setProperty("--value-reference", refValueVar);
+      });
+    });
+  }
+
   saveFormData() {
     const isThirdScreenActive = !document.querySelector(".screen--inactive");
     const screens = isThirdScreenActive ? 3 : 2;
@@ -468,6 +488,7 @@ export default class ComparisonHandler {
     this.handleThirdScreenElement();
     this.handleResultsTable();
     this.handlePpiValidationColors();
+    this.handleReferenceValues(null, 0);
     this.saveFormData();
   }
 }
