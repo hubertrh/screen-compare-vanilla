@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         # run copies of the current job in parallel
-        containers: [1, 2, 3]
+        containers: [1]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -60,8 +60,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          record: true
-          parallel: true
+          record: false
+          parallel: false
           start: npx vite preview --port 4173
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
