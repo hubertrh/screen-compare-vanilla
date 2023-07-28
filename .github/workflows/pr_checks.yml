@@ -69,6 +69,7 @@ jobs:
           record: false
           parallel: false
           start: npx vite preview --port 4173
+          browser: electron
           wait-on: ${{ matrix.node-version == 18 && 'http://[::1]:4173' || 'http://localhost:4173' }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
