@@ -46,7 +46,7 @@ jobs:
       # don't fail the entire matrix on failure
       fail-fast: false
       matrix:
-        node-version: [18]
+        node-version: [16, 18]
         containers: [1]
     steps:
       - name: Checkout
