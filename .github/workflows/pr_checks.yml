@@ -46,10 +46,16 @@ jobs:
       # don't fail the entire matrix on failure
       fail-fast: false
       matrix:
+        node-version: [18]
         containers: [1]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Download the build folder
         uses: actions/download-artifact@v3
@@ -63,9 +69,10 @@ jobs:
           record: false
           parallel: false
           start: npx vite preview --port 4173
-        # env:
-        #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          wait-on: ${{ matrix.node-version == 18 && 'http://[::1]:4173' || 'http://localhost:4173' }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-preview:
     name: Preview on PR
