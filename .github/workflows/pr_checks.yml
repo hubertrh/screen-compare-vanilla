@@ -40,13 +40,12 @@ jobs:
           path: dist
 
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: cypress-install
     strategy:
       # don't fail the entire matrix on failure
       fail-fast: false
       matrix:
-        # run copies of the current job in parallel
         containers: [1]
     steps:
       - name: Checkout
@@ -56,6 +55,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+          path: dist
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
@@ -63,9 +63,9 @@ jobs:
           record: false
           parallel: false
           start: npx vite preview --port 4173
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-preview:
     name: Preview on PR
