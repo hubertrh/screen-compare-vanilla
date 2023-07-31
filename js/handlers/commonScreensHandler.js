@@ -39,11 +39,15 @@ export default class CommonScreensHandler {
   }
 
   attachEventHandlers() {
+    const firstColumnSelector = ".common-screens-dialog__column:nth-child(1) li";
+    const otherColumnsSelector = ".common-screens-dialog__column:not(:nth-child(1)) li";
+
     // Handle the first column separately
-    document.querySelectorAll(".common-screens-dialog__column:nth-child(1) li").forEach((li) => {
+    document.querySelectorAll(firstColumnSelector).forEach((li) => {
       li.addEventListener("click", () => {
         const valueString = li.textContent.trim();
-        const [size, aspectRatio] = valueString.split(/\s+/);
+        let [size, aspectRatio] = valueString.split(/\s+/);
+        size = size.replace(/["'″]/g, "");
         const [xAspectRatio, yAspectRatio] = aspectRatio.split(":");
         this.fillForm({ size, xAspectRatio, yAspectRatio });
 
@@ -52,23 +56,21 @@ export default class CommonScreensHandler {
     });
 
     // Attach click event listener to each li element in the other columns
-    document
-      .querySelectorAll(".common-screens-dialog__column:not(:nth-child(1)) li")
-      .forEach((li) => {
-        li.addEventListener("click", () => {
-          const deviceName = li.textContent.trim();
-          const deviceData = this.data[deviceName];
-          if (deviceData) {
-            deviceData.name = deviceName;
-            this.fillForm(deviceData);
-            console.log(this.nameInput);
-            this.nameInput.dispatchEvent(new Event("input"));
-          } else {
-            console.error(`No data for device: ${deviceName}`);
-          }
+    document.querySelectorAll(otherColumnsSelector).forEach((li) => {
+      li.addEventListener("click", () => {
+        const deviceName = li.textContent.trim();
+        const deviceData = this.data[deviceName];
+        if (deviceData) {
+          deviceData.name = deviceName;
+          this.fillForm(deviceData);
+          console.log(this.nameInput);
+          this.nameInput.dispatchEvent(new Event("input"));
+        } else {
+          console.error(`No data for device: ${deviceName}`);
+        }
 
-          this.commonScreensDialog.close();
-        });
+        this.commonScreensDialog.close();
       });
+    });
   }
 }

@@ -166,7 +166,7 @@ const getTopScreens = async () => {
         const doc = docs[i];
 
         // Create new text node for screen size
-        const screenSize = document.createTextNode(doc.data().screenSize + "'");
+        const screenSize = document.createTextNode(doc.data().screenSize + "″");
 
         // Create new text node for aspect ratio
         const aspectRatio = document.createTextNode(
