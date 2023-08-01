@@ -1,8 +1,7 @@
 describe("Screen Comparison Form", () => {
   beforeEach(() => {
-    cy.clearCookies();
     cy.visit("/");
-    cy.get(".cookie-consent__button--reject", {timeout: 15000}).click();
+    cy.get(".cookie-consent__button--reject", { timeout: 15000 }).click();
   });
 
   it("First two screens input fields should be rendered and editable", () => {

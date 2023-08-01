@@ -4,7 +4,7 @@ describe("Common Screens Modal", () => {
     cy.get(".cookie-consent__button--reject", { timeout: 15000 }).click();
   });
 
-  it("Shows the modal", () => {
+  it("Checks every 'li' in the modal", () => {
     cy.intercept("/data/deviceData.json").as("deviceData");
     cy.get(".btn-add").should("be.visible").click();
 
