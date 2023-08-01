@@ -57,8 +57,8 @@
   },
   "Samsung Galaxy Tab S8": {
     "size": "11",
-    "xAspectRatio": "16:10",
-    "yAspectRatio": "9:16",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
     "xResolution": "2560",
     "yResolution": "1600"
   },

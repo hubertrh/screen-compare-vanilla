@@ -1,5 +1,6 @@
 export default class CommonScreensHandler {
   static data = null;
+  static activeHandler = null;
 
   static async fetchData() {
     if (this.data === null) {
@@ -42,35 +43,54 @@ export default class CommonScreensHandler {
     const firstColumnSelector = ".common-screens-dialog__column:nth-child(1) li";
     const otherColumnsSelector = ".common-screens-dialog__column:not(:nth-child(1)) li";
 
-    // Handle the first column separately
-    document.querySelectorAll(firstColumnSelector).forEach((li) => {
-      li.addEventListener("click", () => {
-        const valueString = li.textContent.trim();
-        let [size, aspectRatio] = valueString.split(/\s+/);
-        size = size.replace(/["'″]/g, "");
-        const [xAspectRatio, yAspectRatio] = aspectRatio.split(":");
-        this.fillForm({ size, xAspectRatio, yAspectRatio });
+    // Set the active handler to this instance
+    CommonScreensHandler.activeHandler = this;
 
-        this.commonScreensDialog.close();
-      });
+    // Remove previous event listeners
+    document.querySelectorAll(firstColumnSelector).forEach((li) => {
+      li.removeEventListener("click", this.handleFirstColumnClick);
+    });
+    document.querySelectorAll(otherColumnsSelector).forEach((li) => {
+      li.removeEventListener("click", this.handleOtherColumnsClick);
     });
 
-    // Attach click event listener to each li element in the other columns
+    // Attach new event listeners
+    document.querySelectorAll(firstColumnSelector).forEach((li) => {
+      li.addEventListener("click", this.handleFirstColumnClick);
+    });
     document.querySelectorAll(otherColumnsSelector).forEach((li) => {
-      li.addEventListener("click", () => {
-        const deviceName = li.textContent.trim();
-        const deviceData = this.data[deviceName];
-        if (deviceData) {
-          deviceData.name = deviceName;
-          this.fillForm(deviceData);
-          console.log(this.nameInput);
-          this.nameInput.dispatchEvent(new Event("input"));
-        } else {
-          console.error(`No data for device: ${deviceName}`);
-        }
-
-        this.commonScreensDialog.close();
-      });
+      li.addEventListener("click", this.handleOtherColumnsClick);
     });
   }
+
+  handleFirstColumnClick = (event) => {
+    if (CommonScreensHandler.activeHandler !== this) return;
+
+    const li = event.target.closest("li");
+    const span = li.querySelector("span");
+    const size = span.childNodes[0].textContent.replace(/["'″]/g, "").trim();
+    const aspectRatio = span.childNodes[2].textContent.trim();
+    const [xAspectRatio, yAspectRatio] = aspectRatio.split(":");
+
+    this.fillForm({ size, xAspectRatio, yAspectRatio });
+
+    this.commonScreensDialog.close();
+  };
+
+  handleOtherColumnsClick = (event) => {
+    if (CommonScreensHandler.activeHandler !== this) return;
+
+    const li = event.target;
+    const deviceName = li.textContent.trim();
+    const deviceData = this.data[deviceName];
+    if (deviceData) {
+      deviceData.name = deviceName;
+      this.fillForm(deviceData);
+      this.nameInput.dispatchEvent(new Event("input"));
+    } else {
+      console.error(`No data for device: ${deviceName}`);
+    }
+
+    this.commonScreensDialog.close();
+  };
 }
