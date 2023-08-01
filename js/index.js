@@ -74,6 +74,9 @@ const handleInputResize = (e) => {
   if (e.target.value.length <= 20 && e.target.value.length >= 1) {
     e.target.size = e.target.value.length;
   }
+  if (e.target.value.length > 20) {
+    e.target.size = 20;
+  }
 };
 
 const refButtons = document.querySelectorAll(".ref-screen");
