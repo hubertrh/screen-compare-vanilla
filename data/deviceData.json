@@ -1,0 +1,142 @@
+{
+  "Apple iPhone 14": {
+    "size": "6.1",
+    "xAspectRatio": "19.5",
+    "yAspectRatio": "9",
+    "xResolution": "1170",
+    "yResolution": "2532"
+  },
+  "Apple iPhone 14 Pro": {
+    "size": "6.1",
+    "xAspectRatio": "19.5",
+    "yAspectRatio": "9",
+    "xResolution": "1179",
+    "yResolution": "2556"
+  },
+  "Apple iPhone 14 Pro Max": {
+    "size": "6.7",
+    "xAspectRatio": "19.5",
+    "yAspectRatio": "9",
+    "xResolution": "1290",
+    "yResolution": "2796"
+  },
+  "Samsung Galaxy S22 5G": {
+    "size": "6.1",
+    "xAspectRatio": "19.5",
+    "yAspectRatio": "9",
+    "xResolution": "1080",
+    "yResolution": "2340"
+  },
+  "Xiaomi 12 Pro": {
+    "size": "6.73",
+    "xAspectRatio": "20",
+    "yAspectRatio": "9",
+    "xResolution": "1440",
+    "yResolution": "3200"
+  },
+  "Apple iPad (9th Gen)": {
+    "size": "10.2",
+    "xAspectRatio": "4",
+    "yAspectRatio": "3",
+    "xResolution": "2160",
+    "yResolution": "1620"
+  },
+  "Apple iPad Air": {
+    "size": "10.9",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "2360",
+    "yResolution": "1640"
+  },
+  "Apple iPad mini": {
+    "size": "8.3",
+    "xAspectRatio": "3",
+    "yAspectRatio": "2",
+    "xResolution": "2266",
+    "yResolution": "1488"
+  },
+  "Samsung Galaxy Tab S8": {
+    "size": "11",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "2560",
+    "yResolution": "1600"
+  },
+  "Samsung Galaxy Tab S8+": {
+    "size": "11",
+    "xAspectRatio": "16",
+    "yAspectRatio": "10",
+    "xResolution": "2560",
+    "yResolution": "1600"
+  },
+  "Apple MacBook Pro (16-inch)": {
+    "size": "16.2",
+    "xAspectRatio": "16",
+    "yAspectRatio": "10",
+    "xResolution": "3456",
+    "yResolution": "2234"
+  },
+  "Dell XPS 15 (FHD)": {
+    "size": "15.6",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "1920",
+    "yResolution": "1080"
+  },
+  "HP Spectre x360 16": {
+    "size": "16",
+    "xAspectRatio": "16",
+    "yAspectRatio": "10",
+    "xResolution": "3840",
+    "yResolution": "2400"
+  },
+  "Lenovo ThinkPad X1 Carbon (10th Gen)": {
+    "size": "14",
+    "xAspectRatio": "16",
+    "yAspectRatio": "10",
+    "xResolution": "3840",
+    "yResolution": "2400"
+  },
+  "Microsoft Surface Laptop 4": {
+    "size": "13.5",
+    "xAspectRatio": "3",
+    "yAspectRatio": "2",
+    "xResolution": "2256",
+    "yResolution": "1504"
+  },
+  "LG G3 OLED Evo 55″": {
+    "size": "55",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "3840",
+    "yResolution": "2160"
+  },
+  "Samsung S95C OLED 65″": {
+    "size": "65",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "3840",
+    "yResolution": "2160"
+  },
+  "TCL QM8 mini-LED 55″": {
+    "size": "55",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "3840",
+    "yResolution": "2160"
+  },
+  "Sony Bravia X93L mini-LED 65″": {
+    "size": "65",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "3840",
+    "yResolution": "2160"
+  },
+  "Samsung S95B OLED 65″": {
+    "size": "65",
+    "xAspectRatio": "16",
+    "yAspectRatio": "9",
+    "xResolution": "3840",
+    "yResolution": "2160"
+  }
+}

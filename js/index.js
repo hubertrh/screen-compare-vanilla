@@ -1,4 +1,5 @@
 import { getTopScreens } from "./database/firestore";
+import CommonScreensHandler from "./handlers/commonScreensHandler";
 import ComparisonHandler from "./handlers/comparisonHandler";
 import CookieHandler from "./handlers/cookieHandler";
 import KofiHandler from "./handlers/kofiHandler";
@@ -72,6 +73,9 @@ const nameInputs = document.querySelectorAll(".name");
 const handleInputResize = (e) => {
   if (e.target.value.length <= 20 && e.target.value.length >= 1) {
     e.target.size = e.target.value.length;
+  }
+  if (e.target.value.length > 20) {
+    e.target.size = 20;
   }
 };
 
@@ -368,7 +372,14 @@ const commonScreensBtnClose = document.querySelector(".btn-remove--common-screen
 const commonScreensDialog = document.querySelector(".common-screens-dialog");
 
 commonScreensBtn.forEach((button) => {
-  button.addEventListener("click", () => commonScreensDialog.showModal());
+  button.addEventListener("click", async (e) => {
+    commonScreensDialog.showModal();
+
+    const index = e.currentTarget.id.slice(-1);
+    const commonScreensHandler = new CommonScreensHandler(index);
+    commonScreensHandler.data = await CommonScreensHandler.fetchData();
+    commonScreensHandler.attachEventHandlers();
+  });
 });
 
 commonScreensBtnClose.addEventListener("click", () => commonScreensDialog.close());

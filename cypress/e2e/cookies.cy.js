@@ -1,7 +1,6 @@
 describe("Cookie Consent Banner", () => {
   beforeEach(() => {
-    cy.clearCookies();
-    cy.visit("http://localhost:4173");
+    cy.visit("/");
   });
 
   it("Cookie consent banner and buttons should be displayed if no cookiesAccepted cookie is set", () => {

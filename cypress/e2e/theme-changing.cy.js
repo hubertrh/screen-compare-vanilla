@@ -1,6 +1,5 @@
 describe("Theme Changing", () => {
   beforeEach(() => {
-    cy.clearCookies();
     cy.visit("/");
     cy.get(".cookie-consent__button--reject").click();
   });
