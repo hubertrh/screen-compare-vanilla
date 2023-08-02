@@ -10,15 +10,14 @@ orbs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  jest_and_cypress: # This is the name of the workflow, feel free to change it to better match your workflow.
+    name: Jest and Cypress Tests
     jobs:
       - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
+          name: Jest Tests
           # https://circleci.com/developer/images/image/cimg/node
-          version: "16.10"
-          # If you are using yarn, change the line below from "npm" to "yarn"
+          version: "18.17"
           pkg-manager: npm
       - cypress/run:
+          name: Cypress Tests
           start-command: npm run dev
