@@ -1,6 +1,24 @@
+import tippy, { roundArrow } from "tippy.js";
+import "tippy.js/animations/perspective-subtle.css";
+import "tippy.js/dist/svg-arrow.css";
+import "tippy.js/dist/tippy.css"; // optional for styling
 import { addScreenToDatabase } from "../database/firestore";
+import { getRndInteger } from "../utils/domUtils";
 
 export default class ComparisonHandler {
+  static data = null;
+
+  static async fetchPpiResponses() {
+    if (this.data === null) {
+      const response = await fetch("/data/ppiResponses.json");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      this.data = await response.json();
+    }
+    return this.data;
+  }
+
   constructor() {
     this.detailsUnitSwitch = document.querySelector(".text-units-switch");
     this.unitsDivider = 0;
@@ -406,6 +424,31 @@ export default class ComparisonHandler {
       const color = getColor(this.ppis[index], deviceType);
       const curPpiElement = document.querySelectorAll(".row__value.ppi")[index];
       curPpiElement.style.setProperty("--validation-color", color);
+
+      // Add Tippy.js tooltip
+      const colorToDataKey = {
+        green: "high",
+        darkgoldenrod: "medium",
+        brown: "low",
+      };
+
+      tippy(curPpiElement, {
+        content: () => {
+          const dataKey = colorToDataKey[color];
+
+          if (!dataKey) {
+            return "PPI, or Pixels Per Inch, is a measure of screen resolution. Higher PPI generally implies a clearer, sharper display.";
+          }
+
+          const data = ComparisonHandler.data[dataKey];
+          const length = data.length;
+
+          return data[getRndInteger(0, length - 1)];
+        },
+        placement: "top",
+        arrow: roundArrow,
+        animation: "perspective-subtle",
+      });
     });
   }
 

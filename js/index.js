@@ -478,6 +478,7 @@ window.addEventListener("load", () => {
   const cookieHandler = new CookieHandler();
   cookieHandler.handleCookieConsent();
   updateYear();
+  ComparisonHandler.fetchPpiResponses();
   const kofiHandler = new KofiHandler();
   kofiHandler.appendKofi();
   setCheckingInternetConnection();
