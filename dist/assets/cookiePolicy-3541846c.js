@@ -1,1 +1,0 @@
-import{h as o,a as n,C as a,u as d,K as c}from"./domUtils-94b4f7fa.js";const t=document.querySelectorAll("header *");t.forEach(e=>{o(e)});const r=document.querySelector(".switch-mode");r.addEventListener("click",()=>{n()});window.addEventListener("load",()=>{new a().handleCookieConsent(),d(),new c().appendKofi()});

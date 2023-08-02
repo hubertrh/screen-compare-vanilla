@@ -65,10 +65,15 @@ const addScript = (source) => {
   }
 };
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 export {
   handleEscapeFocusOut,
   handleDarkModeSwitch,
   updateYear,
   setCheckingInternetConnection,
   addScript,
+  getRndInteger,
 };

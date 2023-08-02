@@ -1,0 +1,15 @@
+.tippy-box {
+  border: 1px solid var(--color-accent-aqua);
+  background-color: var(--color-500) !important;
+
+  & > .tippy-svg-arrow {
+    fill: var(--color-accent-aqua);
+  }
+
+  .tippy-content {
+    color: var(--color-900);
+    text-align: center;
+    text-wrap: balance;
+    font-size: 0.8rem;
+  }
+}
