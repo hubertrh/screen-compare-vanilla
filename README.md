@@ -1,6 +1,6 @@
 # ScreenCompare
 
-ScreenCompare is a web application that helps users compare the sizes of different screens. This tool is useful for developers, designers, and anyone who works with displays of various sizes and resolutions.
+ScreenCompare is a web application that helps users compare the sizes of different screens, useful for anyone who works with displays of various sizes and resolutions.
 
 ## Table of Contents
 
