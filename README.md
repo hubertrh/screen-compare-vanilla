@@ -68,7 +68,7 @@ These operations are called within the application logic, such as when a user de
 
 ## Contributions
 
-This project is currently not open to contributions, it will be later this year.
+This project is currently not open to contributions yet.
 
 ## License
 
